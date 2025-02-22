@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мобильные Игры</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        header {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .game-card {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .features {
+            background: #f9f9f9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .cta {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .testimonials {
+            background: #ecf0f1;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .stats {
+            background: #34495e;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка с меняющимися изображениями -->
+    <header>
+        <img src="https://imagesbase.ru/uploads/posts/2017-10/1508650219_imagesbase.ru.jpg" alt="Game 1" class="header-image active">
+        <img src="https://i.pinimg.com/originals/0d/f2/74/0df2744df03e6bfeb353be33814447fe.jpg" alt="Game 2" class="header-image">
+        <img src="https://i.pinimg.com/originals/14/e9/20/14e92076d89141df8412f27df97ea3a9.jpg" alt="Game 3" class="header-image">
+        <div class="header-content">
+            <h1>Увлекательные Мобильные Игры</h1>
+            <p>Погрузитесь в мир захватывающих приключений</p>
+        </div>
+    </header>
+
+    <!-- Секция о нас -->
+    <section class="about">
+        <div class="container">
+            <h2>О Нас</h2>
+            <p>Мы создаем уникальные мобильные игры, которые захватывают и вдохновляют игроков по всему миру.</p>
+        </div>
+    </section>
+
+    <!-- Секция с играми -->
+    <section class="games">
+        <div class="container">
+            <h2>Наши Игры</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <img src="https://i.ytimg.com/vi/Atu9dcvcFUc/hqdefault.jpg" alt="Game 1">
+                    <h3>Run From Neighbor(Test) </h3>
+                    <p>Иследуйте дом соседа не попасте ему глаз</p>
+                </div>
+                <div class="game-card">
+                    <img src="https://cdn.nur.kz/images/1200x675/pogudx11fnf90n52ng.jpeg" alt="Game 2">
+                    <h3>Казакстан Тарих(Quiz)бета</h3>
+                    <p>Иследуйте историю Казакстана</p>
+                </div>
+                <div class="game-card">
+                    <img src="https://tr.rbxcdn.com/180DAY-2ebbb1e1e668cc274f1b01c3f8ae4362/768/432/Image/Webp/noFilter" alt="Game 3">
+                    <h3>GREEN DONATIONS </h3>
+                    <p>эТО иГРА нАХОДИТСЯ в роблоксе</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция особенностей -->
+    <section class="features">
+        <div class="container">
+            <h2>Особенности Наших Игр</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>Высокое Качество</h3>
+                    <p>Детальная графика и плавная анимация</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Увлекательный Геймплей</h3>
+                    <p>Захватывающие механики и интересные задачи</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Регулярные Обновления</h3>
+                    <p>Новый контент каждый месяц</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция призыва к действию -->
+    <section class="cta">
+        <div class="container">
+            <h2>Готовы Начать Играть?</h2>
+            <p>Скачайте наши игры прямо сейчас и погрузитесь в мир приключений!</p>
+            <a href="#" class="button">Скачать Игры</a>
+        </div>
+    </section>
+
+    <!-- Секция отзывов -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Отзывы Игроков</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"Лучшие мобильные игры, которые я когда-либо играл!"</p>
+                    <cite>- Александр</cite>
+                </div>
+                <div class="testimonial">
+                    <p>"Невероятно затягивающий геймплей и отличная графика!"</p>
+                    <cite>- Мария</cite>
+                </div>
+                <div class="testimonial">
+                    <p>"Регулярные обновления делают игру еще интереснее!"</p>
+                    <cite>- Дмитрий</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция статистики -->
+    <section class="stats">
+        <div class="container">
+            <h2>Наши Достижения</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>1M+</h3>
+                    <p>Скачиваний</p>
+                </div>
+                <div class="stat-item">
+                    <h3>4.8</h3>
+                    <p>Средний рейтинг</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Стран</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция контактов -->
+    <section class="contact">
+        <div class="container">
+            <h2>Свяжитесь с Нами</h2>
+            <p>У вас есть вопросы? Мы всегда готовы помочь!</p>
+            <form>
+                <input type="email" placeholder="Ваш email" style="padding: 10px; margin: 10px 0; width: 100%; max-width: 300px;">
+                <textarea placeholder="Ваше сообщение" style="padding: 10px; margin: 10px 0; width: 100%; max-width: 300px; height: 100px;"></textarea>
+                <button type="submit" class="button">Отправить</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Мобильные Игры. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Функция для смены изображений в шапке
+        function rotateHeaderImages() {
+            const images = document.querySelectorAll('.header-image');
+            let currentIndex = 0;
+
+            setInterval(() => {
+                images.forEach(img => img.classList.remove('active'));
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+            }, 3000);
+        }
+
+        // Запускаем ротацию изображений
+        rotateHead
