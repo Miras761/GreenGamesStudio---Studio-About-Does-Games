@@ -5,273 +5,189 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GreenGamesStudio - Сайын Мирас</title>
     <style>
-        :root {
-            --primary-color: #00FF7F;
-            --primary-dark: #00CC66;
-            --background-dark: #0A0A0A;
-            --background-light: #121212;
-            --card-background: #151515;
-            --text-color: #FFFFFF;
-            --border-radius: 8px;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--background-dark);
-            color: var(--text-color);
-            background-image: linear-gradient(45deg, #0A0A0A 25%, #0C120C 25%, #0C120C 50%, #0A0A0A 50%, #0A0A0A 75%, #0C120C 75%, #0C120C 100%);
-            background-size: 40px 40px;
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            flex-grow: 1;
         }
 
         header {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0, 20, 0, 0.4);
-            backdrop-filter: blur(5px);
+            background-color: #000;
+            padding: 10px 0;
             position: sticky;
             top: 0;
-            z-index: 100;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
-            color: var(--primary-color);
-            text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
-            display: flex;
-            align-items: center;
-        }
-
-        .logo:before {
-            content: '';
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            background-color: var(--primary-color);
-            margin-right: 10px;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            color: #00FF7F;
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
-            color: var(--text-color);
+            color: #FFFFFF;
             text-decoration: none;
-            padding: 10px 15px;
-            border-radius: var(--border-radius);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
         }
 
         .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--primary-color);
-            transform: translateX(-100%);
-            transition: transform 0.3s;
-        }
-
-        .nav-links a:hover:after {
-            transform: translateX(0);
+            color: #00FF7F;
         }
 
         section {
-            margin: 40px 0;
-            padding: 30px;
-            background-color: var(--background-light);
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0, 20, 0, 0.2);
-            border-left: 3px solid var(--primary-color);
-        }
-
-        h1, h2, h3 {
-            color: var(--primary-color);
-        }
-
-        .game-card {
-            background-color: var(--card-background);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            margin-bottom: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #222;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 255, 127, 0.1);
-        }
-
-        .game-image {
-            width: 100%;
-            height: 200px;
-            background-color: #1a1a1a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .game-info {
+            margin: 20px 0;
             padding: 20px;
+            background-color: #121212;
+            border-left: 3px solid #00FF7F;
+        }
+
+        h1, h2 {
+            color: #00FF7F;
         }
 
         .btn {
             display: inline-block;
-            background-color: var(--primary-color);
+            background-color: #00FF7F;
             color: #000;
-            padding: 12px 24px;
-            border-radius: var(--border-radius);
+            padding: 10px 20px;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.3s;
             border: none;
             cursor: pointer;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+            margin: 5px 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s;
-            z-index: -1;
+            box-sizing: border-box;
         }
 
         .btn:hover {
-            background-color: var(--primary-dark);
-            box-shadow: 0 5px 15px rgba(0, 255, 127, 0.3);
+            background-color: #00CC66;
         }
 
-        .btn:hover:before {
-            left: 100%;
-        }
-
-        .creator-profile {
+        .donate-section {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
         }
 
-        .creator-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border: 3px solid var(--primary-color);
-            box-shadow: 0 0 20px rgba(0, 255, 127, 0.4);
+        .phone-number {
+            color: #00FF7F;
+            font-weight: bold;
         }
 
-        .donate-form {
+        .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
-            margin: 0 auto;
+            gap: 10px;
+            margin-top: 10px;
         }
 
-        input, select, textarea {
-            padding: 14px;
-            border-radius: var(--border-radius);
+        .contact-form input, .contact-form textarea {
+            padding: 10px;
+            background-color: #151515;
+            color: #FFFFFF;
             border: 1px solid #333;
-            background-color: rgba(30, 30, 30, 0.8);
-            color: white;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+            box-sizing: border-box;
         }
 
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(0, 255, 127, 0.2);
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #00FF7F;
             outline: none;
         }
 
         footer {
             text-align: center;
-            padding: 30px;
-            background-color: rgba(0, 0, 0, 0.7);
-            margin-top: 60px;
-            border-top: 1px solid var(--primary-dark);
-        }
-
-        .glow-effect {
-            text-shadow: 0 0 10px var(--primary-color);
-        }
-
-        #contacts {
-            margin: 20px 0;
-            padding: 15px;
-            background-color: var(--background-light);
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0, 20, 0, 0.2);
-            border-left: 3px solid var(--primary-color);
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 10px;
-        }
-
-        .social-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 18px;
             padding: 10px;
-            border-radius: var(--border-radius);
-            transition: all 0.3s;
+            background-color: #000;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
 
-        .social-links a:hover {
-            color: var(--primary-color);
-            background-color: rgba(255, 255, 255, 0.1);
+        .like-button {
+            font-size: 24px;
+            cursor: pointer;
+            color: #00FF7F;
+            transition: color 0.3s;
         }
 
+        .like-button.liked {
+            color: #FFFFFF;
+        }
+
+        .achievement {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .achievement-heart {
+            font-size: 16px;
+            color: #00FF7F;
+        }
+
+        /* Мобильная адаптация */
         @media (max-width: 768px) {
             .nav-links {
                 flex-direction: column;
                 gap: 10px;
+                width: 100%;
+                text-align: center;
+                margin-top: 10px;
             }
-            .social-links {
+
+            .donate-section {
                 flex-direction: column;
+                align-items: stretch;
                 gap: 10px;
+            }
+
+            .btn {
+                padding: 12px;
+            }
+
+            h1 { font-size: 20px; }
+            h2 { font-size: 18px; }
+        }
+
+        /* Для ПК */
+        @media (min-width: 769px) {
+            .btn {
+                width: auto;
+                margin: 5px;
+            }
+
+            .donate-section {
+                flex-wrap: nowrap;
             }
         }
     </style>
@@ -283,135 +199,108 @@
                 <div class="logo">GreenGamesStudio</div>
                 <div class="nav-links">
                     <a href="#home">Главная</a>
-                    <a href="#about">О нас</a>
+                    <a href="#about">Обо мне</a>
                     <a href="#games">Игры</a>
-                    <a href="#creator">Создатель</a>
                     <a href="#donate">Донат</a>
-                    <a href="#contacts">Контакты</a>
+                    <a href="#contact-dev">Обратиться</a>
+                    <a href="#privacy">Политика</a>
                 </div>
             </nav>
         </div>
     </header>
 
     <div class="container">
-        <section id="contacts">
-            <h2>Контакты</h2>
-            <p>Следите за нашими обновлениями в социальных сетях!</p>
-            <div class="social-links">
-                <a href="https://www.youtube.com/@Miras_razrabgames" target="_blank">YouTube</a>
-            </div>
-        </section>
-
         <section id="home">
-            <h1>Добро пожаловать в <span class="glow-effect">GreenGamesStudio</span></h1>
-            <p>Мы разрабатываем уникальные игры с захватывающим геймплеем и интересными историями.</p>
+            <h1>Привет! Это GreenGamesStudio — место, где я, Сайын Мирас, создаю свои игры.</h1>
         </section>
 
         <section id="about">
-            <h2>О нас</h2>
-            <p>Мы - небольшая команда разработчиков, которая стремится создавать интересные и увлекательные игры. Наша цель - воплощать творческие идеи в реальность и дарить игрокам незабываемые впечатления.</p>
-            <p>Мы используем современные технологии и подходы к разработке, чтобы наши игры были качественными и интересными.</p>
+            <h2>Обо мне</h2>
+            <p>Привет! Меня зовут Сайын Мирас, мне 13 лет, и я начинающий разработчик игр. Я работаю один и самостоятельно изучаю программирование и дизайн игр. Моя цель — создавать интересные проекты, которые понравятся игрокам!</p>
         </section>
 
         <section id="games">
-            <h2>Наши игры</h2>
-            <div class="game-card">
-                <div class="game-image">
-                    <img src="data:image/jpeg;base64,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" alt="Превью игры Normaly Neighbor">
-                </div>
-                <div class="game-info">
-                    <h3>Normaly Neighbor</h3>
-                    <p>Захватывающая приключенческая игра с элементами головоломки и исследования.</p>
-                    <a href="https://i.ytimg.com/vi/Atu9dcvcFUc/hqdefault.jpg" class="btn" id="downloadGame">Скачать игру</a>
-                </div>
+            <h2>Игры</h2>
+            <p>Normaly Neighbor — захватывающая приключенческая игра с головоломками.</p>
+            <a href="https://drive.google.com/file/d/1ZVwVkZ_E61whj2cKRq44bLREgvYO3I9G/view?usp=drive_link" class="btn">Скачать игру</a>
+            <div>
+                <span class="like-button" id="likeButton">💚</span>
             </div>
-        </section>
-
-        <section id="creator">
-            <h2>Создатель</h2>
-            <div class="creator-profile">
-                <div class="creator-avatar">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAVFBMVEWY1m06ei+b2W83dy0xcymT0WlkoUpSkD+Kx2M0dSud3HFFhDaW1GwvcShrqE9/vFxdmkZ2s1ZfnEc/fzJTkT+OzGdzsFVopU1Lijp8uVqFwmAobCSoReJ3AAAD7UlEQVR4nO2c61LiQBBGyQSVRG6iKOL7v+cqICTdc8lulVvzWef8hUzlkI9kMt3JbAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf8sizXLiEMvMGD+675MIq3mKj6cwbYh1Zoy7H97/CbvXNinal37SEP1jcohmXrVhM582xH4la9i9T4lpeO1kDdvtFMP+kItB3YZNN8XwLhPS+g03ZcVsSKs3nBLTbEirN2zasuHdPDdA9YbzY0kxPOVCWr9he18y7B/yP1Hthk1TMlxmQypgWIppeM+GVMCwFNP+pfALVW/YPBdm3/mQKhjOs3d4pZAqGHbrXEzDtvQD1W/YPOZiGgqHUMJwtc9svPkNht1rOqZhV9pawbA9pGNa3FjCsFkldzIcC9cKEcN0TMsh1TBMxzSUNhUxTO7lhJCKGHaJleFw/++/zn9kgmFqZbgvbqlimFoZXpRDqmIYXxkOb1N+HA3D+JJb/1zeUsUwvjK8sCvBsZFkDCMrw2FtZ92x2/1aDQ8Hc3R23tDW1NrdWsewfXGLoN7Q1tS6Y+zyWK3h0uy+X3Jz5YquVzJ8sMUIv+TmvrEVM3QFJWtoyxXzjZihE1iMFX1NLUSnqdUaBhfCt7Gh+3ynZuiOkVkZtoXfz1ORmKH7n61GK8O+phbiN1MVG9qq2Xhl2H76da5VM3RHabQybGtqX9dLNcOZvegPV4Z9uaJP3PLXbOhiOlhyszW105lWztDGdLTkZg7hqUAlZ+hKg7eddSE9XUr0DG0UbzG1NbXzdEDP0B6pz7nc9zbmEJ6vlXqG/t926Rl2NbXzhUTQ0MX0sjJsQ3qZDAgaupheVoZdSM9XSkFDH9PzFrZccZntKBq6OJ5Whm1N7XvGKmloTinnlWFbU/uezikaun/c18pwKqSihjamG38LcZ0IaBpuxsfra2U4mHLF1UHS0H8agqmp3SbkoobmvDk/9m+JkKoamtNKe29raoM7DklDd2l43hvl63Rc1tDEtDUVp0EXg6phoaNkdXtGUdSw0HAxbNNQNcw3zQxbbWQNszEd9qGoGmZjOuolkjXMxXTUaCNrmGt96kYjyRqmO4Pa7bCWoWuY7u4at9noGvrmp6vheCRdw9Tz9qbdTdjQ93ddDuHmtximXilgHqFVNozH1Da7KRvGY2o7wZQNEzE1X5I2jMXUdWRKG8bem+DaFaUNZ/vI3NT1Y0ob+ldD+H5MbUMfU9usqG7oX9Hin/EWNyx1Y87kDW1MV/4hdnFDG9PIiwiqNVxFOEQerzgMv/DhQzoLu8hIFbyvDQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABx/ABEROaYpzxtuAAAAAElFTkSuQmCC" alt="Аватар Сайын Мирас">
-                </div>
-                <h3>Сайын Мирас</h3>
-                <p>Главный разработчик и основатель GreenGamesStudio. Обладает многолетним опытом в создании игр различных жанров и стремится к инновациям в игровой индустрии.</p>
-                <p>Специализируется на геймдизайне и программировании. Постоянно совершенствует свои навыки и изучает новые технологии для создания еще более качественных и интересных игр.</p>
+            <div class="achievement">
+                <span>Достижение: Лайки игры: <span id="like-count">0</span></span>
+                <span class="achievement-heart">💚</span>
             </div>
         </section>
 
         <section id="donate">
-            <h2>Поддержать проект</h2>
-            <p>Если вам нравятся наши игры, вы можете поддержать разработку, отправив донат через Kaspi.kz. Выберите сумму и нажмите "Отправить"!</p>
+            <h2>Донат</h2>
+            <p>Поддержи меня через Kaspi.kz!</p>
+            <div class="donate-section">
+                <a href="https://kaspi.kz/" target="_blank" class="btn">Перейти на Kaspi.kz</a>
+                <span class="phone-number">+7 (775) 798-59-11</span>
+                <button class="btn" onclick="copyPhoneNumber()">Копировать</button>
+            </div>
+        </section>
 
-            <form id="donateForm" class="donate-form">
-                <input type="text" id="donorName" placeholder="Ваше имя (необязательно)">
-                <select id="amountSelect">
-                    <option value="1000">1000 KZT</option>
-                    <option value="3000">3000 KZT</option>
-                    <option value="5000">5000 KZT</option>
-                    <option value="10000">10000 KZT</option>
-                    <option value="custom">Другая сумма</option>
-                </select>
-                <div id="customAmountContainer" style="display: none;">
-                    <input type="number" id="customAmount" placeholder="Введите сумму в KZT" min="500" step="100">
-                </div>
-                <button type="submit" class="btn" id="donateBtn">Отправить донат</button>
+        <section id="contact-dev">
+            <h2>Обратиться к разработчику</h2>
+            <p>Меня зовут Сайын Мирас, мой Gmail: <span class="phone-number">saiynmiras2011@gmail.com</span></p>
+            <p>Напиши мне сообщение!</p>
+            <form action="https://formspree.io/f/xvgzebqo" method="POST" class="contact-form">
+                <input type="text" name="name" placeholder="Твоё имя" required>
+                <input type="email" name="email" placeholder="Твой email" required>
+                <textarea name="message" placeholder="Твоё сообщение" rows="4" required></textarea>
+                <button type="submit" class="btn">Отправить</button>
             </form>
+        </section>
+
+        <section id="privacy">
+            <h2>Политика конфиденциальности</h2>
+            <p>Добро пожаловать на сайт GreenGamesStudio! Я, Сайын Мирас, уважаю вашу конфиденциальность и обязуюсь защищать данные, которые вы предоставляете через этот сайт.</p>
+            <p><strong>Сбор данных:</strong> Через форму "Обратиться к разработчику" я собираю ваше имя, email и сообщение. Эти данные отправляются через сервис Formspree на мой email (saiynmiras2011@gmail.com) только для ответа на ваши запросы.</p>
+            <p><strong>Использование данных:</strong> Я не использую ваши данные в коммерческих целях, не передаю их третьим лицам и не храню дольше, чем нужно для общения с вами.</p>
+            <p><strong>Лайки:</strong> Количество лайков игры сохраняется в вашем браузере (localStorage) и не передается мне или кому-либо еще.</p>
+            <p><strong>Ваши права:</strong> Вы можете запросить удаление ваших данных, написав мне на saiynmiras2011@gmail.com.</p>
+            <p>Этот сайт не использует cookies или другие трекеры. Если у вас есть вопросы, свяжитесь со мной через форму выше!</p>
         </section>
     </div>
 
     <footer>
-        <div class="container">
-            <p>© 2025 GreenGamesStudio - Сайын Мирас. Все права защищены.</p>
-        </div>
+        <p>© 2024 Сайын Мирас - GreenGamesStudio</p>
     </footer>
 
     <script>
-        // Весь JavaScript внутри одного тега
-        document.addEventListener('DOMContentLoaded', function() {
-            const amountSelect = document.getElementById('amountSelect');
-            const customAmountContainer = document.getElementById('customAmountContainer');
-            const customAmount = document.getElementById('customAmount');
-            const donateForm = document.getElementById('donateForm');
-            const donateBtn = document.getElementById('donateBtn');
-            const downloadBtn = document.getElementById('downloadGame');
-
-            // Ваш номер телефона для Kaspi (замените на реальный)
-            const phoneNumber = "77757985911"; // Например, "77001234567"
-
-            // Переключение суммы
-            amountSelect.addEventListener('change', function() {
-                if (this.value === 'custom') {
-                    customAmountContainer.style.display = 'block';
-                    customAmount.required = true;
-                } else {
-                    customAmountContainer.style.display = 'none';
-                    customAmount.required = false;
-                }
+        function copyPhoneNumber() {
+            navigator.clipboard.writeText('+77757985911').then(() => {
+                alert('Номер скопирован в буфер обмена');
             });
+        }
 
-            // Обработка отправки формы для доната через Kaspi
-            donateForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                let amount = amountSelect.value;
-                if (amount === 'custom') {
-                    amount = customAmount.value;
-                }
-                if (!amount || amount < 500) {
-                    alert('Пожалуйста, выберите сумму не менее 500 KZT');
-                    return;
-                }
+        let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
+        let isLiked = localStorage.getItem('isLiked') === 'true';
+        const likeButton = document.getElementById('likeButton');
+        const likeCountDisplay = document.getElementById('like-count');
 
-                // Формируем ссылку для Kaspi
-                const kaspiUrl = `kaspi://payment?phone=${phoneNumber}&amount=${amount}&comment=Поддержка GreenGamesStudio`;
-                window.location.href = kaspiUrl;
-            });
+        likeCountDisplay.textContent = likeCount;
+        if (isLiked) {
+            likeButton.classList.add('liked');
+        } else {
+            likeButton.classList.remove('liked');
+        }
 
-            // Кнопка скачивания игры
-            downloadBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.location.href = "https://drive.google.com/file/d/1ZVwVkZ_E61whj2cKRq44bLREgvYO3I9G/view?usp=drive_link";
-            });
+        likeButton.addEventListener('click', function() {
+            if (!isLiked) {
+                likeCount++;
+                isLiked = true;
+                likeButton.classList.add('liked');
+            } else {
+                likeCount--;
+                isLiked = false;
+                likeButton.classList.remove('liked');
+            }
+            likeCountDisplay.textContent = likeCount;
+            localStorage.setItem('likeCount', likeCount);
+            localStorage.setItem('isLiked', isLiked);
         });
     </script>
 </body>
