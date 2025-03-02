@@ -9,13 +9,12 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #0A0A0A;
-            color: #FFFFFF;
+            background: #0A0A0A;
+            color: #FFF;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-
         .container {
             width: 90%;
             max-width: 800px;
@@ -23,56 +22,49 @@
             padding: 20px;
             flex-grow: 1;
         }
-
         header {
-            background-color: #000;
+            background: #000;
             padding: 10px 0;
             position: sticky;
             top: 0;
         }
-
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
         }
-
         .logo {
             font-size: 20px;
             font-weight: bold;
             color: #00FF7F;
         }
-
         .nav-links {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
         }
-
         .nav-links a {
-            color: #FFFFFF;
+            color: #FFF;
             text-decoration: none;
         }
-
         .nav-links a:hover {
             color: #00FF7F;
         }
-
         section {
             margin: 20px 0;
             padding: 20px;
-            background-color: #121212;
-            border-left: 3px solid #00FF7F;
+            background: #121212;
+            border-left: 5px solid #00FF7F;
+            border-radius: 5px;
+            animation: slideIn 0.8s ease-out;
         }
-
         h1, h2 {
             color: #00FF7F;
+            animation: fadeIn 1s ease-in-out;
         }
-
         .btn {
-            display: inline-block;
-            background-color: #00FF7F;
+            background: #00FF7F;
             color: #000;
             padding: 10px 20px;
             text-decoration: none;
@@ -80,14 +72,14 @@
             border: none;
             cursor: pointer;
             margin: 5px 0;
-            width: 100%;
-            box-sizing: border-box;
+            display: inline-block;
+            transition: transform 0.3s, background 0.3s;
+            border-radius: 5px;
         }
-
         .btn:hover {
-            background-color: #00CC66;
+            background: #00CC66;
+            transform: scale(1.05);
         }
-
         .donate-section {
             display: flex;
             align-items: center;
@@ -95,53 +87,96 @@
             margin-top: 10px;
             flex-wrap: wrap;
         }
-
         .phone-number {
             color: #00FF7F;
             font-weight: bold;
         }
-
-        .contact-form {
+        .contact-form, .comment-form {
             display: flex;
             flex-direction: column;
             gap: 10px;
             margin-top: 10px;
         }
-
-        .contact-form input, .contact-form textarea {
+        .contact-form input, .contact-form textarea, .comment-form input, .comment-form textarea {
             padding: 10px;
-            background-color: #151515;
-            color: #FFFFFF;
+            background: #151515;
+            color: #FFF;
             border: 1px solid #333;
+            border-radius: 5px;
             width: 100%;
             box-sizing: border-box;
         }
-
-        .contact-form input:focus, .contact-form textarea:focus {
+        .contact-form input:focus, .contact-form textarea:focus, .comment-form input:focus, .comment-form textarea:focus {
             border-color: #00FF7F;
             outline: none;
         }
-
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #000;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        .comment-list, .idea-list {
+            margin-top: 15px;
         }
-
+        .comment {
+            background: #1A1A1A;
+            padding: 15px;
+            margin: 5px 0;
+            border-radius: 8px;
+            border: 1px solid #00FF7F;
+            font-style: italic;
+        }
+        .comment span {
+            color: #00FF7F;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .idea {
+            background: #202020;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border-left: 4px solid #FF4500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .idea span {
+            color: #FF4500;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .mini-game {
+            margin: 20px 0;
+            text-align: center;
+        }
+        #space-canvas {
+            border: 2px solid #00FF7F;
+            background: #000 url('https://www.transparenttextures.com/patterns/stardust.png');
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            margin: 10px auto;
+            display: block;
+            touch-action: none;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #151515;
+            border: 1px solid #00FF7F;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #progress-fill {
+            height: 100%;
+            background: #00FF7F;
+            transition: width 1s ease-in-out;
+        }
         .like-button {
             font-size: 24px;
             cursor: pointer;
             color: #00FF7F;
             transition: color 0.3s;
         }
-
         .like-button.liked {
-            color: #FFFFFF;
+            color: #FFF;
         }
-
         .achievement {
             margin-top: 10px;
             display: flex;
@@ -149,46 +184,39 @@
             gap: 5px;
             flex-wrap: wrap;
         }
-
         .achievement-heart {
             font-size: 16px;
             color: #00FF7F;
         }
-
-        /* Мобильная адаптация */
+        .fun-fact, .challenge {
+            margin: 10px 0;
+            padding: 10px;
+            background: #151515;
+            border-radius: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #000;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
         @media (max-width: 768px) {
-            .nav-links {
-                flex-direction: column;
-                gap: 10px;
-                width: 100%;
-                text-align: center;
-                margin-top: 10px;
-            }
-
-            .donate-section {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 10px;
-            }
-
-            .btn {
-                padding: 12px;
-            }
-
+            .nav-links { flex-direction: column; gap: 10px; width: 100%; text-align: center; margin-top: 10px; }
+            .donate-section { flex-direction: column; gap: 10px; }
+            .btn { width: 100%; padding: 12px; }
             h1 { font-size: 20px; }
             h2 { font-size: 18px; }
-        }
-
-        /* Для ПК */
-        @media (min-width: 769px) {
-            .btn {
-                width: auto;
-                margin: 5px;
-            }
-
-            .donate-section {
-                flex-wrap: nowrap;
-            }
+            #space-canvas { height: 250px; }
         }
     </style>
 </head>
@@ -201,8 +229,18 @@
                     <a href="#home">Главная</a>
                     <a href="#about">Обо мне</a>
                     <a href="#games">Игры</a>
+                    <a href="#mini-games">Мини-игры</a>
+                    <a href="#news">Новости</a>
                     <a href="#donate">Донат</a>
-                    <a href="#contact-dev">Обратиться</a>
+                    <a href="#comments">Напишите комментарий</a>
+                    <a href="#ideas">Искры Гениальности</a>
+                    <a href="#challenges">Испытания</a>
+                    <a href="#fun-facts">Факты</a>
+                    <a href="#behind-scenes">За кулисами</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#fan-art">Фан-арт</a>
+                    <a href="#contact-dev">Сообщить о багах</a>
+                    <a href="#contacts">Контакты</a>
                     <a href="#privacy">Политика</a>
                 </div>
             </nav>
@@ -232,6 +270,26 @@
             </div>
         </section>
 
+        <section id="mini-games">
+            <h2>Мини-игры</h2>
+            <div class="mini-game">
+                <h3>Спаситель Земли</h3>
+                <p>Управляй кораблём и стреляй по метеоритам! (WASD/Тап + Пробел/Кнопка)</p>
+                <canvas id="space-canvas"></canvas>
+                <button id="shoot-btn" class="btn" style="margin-top: 10px;">Стрелять</button>
+                <p>Очки спасения: <span id="space-score">0</span></p>
+                <img src="https://via.placeholder.com/300x200?text=Космическая+битва" alt="Спаситель Земли">
+            </div>
+        </section>
+
+        <section id="news">
+            <h2>Новости GreenGamesStudio</h2>
+            <p>Следите за моими приключениями в мире разработки!</p>
+            <p>02.03.2025: Новый уровень для Normaly Neighbor в работе — ждите больше загадок!</p>
+            <p>15.02.2025: Запустил мини-игру "Спаситель Земли" — спасайте планету!</p>
+            <p>01.01.2025: С Новым Годом! Планирую большую игру в этом году!</p>
+        </section>
+
         <section id="donate">
             <h2>Донат</h2>
             <p>Поддержи меня через Kaspi.kz!</p>
@@ -242,26 +300,111 @@
             </div>
         </section>
 
+        <section id="comments">
+            <h2>Напишите комментарий</h2>
+            <p>Поделись мыслями об играх или просто поболтай!</p>
+            <form id="comment-form" class="comment-form">
+                <input type="text" id="comment-name" placeholder="Твоё имя" required>
+                <textarea id="comment-message" placeholder="Твой комментарий" rows="4" required></textarea>
+                <button type="submit" class="btn">Отправить</button>
+            </form>
+            <div id="comment-list" class="comment-list"></div>
+        </section>
+
+        <section id="ideas">
+            <h2>Искры Гениальности</h2>
+            <p>Мои безумные идеи для будущих игр:</p>
+            <p>- Игра про путешествия во времени с головоломками.</p>
+            <p>- Симулятор жизни пиксельного дракона.</p>
+            <p>- Битва роботов в стиле ретро с твоим дизайном!</p>
+            <p>Есть идеи? Оставь их ниже!</p>
+            <form id="idea-form" class="comment-form">
+                <input type="text" id="idea-name" placeholder="Твоё имя" required>
+                <textarea id="idea-message" placeholder="Твоя идея или комментарий" rows="3" required></textarea>
+                <button type="submit" class="btn">Отправить идею</button>
+            </form>
+            <div id="idea-list" class="idea-list"></div>
+        </section>
+
+        <section id="challenges">
+            <h2>Испытания от Сайына</h2>
+            <p>Попробуй эти челленджи!</p>
+            <div class="challenge">
+                <p><strong>Челлендж #1:</strong> Пройди Normaly Neighbor без подсказок!</p>
+            </div>
+            <div class="challenge">
+                <p><strong>Челлендж #2:</strong> Набери 150 очков в "Спасителе Земли"!</p>
+            </div>
+            <div class="challenge">
+                <p><strong>Челлендж #3:</strong> Придумай идею для игры и напиши в "Комментарии"!</p>
+            </div>
+        </section>
+
+        <section id="fun-facts">
+            <h2>Занимательные факты</h2>
+            <div class="fun-fact">
+                <p>Идея Normaly Neighbor родилась, когда я смотрел фильм про странных соседей!</p>
+            </div>
+            <div class="fun-fact">
+                <p>Мой первый код был "Hello World" — и он не сработал с первого раза!</p>
+            </div>
+            <div class="fun-fact">
+                <p>Я мечтаю создать игру, где главный герой — мой кот!</p>
+            </div>
+        </section>
+
+        <section id="behind-scenes">
+            <h2>За кулисами</h2>
+            <p>Как я создаю игры?</p>
+            <p>- Утро: Кофе (или сок) и первые строчки кода.</p>
+            <p>- День: Тестирование — иногда я сам пугаюсь багов!</p>
+            <p>- Ночь: Рисую идеи на бумаге, пока не усну.</p>
+            <p>Хочешь видео о процессе? Напиши в "Комментарии"!</p>
+        </section>
+
+        <section id="faq">
+            <h2>Часто задаваемые вопросы</h2>
+            <p><strong>Почему игры бесплатные?</strong> Я хочу делиться своим творчеством с миром!</p>
+            <p><strong>Как я учусь программировать?</strong> Через YouTube, книги и эксперименты.</p>
+            <p><strong>Когда будет новая игра?</strong> Скоро, следите за новостями!</p>
+        </section>
+
+        <section id="fan-art">
+            <h2>Фан-арт от игроков</h2>
+            <p>Присылай свои рисунки по мотивам моих игр на saiynmiras2011@gmail.com!</p>
+            <p>Пока тут пусто, но я жду твои шедевры! Первый фан-арт получит лайк от меня!</p>
+        </section>
+
         <section id="contact-dev">
-            <h2>Обратиться к разработчику</h2>
-            <p>Меня зовут Сайын Мирас, мой Gmail: <span class="phone-number">saiynmiras2011@gmail.com</span></p>
-            <p>Напиши мне сообщение!</p>
+            <h2>Сообщить о багах</h2>
+            <p>Нашёл баг в игре или на сайте? Напиши мне!</p>
+            <p>Gmail: <span class="phone-number">saiynmiras2011@gmail.com</span></p>
             <form action="https://formspree.io/f/xvgzebqo" method="POST" class="contact-form">
                 <input type="text" name="name" placeholder="Твоё имя" required>
                 <input type="email" name="email" placeholder="Твой email" required>
-                <textarea name="message" placeholder="Твоё сообщение" rows="4" required></textarea>
+                <textarea name="message" placeholder="Опиши баг" rows="4" required></textarea>
                 <button type="submit" class="btn">Отправить</button>
             </form>
+        </section>
+
+        <section id="contacts">
+            <h2>Контакты</h2>
+            <p>Связаться со мной можно через социальные сети:</p>
+            <div class="donate-section">
+                <a href="https://www.youtube.com/@Miras_razrabgames" target="_blank" class="btn">YouTube</a>
+                <a href="https://t.me/+BtFF6XZ80LBkNGQy" target="_blank" class="btn">Telegram</a>
+            </div>
+            <p>Подписывайтесь, чтобы быть в курсе всех новостей и обновлений!</p>
         </section>
 
         <section id="privacy">
             <h2>Политика конфиденциальности</h2>
             <p>Добро пожаловать на сайт GreenGamesStudio! Я, Сайын Мирас, уважаю вашу конфиденциальность и обязуюсь защищать данные, которые вы предоставляете через этот сайт.</p>
-            <p><strong>Сбор данных:</strong> Через форму "Обратиться к разработчику" я собираю ваше имя, email и сообщение. Эти данные отправляются через сервис Formspree на мой email (saiynmiras2011@gmail.com) только для ответа на ваши запросы.</p>
-            <p><strong>Использование данных:</strong> Я не использую ваши данные в коммерческих целях, не передаю их третьим лицам и не храню дольше, чем нужно для общения с вами.</p>
-            <p><strong>Лайки:</strong> Количество лайков игры сохраняется в вашем браузере (localStorage) и не передается мне или кому-либо еще.</p>
-            <p><strong>Ваши права:</strong> Вы можете запросить удаление ваших данных, написав мне на saiynmiras2011@gmail.com.</p>
-            <p>Этот сайт не использует cookies или другие трекеры. Если у вас есть вопросы, свяжитесь со мной через форму выше!</p>
+            <p><strong>Сбор данных:</strong> Через формы я собираю ваше имя, email и сообщение. Эти данные отправляются через Formspree на мой email (saiynmiras2011@gmail.com) только для ответа на ваши запросы.</p>
+            <p><strong>Использование данных:</strong> Я не использую ваши данные в коммерческих целях, не передаю их третьим лицам и не храню дольше, чем нужно для общения.</p>
+            <p><strong>Лайки и комментарии:</strong> Сохраняются в вашем браузере (localStorage).</p>
+            <p><strong>Ваши права:</strong> Вы можете запросить удаление данных, написав мне на saiynmiras2011@gmail.com.</p>
+            <p>Сайт не использует cookies. Вопросы? Пиши!</p>
         </section>
     </div>
 
@@ -270,38 +413,177 @@
     </footer>
 
     <script>
+        // Копирование номера телефона
         function copyPhoneNumber() {
-            navigator.clipboard.writeText('+77757985911').then(() => {
-                alert('Номер скопирован в буфер обмена');
-            });
+            navigator.clipboard.writeText('+77757985911').then(() => alert('Номер скопирован в буфер обмена'));
         }
 
+        // Лайки для Normaly Neighbor
         let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
         let isLiked = localStorage.getItem('isLiked') === 'true';
         const likeButton = document.getElementById('likeButton');
         const likeCountDisplay = document.getElementById('like-count');
-
         likeCountDisplay.textContent = likeCount;
-        if (isLiked) {
-            likeButton.classList.add('liked');
-        } else {
-            likeButton.classList.remove('liked');
-        }
-
-        likeButton.addEventListener('click', function() {
-            if (!isLiked) {
-                likeCount++;
-                isLiked = true;
-                likeButton.classList.add('liked');
-            } else {
-                likeCount--;
-                isLiked = false;
-                likeButton.classList.remove('liked');
-            }
+        if (isLiked) likeButton.classList.add('liked');
+        likeButton.addEventListener('click', () => {
+            isLiked = !isLiked;
+            likeCount += isLiked ? 1 : -1;
+            likeButton.classList.toggle('liked', isLiked);
             likeCountDisplay.textContent = likeCount;
             localStorage.setItem('likeCount', likeCount);
             localStorage.setItem('isLiked', isLiked);
         });
+
+        // Комментарии
+        function loadComments() {
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+            const commentList = document.getElementById('comment-list');
+            commentList.innerHTML = '';
+            comments.forEach(comment => {
+                const div = document.createElement('div');
+                div.className = 'comment';
+                div.innerHTML = `<span>${comment.name}</span>${comment.message}`;
+                commentList.appendChild(div);
+            });
+        }
+
+        document.getElementById('comment-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('comment-name').value;
+            const message = document.getElementById('comment-message').value;
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+            comments.push({ name, message });
+            localStorage.setItem('comments', JSON.stringify(comments));
+            document.getElementById('comment-form').reset();
+            loadComments();
+        });
+
+        // Идеи
+        function loadIdeas() {
+            const ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+            const ideaList = document.getElementById('idea-list');
+            ideaList.innerHTML = '';
+            ideas.forEach(idea => {
+                const div = document.createElement('div');
+                div.className = 'idea';
+                div.innerHTML = `<span>${idea.name}</span>: ${idea.message}`;
+                ideaList.appendChild(div);
+            });
+        }
+
+        document.getElementById('idea-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('idea-name').value;
+            const message = document.getElementById('idea-message').value;
+            const ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+            ideas.push({ name, message });
+            localStorage.setItem('ideas', JSON.stringify(ideas));
+            document.getElementById('idea-form').reset();
+            loadIdeas();
+        });
+
+        // Загрузка комментариев и идей при открытии страницы
+        loadComments();
+        loadIdeas();
+
+        // Мини-игра: Спаситель Земли (Космический шутер)
+        const canvas = document.getElementById('space-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 400;
+        canvas.height = 300;
+        let ship = { x: 180, y: 250, width: 40, height: 20, speed: 5 };
+        let lasers = [];
+        let meteors = [];
+        let score = 0;
+        const scoreDisplay = document.getElementById('space-score');
+        let keys = {};
+        let touchX = null;
+
+        // Управление клавишами
+        document.addEventListener('keydown', e => keys[e.code] = true);
+        document.addEventListener('keyup', e => keys[e.code] = false);
+
+        // Сенсорное управление
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            touchX = e.touches[0].clientX - canvas.offsetLeft;
+        });
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            touchX = e.touches[0].clientX - canvas.offsetLeft;
+        });
+        canvas.addEventListener('touchend', () => touchX = null);
+
+        // Стрельба
+        function shootLaser() {
+            lasers.push({ x: ship.x + ship.width / 2 - 2, y: ship.y, width: 4, height: 10, speed: 7 });
+        }
+        document.addEventListener('keydown', e => { if (e.code === 'Space') shootLaser(); });
+        document.getElementById('shoot-btn').addEventListener('click', shootLaser);
+        document.getElementById('shoot-btn').addEventListener('touchstart', (e) => { e.preventDefault(); shootLaser(); });
+
+        // Спавн метеоритов
+        function spawnMeteor() {
+            meteors.push({ x: Math.random() * (canvas.width - 30), y: -30, width: 30, height: 30, speed: 2 + Math.random() * 2 });
+        }
+        setInterval(spawnMeteor, 1500);
+
+        // Игровой цикл
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Управление кораблём
+            if (keys['KeyA'] && ship.x > 0) ship.x -= ship.speed;
+            if (keys['KeyD'] && ship.x < canvas.width - ship.width) ship.x += ship.speed;
+            if (keys['KeyW'] && ship.y > 0) ship.y -= ship.speed;
+            if (keys['KeyS'] && ship.y < canvas.height - ship.height) ship.y += ship.speed;
+            if (touchX !== null) {
+                if (touchX > ship.x + ship.width / 2) ship.x += ship.speed;
+                if (touchX < ship.x + ship.width / 2) ship.x -= ship.speed;
+                ship.x = Math.max(0, Math.min(canvas.width - ship.width, ship.x));
+            }
+
+            // Отрисовка корабля
+            ctx.font = '30px Arial';
+            ctx.fillStyle = '#00FF7F';
+            ctx.fillText('🚀', ship.x, ship.y + 20);
+
+            // Лазеры
+            lasers.forEach((laser, i) => {
+                laser.y -= laser.speed;
+                ctx.fillStyle = '#FFFF00';
+                ctx.fillRect(laser.x, laser.y, laser.width, laser.height);
+                if (laser.y < 0) lasers.splice(i, 1);
+            });
+
+            // Метеориты
+            meteors.forEach((meteor, i) => {
+                meteor.y += meteor.speed;
+                ctx.font = '30px Arial';
+                ctx.fillStyle = '#FF4500';
+                ctx.fillText('☄️', meteor.x, meteor.y);
+                if (meteor.y > canvas.height) {
+                    meteors.splice(i, 1);
+                    if (score > 0) score -= 5;
+                }
+                lasers.forEach((laser, j) => {
+                    if (laser.x < meteor.x + meteor.width && laser.x + laser.width > meteor.x && laser.y < meteor.y + meteor.height) {
+                        meteors.splice(i, 1);
+                        lasers.splice(j, 1);
+                        score += 10;
+                    }
+                });
+            });
+
+            scoreDisplay.textContent = score;
+            if (score >= 100) {
+                alert('Земля спасена! Ты герой!');
+                score = 0;
+                meteors = [];
+            }
+            requestAnimationFrame(gameLoop);
+        }
+        gameLoop();
     </script>
 </body>
 </html>
