@@ -3,306 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenGamesStudio - Сайын Мирас</title>
+    <title>GreenGamesStudio</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background: #0A0A0A;
-            color: #FFF;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            line-height: 1.6;
-        }
-        .container {
-            width: 90%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            flex-grow: 1;
-        }
-        header {
-            background: #000;
-            padding: 15px 0;
-            position: relative;
-            box-shadow: 0 2px 5px rgba(0, 255, 127, 0.2);
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #00FF7F;
-        }
-        .menu-toggle {
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background: #0A0A0A; color: #FFF; min-height: 100vh; display: flex; flex-direction: column; }
+        .container { width: 90%; max-width: 900px; margin: 0 auto; padding: 10px; flex-grow: 1; }
+        header { background: #000; padding: 10px 0; box-shadow: 0 2px 5px rgba(0, 255, 127, 0.2); }
+        nav { display: flex; justify-content: space-between; align-items: center; flex-direction: row-reverse; }
+        .logo { font-size: 20px; font-weight: bold; color: #00FF7F; }
+        .menu-toggle { display: none; background: none; border: none; color: #00FF7F; font-size: 24px; cursor: pointer; }
+        .nav-links { display: flex; gap: 10px; }
+        .nav-links a { color: #FFF; text-decoration: none; padding: 5px; font-size: 14px; }
+        .nav-links a:hover { color: #00FF7F; }
+        section { margin: 15px 0; padding: 15px; background: #121212; border-left: 5px solid #00FF7F; border-radius: 5px; position: relative; }
+        h1, h2, h3 { color: #00FF7F; margin-bottom: 10px; }
+        h1 { font-size: 22px; } h2 { font-size: 20px; } h3 { font-size: 16px; }
+        p { margin-bottom: 10px; line-height: 1.5; }
+        .btn { background: #00FF7F; color: #000; padding: 8px 15px; font-weight: bold; border: none; cursor: pointer; border-radius: 5px; margin: 5px 0; font-size: 14px; transition: background 0.3s, transform 0.1s; }
+        .btn:hover { background: #00CC66; }
+        .btn:active { transform: scale(0.95); }
+        .mini-game { margin: 15px 0; text-align: center; }
+        #clicker-canvas {
             display: none;
-            background: none;
-            border: none;
-            color: #00FF7F;
-            font-size: 28px;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .menu-toggle:hover {
-            transform: scale(1.1);
-        }
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            transition: transform 0.3s ease-in-out;
-        }
-        .nav-links a {
-            color: #FFF;
-            text-decoration: none;
-            padding: 8px 12px;
-            transition: color 0.3s, background 0.3s;
-            border-radius: 5px;
-        }
-        .nav-links a:hover {
-            color: #00FF7F;
-            background: rgba(0, 255, 127, 0.1);
-        }
-        section {
-            margin: 30px 0;
-            padding: 20px;
-            background: #121212;
-            border-left: 5px solid #00FF7F;
-            border-radius: 5px;
-            animation: slideIn 0.8s ease-out;
-        }
-        h1, h2, h3 {
-            color: #00FF7F;
-            margin-bottom: 15px;
-        }
-        h1 { font-size: 28px; }
-        h2 { font-size: 22px; }
-        h3 { font-size: 18px; }
-        p { margin-bottom: 10px; }
-        .btn {
-            background: #00FF7F;
-            color: #000;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-            transition: transform 0.3s, background 0.3s;
-            border-radius: 5px;
-            margin: 5px 0;
-        }
-        .btn:hover {
-            background: #00CC66;
-            transform: scale(1.05);
-        }
-        .game, .mini-game {
-            margin: 20px 0;
-            text-align: center;
-        }
-        #space-canvas, #clicker-canvas {
             border: 2px solid #00FF7F;
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             height: 300px;
             margin: 10px auto;
-            display: block;
             touch-action: none;
-        }
-        #clicker-canvas {
-            background: url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80') no-repeat center;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 127, 0.3);
+            background: url('https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80') no-repeat center;
             background-size: cover;
+            position: relative;
         }
-        #space-canvas {
-            background: #000 url('https://www.transparenttextures.com/patterns/stardust.png');
-        }
-        .shop {
-            margin-top: 15px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
-        .shop-item {
-            background: #151515;
-            padding: 10px;
-            border-radius: 5px;
-            width: 130px;
-            text-align: center;
-        }
-        .shop-item p { margin: 5px 0; }
-        .shop-item .btn { width: 100%; padding: 8px; }
-        .contact-form, .comment-form, .calc-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .contact-form input, .contact-form textarea, .comment-form input, .comment-form textarea, .calc-input {
-            padding: 10px;
-            background: #151515;
-            color: #FFF;
-            border: 1px solid #00FF7F;
-            border-radius: 5px;
-            width: 100%;
-            font-size: 16px;
-        }
-        .comment-list {
-            margin-top: 15px;
-        }
-        .comment {
-            background: #1A1A1A;
-            padding: 15px;
-            margin: 5px 0;
-            border-radius: 8px;
-            border: 1px solid #00FF7F;
-        }
-        .comment span {
-            color: #00FF7F;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-        .calc-container {
-            background: #121212;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .calc-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-        }
-        .calc-btn {
-            background: #151515;
-            color: #FFF;
-            border: 1px solid #00FF7F;
-            padding: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .calc-btn:hover {
-            background: #00FF7F;
-            color: #000;
-        }
-        .calc-btn-clear {
-            background: #151515;
-        }
-        .calc-btn-clear:hover {
-            background: #FF4500;
-        }
-        .calc-btn-equal {
-            background: #00FF7F;
-            color: #000;
-        }
-        .calc-btn-equal:hover {
-            background: #00CC66;
-        }
-        .gallery-grid, .facts-grid, .challenges-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .gallery-item, .fact-item, .challenge-item {
-            background: #151515;
-            padding: 10px;
-            border: 1px solid #00FF7F;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .gallery-item img {
-            max-width: 100%;
-            border-radius: 5px;
-        }
-        .fact-item, .challenge-item {
-            font-style: italic;
-        }
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: #000;
-            width: 100%;
-            box-shadow: 0 -2px 5px rgba(0, 255, 127, 0.2);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes burgerClick {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
+        #clicker-canvas.active { display: block; }
+        .game-stats { display: flex; justify-content: space-around; flex-wrap: wrap; margin: 10px 0; font-size: 16px; }
+        .game-stats span { color: #00FF7F; font-weight: bold; }
+        .shop { position: fixed; bottom: -100%; left: 0; width: 100%; background: #121212; padding: 15px; border-top: 2px solid #00FF7F; transition: bottom 0.3s; z-index: 1000; box-shadow: 0 -5px 15px rgba(0, 255, 127, 0.2); }
+        .shop.active { bottom: 0; }
+        .shop-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; max-width: 600px; margin: 0 auto; }
+        .shop-item { background: #151515; padding: 10px; border-radius: 5px; transition: transform 0.2s; }
+        .shop-item:hover { transform: scale(1.05); }
+        .shop-item p { margin: 5px 0; font-size: 12px; }
+        .shop-item .btn { width: 100%; padding: 6px; font-size: 12px; }
+        .progress-bar { width: 100%; height: 10px; background: #151515; border: 1px solid #00FF7F; border-radius: 5px; margin-top: 10px; overflow: hidden; }
+        .progress { height: 100%; background: linear-gradient(90deg, #00FF7F, #00CC66); width: 0%; transition: width 0.5s; }
+        .gallery-grid, .facts-grid, .challenges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 15px; }
+        .gallery-item, .fact-item, .challenge-item { background: #151515; padding: 10px; border: 1px solid #00FF7F; border-radius: 5px; text-align: center; }
+        .contact-form, .comment-form { display: flex; flex-direction: column; gap: 10px; }
+        .contact-form input, .contact-form textarea, .comment-form input, .comment-form textarea { padding: 8px; background: #151515; color: #FFF; border: 1px solid #00FF7F; border-radius: 5px; font-size: 14px; }
+        .comment-list { margin-top: 15px; }
+        .comment { background: #1A1A1A; padding: 15px; margin: 10px 0; border-radius: 5px; border: 1px solid #00FF7F; }
+        .comment span { color: #00FF7F; font-weight: bold; }
+        .section-toggle { display: none; position: absolute; top: 5px; right: 5px; padding: 4px 8px; font-size: 12px; }
+        .section-content { display: block; }
+        footer { text-align: center; padding: 15px; background: #000; width: 100%; }
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 250px;
-                height: 100%;
-                background: #000;
-                padding: 60px 20px 20px;
-                z-index: 1000;
-                transform: translateX(100%);
-            }
-            .nav-links.active {
-                display: flex;
-                transform: translateX(0);
-            }
-            .nav-links a {
-                padding: 12px;
-                font-size: 18px;
-                text-align: left;
-            }
-            .container {
-                padding: 15px;
-            }
-            h1 { font-size: 24px; }
-            h2 { font-size: 20px; }
-            .btn { width: 100%; padding: 12px; }
-            #space-canvas, #clicker-canvas {
-                height: 200px;
-                max-width: 300px;
-            }
-            .shop-item { width: 45%; }
-            .calc-grid { grid-template-columns: repeat(4, 1fr); }
-            .calc-btn { padding: 8px; font-size: 14px; }
+            .menu-toggle { display: block; }
+            .nav-links { display: none; flex-direction: column; position: fixed; top: 0; right: 0; width: 200px; height: 100%; background: #000; padding: 50px 10px 10px; z-index: 1000; transform: translateX(100%); }
+            .nav-links.active { display: flex; transform: translateX(0); }
+            .container { padding: 5px; }
+            h1 { font-size: 18px; } h2 { font-size: 16px; } h3 { font-size: 14px; }
+            .btn { padding: 6px 12px; font-size: 12px; }
+            #clicker-canvas { height: 200px; max-width: 100%; }
+            .shop-item { width: 90px; }
+            .section-toggle { display: block; }
+            .section-content { display: none; }
+            .section-content.active { display: block; }
+            nav { flex-direction: column; align-items: flex-end; }
+            .logo { margin-bottom: 5px; }
+            .game-stats { font-size: 14px; }
         }
         @media (min-width: 769px) {
-            .nav-links {
-                display: flex;
-                position: static;
-                width: auto;
-                height: auto;
-                background: none;
-                padding: 0;
-                transform: none;
-            }
-            .menu-toggle {
-                display: none;
-            }
+            .nav-links { display: flex; position: static; width: auto; height: auto; background: none; padding: 0; transform: none; }
+            .menu-toggle { display: none; }
         }
     </style>
 </head>
@@ -310,7 +85,6 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">GreenGamesStudio</div>
                 <button class="menu-toggle">☰</button>
                 <div class="nav-links">
                     <a href="#home">Главная</a>
@@ -323,426 +97,371 @@
                     <a href="#news">Новости</a>
                     <a href="#donate">Донат</a>
                     <a href="#comments">Комментарии</a>
-                    <a href="#contact-dev">Обратиться к разработчику</a>
+                    <a href="#contact-dev">Обратиться</a>
                     <a href="#contacts">Контакты</a>
                     <a href="#privacy">Политика</a>
                 </div>
+                <div class="logo">GreenGamesStudio</div>
             </nav>
         </div>
     </header>
 
     <div class="container">
         <section id="home">
-            <h1>Привет! Добро пожаловать в GreenGamesStudio</h1>
-            <p>Я Сайын Мирас, и это мой мир игр! Здесь ты найдёшь крутые проекты, загадки и веселье. Погрузись в приключение!</p>
+            <h1>GreenGamesStudio</h1><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <p>Приветствую тебя на моем сайте GreenGamesStudio! Меня зовут Сайын Мирас, и я создаю игры, чтобы ты мог весело провести время. Здесь ты найдешь мои проекты, мини-игры, интересные факты и многое другое. Я увлечен программированием и мечтаю создавать крутые игры, которые понравятся всем. Надеюсь, тебе будет интересно, и ты захочешь поддержать меня в этом увлекательном путешествии!</p>
+            </div>
         </section>
-
         <section id="about">
-            <h2>Обо мне</h2>
-            <p>Мне 13 лет, я начинающий разработчик игр из Казахстана. Учусь кодить и придумывать проекты, чтобы удивлять тебя!</p>
+            <h2>Обо мне</h2><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <p>Меня зовут Сайын Мирас, мне 13 лет, и я живу в Казахстане. Уже несколько лет я изучаю программирование и создание игр, потому что это моя страсть. Я начал с простых программ, а теперь работаю над собственными игровыми проектами. Мне нравится учиться новому, экспериментировать с кодом и придумывать интересные идеи. В свободное время я смотрю видео о космосе, играю в игры и мечтаю однажды создать что-то по-настоящему большое!</p>
+            </div>
         </section>
-
         <section id="games">
-            <h2>Игры</h2>
-            <div class="game">
-                <h3>Normaly Neighbor</h3>
-                <p>Захватывающая приключенческая игра с головоломками.</p>
-                <a href="https://drive.google.com/file/d/1ZVwVkZ_E61whj2cKRq44bLREgvYO3I9G/view?usp=drive_link" class="btn">Скачать игру</a>
-                <div><span class="like-button" id="likeButton">💚</span></div>
-                <div class="achievement">
-                    <span>Лайки: <span id="like-count">0</span></span>
+            <h2>Игры</h2><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <div>
+                    <h3>Normaly Neighbor</h3>
+                    <p>Это увлекательное приключение с головоломками, где тебе предстоит исследовать загадочный дом своего соседа. Игра полна тайн, неожиданных поворотов и интересных заданий. Я работал над ней несколько месяцев, чтобы сделать её захватывающей и атмосферной. Скачай и попробуй разгадать все секреты!</p>
+                    <a href="https://drive.google.com/file/d/1ZVwVkZ_E61whj2cKRq44bLREgvYO3I9G/view?usp=drive_link" class="btn">Скачать</a>
                 </div>
-            </div>
-            <div class="game">
-                <h3>Калькулятор от Мираса</h3>
-                <p>Мой первый калькулятор! Попробуй прямо здесь.</p>
-                <div class="calc-container">
-                    <input type="text" id="calc-display" class="calc-input" readonly>
-                    <div class="calc-grid">
-                        <button class="calc-btn" onclick="addToDisplay('7')">7</button>
-                        <button class="calc-btn" onclick="addToDisplay('8')">8</button>
-                        <button class="calc-btn" onclick="addToDisplay('9')">9</button>
-                        <button class="calc-btn" onclick="addToDisplay('/')">/</button>
-                        <button class="calc-btn" onclick="addToDisplay('4')">4</button>
-                        <button class="calc-btn" onclick="addToDisplay('5')">5</button>
-                        <button class="calc-btn" onclick="addToDisplay('6')">6</button>
-                        <button class="calc-btn" onclick="addToDisplay('*')">*</button>
-                        <button class="calc-btn" onclick="addToDisplay('1')">1</button>
-                        <button class="calc-btn" onclick="addToDisplay('2')">2</button>
-                        <button class="calc-btn" onclick="addToDisplay('3')">3</button>
-                        <button class="calc-btn" onclick="addToDisplay('-')">-</button>
-                        <button class="calc-btn" onclick="addToDisplay('0')">0</button>
-                        <button class="calc-btn" onclick="addToDisplay('.')">.</button>
-                        <button class="calc-btn calc-btn-equal" onclick="calculate()">=</button>
-                        <button class="calc-btn" onclick="addToDisplay('+')">+</button>
-                        <button class="calc-btn calc-btn-clear" onclick="clearDisplay()">C</button>
-                    </div>
+                <div>
+                    <h3>Калькулятор</h3>
+                    <p>Мой самый первый проект — простой, но функциональный калькулятор. Я создал его, когда только начинал учиться программировать. Он умеет складывать, вычитать, умножать и делить числа. Это была моя первая победа в кодинге, и я горжусь этим маленьким шагом на пути к большим проектам!</p>
+                    <a href="https://example.com" class="btn">Перейти</a>
                 </div>
             </div>
         </section>
-
         <section id="mini-games">
-            <h2>Мини-игры</h2>
-            <div class="mini-game">
-                <h3>Спаситель Земли</h3>
-                <p>Спаси планету от метеоритов! (WASD/Тап + Пробел/Кнопка)</p>
-                <canvas id="space-canvas"></canvas>
-                <button id="shoot-btn" class="btn">Стрелять</button>
-                <p>Очки: <span id="space-score">0</span></p>
-            </div>
-            <div class="mini-game">
-                <h3>Клик Бургер</h3>
-                <p>Кликай бургер и стань мастером кухни!</p>
-                <canvas id="clicker-canvas"></canvas>
-                <p>Бургеры: <span id="burger-score">0</span></p>
-                <div class="shop">
-                    <div class="shop-item">
-                        <p>Клики +2</p>
-                        <p>Цена: 50</p>
-                        <button class="btn" onclick="buyUpgrade('clickPower')">Купить</button>
+            <h2>Мини-игры</h2><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <div class="mini-game">
+                    <h3>Клик Бургер</h3>
+                    <p>Добро пожаловать в "Клик Бургер" — профессионально сделанную мини-игру, где ты можешь стать мастером бургеров! Кликай по бургеру, чтобы зарабатывать очки, покупай улучшения в магазине и достигай новых высот. Я добавил крутые анимации, звуковые эффекты и продвинутую систему прогресса, чтобы ты получил максимум удовольствия. Цель — собрать 1000 бургеров и открыть секретный бонус!</p>
+                    <button class="btn play-btn" data-game="clicker">Играть</button>
+                    <canvas id="clicker-canvas"></canvas>
+                    <div class="game-stats">
+                        <p>Бургеры: <span id="burger-score">0</span></p>
+                        <p>Кликов в сек: <span id="click-rate">0</span></p>
+                        <p>Уровень: <span id="level">1</span></p>
                     </div>
-                    <div class="shop-item">
-                        <p>Автоклик</p>
-                        <p>Цена: 100</p>
-                        <button class="btn" onclick="buyUpgrade('autoClick')">Купить</button>
+                    <div class="progress-bar"><div class="progress" id="burger-progress"></div></div>
+                    <button id="shop-toggle" class="btn">Магазин Улучшений</button>
+                    <div id="shop" class="shop">
+                        <div class="shop-content">
+                            <div class="shop-item"><p>Сочный Клик (+5)</p><p>Цена: 50</p><button class="btn" onclick="buyUpgrade('clickPower')">Купить</button></div>
+                            <div class="shop-item"><p>Бургер-бот (+1/с)</p><p>Цена: 100</p><button class="btn" onclick="buyUpgrade('autoClick')">Купить</button></div>
+                            <div class="shop-item"><p>Мега-Клик (x10, 15с)</p><p>Цена: 250</p><button class="btn" onclick="buyUpgrade('megaClick')">Купить</button></div>
+                            <div class="shop-item"><p>Фабрика Бургеров (+10/с)</p><p>Цена: 500</p><button class="btn" onclick="buyUpgrade('factory')">Купить</button></div>
+                            <div class="shop-item"><p>Золотой Бургер (x2)</p><p>Цена: 1000</p><button class="btn" onclick="buyUpgrade('goldenBurger')">Купить</button></div>
+                        </div>
+                        <button id="shop-close" class="btn" style="position: absolute; top: 5px; right: 5px;">Закрыть</button>
                     </div>
                 </div>
             </div>
         </section>
-
         <section id="gallery">
-            <h2>Галерея Гениальности</h2>
-            <p>Скриншоты и арты из моих игр!</p>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/200x150?text=Normaly+Neighbor+Сосед" alt="Normaly Neighbor Сосед">
-                    <p>Сосед стоит у дома!</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/200x150?text=Normaly+Neighbor+Игрок" alt="Normaly Neighbor Игрок">
-                    <p>Игрок исследует улицу!</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/200x150?text=Клик+Бургер" alt="Клик Бургер">
-                    <p>Вкусный кликер!</p>
+            <h2>Галерея</h2><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <p>Здесь собраны картинки из моих игр и проектов. Я стараюсь делать визуальную часть яркой и запоминающейся, чтобы игроки могли погрузиться в атмосферу. Посмотри, как выглядят мои персонажи и сцены, и, возможно, это вдохновит тебя на свои идеи!</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="https://via.placeholder.com/150" alt="Сосед"><p>Сосед из Normaly Neighbor</p></div>
+                    <div class="gallery-item"><img src="https://via.placeholder.com/150" alt="Игрок"><p>Главный герой</p></div>
+                    <div class="gallery-item"><img src="https://via.placeholder.com/150" alt="Бургер"><p>Бургер из Клик Бургер</p></div>
                 </div>
             </div>
         </section>
-
         <section id="facts">
-            <h2>Зелёные Факты</h2>
-            <p>Узнай интересное обо мне и моих играх!</p>
-            <div class="facts-grid">
-                <div class="fact-item">
-                    <p>Я написал первую игру в 12 лет!</p>
-                </div>
-                <div class="fact-item">
-                    <p>Люблю зелёный цвет — он везде в моих проектах!</p>
-                </div>
-                <div class="fact-item">
-                    <p>Мечтаю сделать игру про космос и марсиан!</p>
+            <h2>Факты</h2><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <p>Хочешь узнать обо мне больше? Вот несколько интересных фактов, которые помогут тебе понять, кто я такой и что меня вдохновляет. Я люблю делиться такими деталями, потому что это делает нас ближе!</p>
+                <div class="facts-grid">
+                    <div class="fact-item"><p>Я написал свою первую игру, когда мне было 12 лет, и с тех пор не могу остановиться!</p></div>
+                    <div class="fact-item"><p>Зеленый — мой любимый цвет, он ассоциируется у меня с природой и спокойствием.</p></div>
+                    <div class="fact-item"><p>Моя мечта — создать игру про космос, где можно исследовать галактики и сражаться с пришельцами!</p></div>
                 </div>
             </div>
         </section>
-
         <section id="challenges">
-            <h2>Челленджи от Мираса</h2>
-            <p>Пройди испытания и докажи, что ты мастер!</p>
-            <div class="challenges-grid">
-                <div class="challenge-item">
-                    <p>Набери 100 очков в "Спасителе Земли" за 1 минуту!</p>
-                </div>
-                <div class="challenge-item">
-                    <p>Сделай 500 бургеров в "Клик Бургер" без автоклика!</p>
-                </div>
-                <div class="challenge-item">
-                    <p>Придумай свою игру и напиши в комментариях!</p>
+            <h2>Челленджи</h2><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <p>Любишь испытания? Тогда эти челленджи для тебя! Я придумал их, чтобы ты мог проверить свои навыки и повеселиться. Попробуй выполнить хотя бы один и расскажи о своих результатах в комментариях!</p>
+                <div class="challenges-grid">
+                    <div class="challenge-item"><p>Собери 500 бургеров в "Клик Бургер" без использования автоклика — только твои пальцы!</p></div>
+                    <div class="challenge-item"><p>Достигни уровня 5 в "Клик Бургер" за 10 минут!</p></div>
+                    <div class="challenge-item"><p>Придумай свою идею для игры и напиши её в комментариях — вдруг я воплощу её в жизнь?</p></div>
                 </div>
             </div>
         </section>
-
         <section id="news">
-            <h2>Новости</h2>
-            <p>02.03.2025: Новый уровень для Normaly Neighbor в работе!</p>
-            <p>15.02.2025: Запущена мини-игра "Спаситель Земли".</p>
-        </section>
-
-        <section id="donate">
-            <h2>Поддержать проект</h2>
-            <p>Помоги мне создавать больше игр через Kaspi.kz!</p>
-            <a href="https://kaspi.kz/" target="_blank" class="btn">Kaspi.kz</a>
-            <span class="phone-number">+7 (775) 798-59-11</span>
-            <button class="btn" onclick="copyPhoneNumber()">Копировать</button>
-        </section>
-
-        <section id="comments">
-            <h2>Комментарии</h2>
-            <p>Поделись мыслями об играх или просто поболтай!</p>
-            <form id="comment-form" class="comment-form">
-                <input type="text" id="comment-name" placeholder="Твоё имя" required>
-                <textarea id="comment-message" placeholder="Твой комментарий" rows="4" required></textarea>
-                <button type="submit" class="btn">Отправить</button>
-            </form>
-            <div id="comment-list" class="comment-list"></div>
-        </section>
-
-        <section id="contact-dev">
-            <h2>Обратиться к разработчику</h2>
-            <p>Нашёл баг или есть идея? Напиши мне!</p>
-            <p>Gmail: <span class="phone-number">saiynmiras2011@gmail.com</span></p>
-            <form action="https://formspree.io/f/xvgzebqo" method="POST" class="contact-form">
-                <input type="text" name="name" placeholder="Твоё имя" required>
-                <input type="email" name="email" placeholder="Твой email" required>
-                <textarea name="message" placeholder="Твоё сообщение" rows="4" required></textarea>
-                <button type="submit" class="btn">Отправить</button>
-            </form>
-        </section>
-
-        <section id="contacts">
-            <h2>Контакты</h2>
-            <p>Следи за мной в соцсетях:</p>
-            <div class="donate-section" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <a href="https://www.youtube.com/@Miras_razrabgames" target="_blank" class="btn">YouTube</a>
-                <a href="https://t.me/+BtFF6XZ80LBkNGQy" target="_blank" class="btn">Telegram</a>
+            <h2>Новости</h2><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <p>Здесь я делюсь последними обновлениями и событиями GreenGamesStudio. Следи за новостями, чтобы не пропустить новые уровни, игры и другие крутые штуки, которые я готовлю для тебя!</p>
+                <p>02.03.2025: Добавлен новый уровень в "Normaly Neighbor" с ещё более сложными головоломками!<br>15.02.2025: Запущена обновленная версия "Клик Бургер" с профессиональным дизайном и новыми функциями!</p>
             </div>
         </section>
-
+        <section id="donate">
+            <h2>Донат</h2><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <p>Если тебе нравятся мои игры и ты хочешь поддержать меня, это можно сделать через Kaspi. Каждый донат помогает мне покупать новые инструменты для разработки, учиться и создавать ещё больше крутых проектов для вас. Спасибо за любую помощь — это очень мотивирует меня продолжать!</p>
+                <a href="https://kaspi.kz/" class="btn">Kaspi.kz</a>
+                <p>Номер для переводов: +7 (775) 798-59-11</p>
+            </div>
+        </section>
+        <section id="comments">
+            <h2>Комментарии</h2><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <p>Оставь своё мнение о моих играх или просто поздоровайся! Мне важно знать, что ты думаешь, ведь это помогает мне становиться лучше. Пиши свои идеи, впечатления или пожелания — я читаю каждый комментарий!</p>
+                <form id="comment-form" class="comment-form">
+                    <input type="text" id="comment-name" placeholder="Имя" required>
+                    <textarea id="comment-message" placeholder="Комментарий" required></textarea>
+                    <button type="submit" class="btn">Отправить</button>
+                </form>
+                <div id="comment-list" class="comment-list"></div>
+            </div>
+        </section>
+        <section id="contact-dev">
+            <h2>Обратиться</h2><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <p>Хочешь предложить идею, сообщить об ошибке или просто поболтать? Пиши мне на почту или заполняй форму ниже. Я всегда рад общению и стараюсь отвечать на все сообщения как можно быстрее!</p>
+                <p>Email: saiynmiras2011@gmail.com</p>
+                <form action="https://formspree.io/f/xvgzebqo" method="POST" class="contact-form">
+                    <input type="text" name="name" placeholder="Имя" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" placeholder="Сообщение" required></textarea>
+                    <button type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+        </section>
+        <section id="contacts">
+            <h2>Контакты</h2><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <p>Следи за моими обновлениями и общайся со мной в соцсетях! На YouTube я выкладываю видео о разработке, а в Telegram делюсь новостями и планами. Подписывайся, чтобы быть в курсе всего!</p>
+                <a href="https://www.youtube.com/@Miras_razrabgames" class="btn">YouTube</a>
+                <a href="https://t.me/+BtFF6XZ80LBkNGQy" class="btn">Telegram</a>
+            </div>
+        </section>
         <section id="privacy">
-            <h2>Политика конфиденциальности</h2>
-            <p>Я, Сайын Мирас, уважаю твою конфиденциальность. Данные из форм отправляются только мне на saiynmiras2011@gmail.com для ответа. Ничего не продаю и не передаю!</p>
+            <h2>Политика конфиденциальности</h2><button class="section-toggle btn">Открыть</button>
+            <div class="section-content">
+                <p>Я, Сайын Мирас, создатель GreenGamesStudio, уважаю твою приватность. Все данные, которые ты оставляешь на сайте (например, в комментариях или форме обратной связи), используются только для общения с тобой и никогда не передаются третьим лицам. Моя цель — создать безопасное и дружелюбное пространство для всех посетителей!</p>
+            </div>
         </section>
     </div>
 
-    <footer>
-        <p>© 2024 Сайын Мирас - GreenGamesStudio</p>
-    </footer>
+    <footer><p>© 2025 Сайын Мирас</p></footer>
 
     <script>
-        // Меню-гамбургер
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Копирование номера телефона
-        function copyPhoneNumber() {
-            navigator.clipboard.writeText('+77757985911').then(() => alert('Номер скопирован!'));
+        // Адаптация канваса
+        function resizeCanvas() {
+            const canvas = document.getElementById('clicker-canvas');
+            const rect = canvas.parentElement.getBoundingClientRect();
+            const isMobile = window.innerWidth <= 768;
+            canvas.width = isMobile ? rect.width : Math.min(rect.width, 500);
+            canvas.height = isMobile ? 200 : 300;
         }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-        // Лайки для Normaly Neighbor
-        let likeCount = localStorage.getItem('likeCount') ? parseInt(localStorage.getItem('likeCount')) : 0;
-        let isLiked = localStorage.getItem('isLiked') === 'true';
-        const likeButton = document.getElementById('likeButton');
-        const likeCountDisplay = document.getElementById('like-count');
-        likeCountDisplay.textContent = likeCount;
-        if (isLiked) likeButton.classList.add('liked');
-        likeButton.addEventListener('click', () => {
-            isLiked = !isLiked;
-            likeCount += isLiked ? 1 : -1;
-            likeButton.classList.toggle('liked', isLiked);
-            likeCountDisplay.textContent = likeCount;
-            localStorage.setItem('likeCount', likeCount);
-            localStorage.setItem('isLiked', isLiked);
-        });
-
-        // Комментарии
-        function loadComments() {
-            const comments = JSON.parse(localStorage.getItem('comments')) || [];
-            const commentList = document.getElementById('comment-list');
-            commentList.innerHTML = '';
-            comments.forEach(comment => {
-                const div = document.createElement('div');
-                div.className = 'comment';
-                div.innerHTML = `<span>${comment.name}</span>${comment.message}`;
-                commentList.appendChild(div);
+        // Меню, магазин и секции
+        document.querySelector('.menu-toggle').addEventListener('click', () => document.querySelector('.nav-links').classList.toggle('active'));
+        const shop = document.getElementById('shop');
+        document.getElementById('shop-toggle').addEventListener('click', () => shop.classList.toggle('active'));
+        document.getElementById('shop-close').addEventListener('click', () => shop.classList.remove('active'));
+        document.querySelectorAll('.section-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                content.classList.toggle('active');
+                btn.textContent = content.classList.contains('active') ? 'Закрыть' : 'Открыть';
             });
-        }
-        document.getElementById('comment-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('comment-name').value;
-            const message = document.getElementById('comment-message').value;
-            const comments = JSON.parse(localStorage.getItem('comments')) || [];
-            comments.push({ name, message });
-            localStorage.setItem('comments', JSON.stringify(comments));
-            document.getElementById('comment-form').reset();
-            loadComments();
         });
-        loadComments();
 
-        // Калькулятор от Мираса
-        const calcDisplay = document.getElementById('calc-display');
-        function addToDisplay(value) {
-            calcDisplay.value += value;
-        }
-        function clearDisplay() {
-            calcDisplay.value = '';
-        }
-        function calculate() {
-            try {
-                calcDisplay.value = eval(calcDisplay.value);
-            } catch {
-                calcDisplay.value = 'Ошибка!';
-                setTimeout(clearDisplay, 1000);
-            }
-        }
-
-        // Спаситель Земли
-        const spaceCanvas = document.getElementById('space-canvas');
-        const spaceCtx = spaceCanvas.getContext('2d');
-        spaceCanvas.width = 400;
-        spaceCanvas.height = 300;
-        let ship = { x: 180, y: 250, width: 40, height: 20, speed: 5 };
-        let lasers = [];
-        let meteors = [];
-        let spaceScore = 0;
-        const spaceScoreDisplay = document.getElementById('space-score');
-        let keys = {};
-        let touchX = null;
-
-        document.addEventListener('keydown', e => keys[e.code] = true);
-        document.addEventListener('keyup', e => keys[e.code] = false);
-        spaceCanvas.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            touchX = e.touches[0].clientX - spaceCanvas.offsetLeft;
+        // Кнопка "Играть"
+        const playBtn = document.querySelector('.play-btn');
+        const clickerCanvas = document.getElementById('clicker-canvas');
+        playBtn.addEventListener('click', () => {
+            clickerCanvas.classList.add('active');
+            playBtn.style.display = 'none';
+            startBurgerClicker();
         });
-        spaceCanvas.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            touchX = e.touches[0].clientX - spaceCanvas.offsetLeft;
-        });
-        spaceCanvas.addEventListener('touchend', () => touchX = null);
 
-        function shootLaser() {
-            lasers.push({ x: ship.x + ship.width / 2 - 2, y: ship.y, width: 4, height: 10, speed: 7 });
-        }
-        document.addEventListener('keydown', e => { if (e.code === 'Space') shootLaser(); });
-        document.getElementById('shoot-btn').addEventListener('click', shootLaser);
-        document.getElementById('shoot-btn').addEventListener('touchstart', (e) => { e.preventDefault(); shootLaser(); });
-
-        function spawnMeteor() {
-            meteors.push({ x: Math.random() * (spaceCanvas.width - 30), y: -30, width: 30, height: 30, speed: 2 + Math.random() * 2 });
-        }
-        setInterval(spawnMeteor, 1500);
-
-        function spaceGameLoop() {
-            spaceCtx.clearRect(0, 0, spaceCanvas.width, spaceCanvas.height);
-            if (keys['KeyA'] && ship.x > 0) ship.x -= ship.speed;
-            if (keys['KeyD'] && ship.x < spaceCanvas.width - ship.width) ship.x += ship.speed;
-            if (keys['KeyW'] && ship.y > 0) ship.y -= ship.speed;
-            if (keys['KeyS'] && ship.y < spaceCanvas.height - ship.height) ship.y += ship.speed;
-            if (touchX !== null) {
-                if (touchX > ship.x + ship.width / 2) ship.x += ship.speed;
-                if (touchX < ship.x + ship.width / 2) ship.x -= ship.speed;
-                ship.x = Math.max(0, Math.min(spaceCanvas.width - ship.width, ship.x));
-            }
-            spaceCtx.font = '30px Arial';
-            spaceCtx.fillStyle = '#00FF7F';
-            spaceCtx.fillText('🚀', ship.x, ship.y + 20);
-            lasers.forEach((laser, i) => {
-                laser.y -= laser.speed;
-                spaceCtx.fillStyle = '#FFFF00';
-                spaceCtx.fillRect(laser.x, laser.y, laser.width, laser.height);
-                if (laser.y < 0) lasers.splice(i, 1);
-            });
-            meteors.forEach((meteor, i) => {
-                meteor.y += meteor.speed;
-                spaceCtx.font = '30px Arial';
-                spaceCtx.fillStyle = '#FF4500';
-                spaceCtx.fillText('☄️', meteor.x, meteor.y);
-                if (meteor.y > spaceCanvas.height) {
-                    meteors.splice(i, 1);
-                    if (spaceScore > 0) spaceScore -= 5;
-                }
-                lasers.forEach((laser, j) => {
-                    if (laser.x < meteor.x + meteor.width && laser.x + laser.width > meteor.x && laser.y < meteor.y + meteor.height) {
-                        meteors.splice(i, 1);
-                        lasers.splice(j, 1);
-                        spaceScore += 10;
-                    }
-                });
-            });
-            spaceScoreDisplay.textContent = spaceScore;
-            if (spaceScore >= 100) {
-                alert('Земля спасена!');
-                spaceScore = 0;
-                meteors = [];
-            }
-            requestAnimationFrame(spaceGameLoop);
-        }
-        spaceGameLoop();
+        // Звуки
+        const clickSound = new Audio('https://www.myinstants.com/media/sounds/click.mp3'); // Замените на свой звук, если нужно
+        clickSound.volume = 0.5;
 
         // Клик Бургер
-        const clickerCanvas = document.getElementById('clicker-canvas');
         const clickerCtx = clickerCanvas.getContext('2d');
-        clickerCanvas.width = 400;
-        clickerCanvas.height = 300;
-        let burgerScore = 0;
-        let clickPower = 1;
-        let autoClick = 0;
-        let burgerScale = 1;
+        let burgerScore = 0, clickPower = 1, autoClick = 0, level = 1, particles = [], megaClickActive = false, megaClickTimer = 0, goldenMultiplier = 1;
+        let clicksThisSecond = 0, lastClickTime = 0;
         const burgerScoreDisplay = document.getElementById('burger-score');
+        const clickRateDisplay = document.getElementById('click-rate');
+        const levelDisplay = document.getElementById('level');
+        const burgerProgress = document.getElementById('burger-progress');
+        let gameActive = false;
 
-        clickerCanvas.addEventListener('click', (e) => {
+        function startBurgerClicker() {
+            if (gameActive) return;
+            gameActive = true;
+            drawBurger();
+            updateStatsLoop();
+        }
+
+        clickerCanvas.addEventListener('click', e => {
+            if (!gameActive) return;
             const rect = clickerCanvas.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            if (x > 150 && x < 250 && y > 100 && y < 200) {
-                burgerScore += clickPower;
-                burgerScoreDisplay.textContent = burgerScore;
-                burgerScale = 1.2;
-                setTimeout(() => burgerScale = 1, 200);
+            const centerX = clickerCanvas.width / 2;
+            const centerY = clickerCanvas.height / 2;
+            if (Math.hypot(x - centerX, y - centerY) < (window.innerWidth <= 768 ? 60 : 80)) {
+                const power = megaClickActive ? clickPower * 10 : clickPower;
+                burgerScore += power * goldenMultiplier;
+                clicksThisSecond++;
+                spawnParticles(x, y);
+                checkLevelUp();
+                clickSound.play();
             }
         });
 
-        clickerCanvas.addEventListener('touchstart', (e) => {
+        clickerCanvas.addEventListener('touchstart', e => {
+            if (!gameActive) return;
             e.preventDefault();
             const touch = e.touches[0];
             const rect = clickerCanvas.getBoundingClientRect();
             const x = touch.clientX - rect.left;
             const y = touch.clientY - rect.top;
-            if (x > 150 && x < 250 && y > 100 && y < 200) {
-                burgerScore += clickPower;
-                burgerScoreDisplay.textContent = burgerScore;
-                burgerScale = 1.2;
-                setTimeout(() => burgerScale = 1, 200);
+            const centerX = clickerCanvas.width / 2;
+            const centerY = clickerCanvas.height / 2;
+            if (Math.hypot(x - centerX, y - centerY) < 60) {
+                const power = megaClickActive ? clickPower * 10 : clickPower;
+                burgerScore += power * goldenMultiplier;
+                clicksThisSecond++;
+                spawnParticles(x, y);
+                checkLevelUp();
+                clickSound.play();
             }
         });
 
-        function buyUpgrade(type) {
-            if (type === 'clickPower' && burgerScore >= 50) {
-                burgerScore -= 50;
-                clickPower += 2;
-                burgerScoreDisplay.textContent = burgerScore;
-                alert('Клики увеличены на +2!');
-            } else if (type === 'autoClick' && burgerScore >= 100) {
-                burgerScore -= 100;
-                autoClick += 1;
-                burgerScoreDisplay.textContent = burgerScore;
-                alert('Автоклик добавлен!');
-            } else {
-                alert('Недостаточно бургеров!');
+        function spawnParticles(x, y) {
+            for (let i = 0; i < 8; i++) {
+                particles.push({
+                    x, y,
+                    vx: (Math.random() - 0.5) * 6,
+                    vy: (Math.random() - 0.5) * 6,
+                    size: Math.random() * 20 + 10,
+                    life: 30,
+                    color: goldenMultiplier > 1 ? '#FFD700' : '#FF4500'
+                });
             }
         }
 
-        setInterval(() => {
-            if (autoClick > 0) {
-                burgerScore += autoClick;
-                burgerScoreDisplay.textContent = burgerScore;
+        function buyUpgrade(type) {
+            if (type === 'clickPower' && burgerScore >= 50) { burgerScore -= 50; clickPower += 5; alert('Сочный Клик куплен! +5 за клик'); }
+            else if (type === 'autoClick' && burgerScore >= 100) { burgerScore -= 100; autoClick += 1; alert('Бургер-бот активирован! +1/с'); }
+            else if (type === 'megaClick' && burgerScore >= 250) { burgerScore -= 250; megaClickActive = true; megaClickTimer = 15; alert('Мега-Клик на 15 сек! x10 клики'); }
+            else if (type === 'factory' && burgerScore >= 500) { burgerScore -= 500; autoClick += 10; alert('Фабрика Бургеров работает! +10/с'); }
+            else if (type === 'goldenBurger' && burgerScore >= 1000) { burgerScore -= 1000; goldenMultiplier *= 2; alert('Золотой Бургер! Удвоение всех очков'); }
+            else { alert('Недостаточно бургеров!'); }
+            updateStats();
+        }
+
+        function checkLevelUp() {
+            const nextLevelThreshold = level * 500;
+            if (burgerScore >= nextLevelThreshold) {
+                level++;
+                alert(`Уровень ${level}! Бургеры теперь приносят больше радости!`);
+                clickPower += Math.floor(level / 2);
+                autoClick += Math.floor(level / 3);
             }
-        }, 1000);
+            updateStats();
+        }
+
+        function updateStats() {
+            burgerScoreDisplay.textContent = Math.floor(burgerScore);
+            levelDisplay.textContent = level;
+            burgerProgress.style.width = Math.min((burgerScore / (level * 500)) * 100, 100) + '%';
+            if (burgerScore >= 1000 && level === 1) {
+                alert('Ты мастер бургеров! Открыт секретный бонус: +10 к кликам!');
+                clickPower += 10;
+                burgerScore = 0;
+            }
+        }
+
+        function updateStatsLoop() {
+            if (!gameActive) return;
+            burgerScore += autoClick * goldenMultiplier;
+            if (megaClickActive) {
+                megaClickTimer -= 0.1;
+                if (megaClickTimer <= 0) megaClickActive = false;
+            }
+            updateStats();
+            const now = Date.now();
+            if (now - lastClickTime >= 1000) {
+                clickRateDisplay.textContent = clicksThisSecond;
+                clicksThisSecond = 0;
+                lastClickTime = now;
+            }
+            requestAnimationFrame(updateStatsLoop);
+        }
 
         function drawBurger() {
+            if (!gameActive) return;
             clickerCtx.clearRect(0, 0, clickerCanvas.width, clickerCanvas.height);
-            clickerCtx.font = '80px Arial';
-            clickerCtx.fillStyle = '#FFD700';
+
+            // Полупрозрачный слой для эффекта глубины
+            clickerCtx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+            clickerCtx.fillRect(0, 0, clickerCanvas.width, clickerCanvas.height);
+
+            // Анимация бургера
+            const scale = 1 + Math.sin(Date.now() * 0.005) * 0.05;
             clickerCtx.save();
-            clickerCtx.translate(200, 180);
-            clickerCtx.scale(burgerScale, burgerScale);
-            clickerCtx.fillText('🍔', -40, 0);
+            clickerCtx.translate(clickerCanvas.width / 2, clickerCanvas.height / 2);
+            clickerCtx.scale(scale, scale);
+            clickerCtx.fillStyle = goldenMultiplier > 1 ? '#FFD700' : '#FF4500';
+            clickerCtx.font = window.innerWidth <= 768 ? '80px Arial' : '120px Arial';
+            clickerCtx.textAlign = 'center';
+            clickerCtx.fillText('🍔', 0, 40);
             clickerCtx.restore();
+
+            // Частицы
+            particles.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life--;
+                p.size *= 0.95;
+                clickerCtx.fillStyle = `rgba(${p.color === '#FFD700' ? '255, 215, 0' : '255, 69, 0'}, ${p.life / 30})`;
+                clickerCtx.beginPath();
+                clickerCtx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
+                clickerCtx.fill();
+                if (p.life <= 0) particles.splice(i, 1);
+            });
+
+            // Тень и свечение
+            clickerCtx.shadowBlur = 20;
+            clickerCtx.shadowColor = goldenMultiplier > 1 ? '#FFD700' : '#00FF7F';
+            clickerCtx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            clickerCtx.beginPath();
+            clickerCtx.arc(clickerCanvas.width / 2, clickerCanvas.height / 2, window.innerWidth <= 768 ? 60 : 80, 0, Math.PI * 2);
+            clickerCtx.fill();
+            clickerCtx.shadowBlur = 0;
+
             requestAnimationFrame(drawBurger);
         }
-        drawBurger();
+
+        // Комментарии
+        document.getElementById('comment-form').addEventListener('submit', e => {
+            e.preventDefault();
+            const name = document.getElementById('comment-name').value;
+            const message = document.getElementById('comment-message').value;
+            const commentList = document.getElementById('comment-list');
+            const comment = document.createElement('div');
+            comment.className = 'comment';
+            comment.innerHTML = `<span>${name}</span><p>${message}</p>`;
+            commentList.appendChild(comment);
+            document.getElementById('comment-form').reset();
+        });
     </script>
 </body>
 </html>
