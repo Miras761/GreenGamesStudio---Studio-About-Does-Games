@@ -2,214 +2,432 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>GreenGamesStudio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: Arial, sans-serif;
-            background: #0A0A0A;
-            color: #FFF;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%), radial-gradient(circle, rgba(0, 255, 127, 0.1) 0%, transparent 70%);
+            color: #E0E0E0;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            font-size: 1rem;
-            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            background-attachment: fixed;
+            overscroll-behavior: none;
         }
         .container {
             width: 90%;
-            max-width: 1200px; /* Увеличил максимальную ширину для ПК */
+            max-width: 1600px;
             margin: 0 auto;
-            padding: 2vw; /* Больше пространства */
-            flex-grow: 1;
+            padding: clamp(1rem, 3vw, 2rem);
         }
+
+        /* Хедер */
         header {
-            background: #000;
-            padding: 1.5vw 0; /* Увеличил отступы */
-            box-shadow: 0 0.3vw 0.6vw rgba(0, 255, 127, 0.2);
+            background: rgba(0, 0, 0, 0.85);
+            padding: clamp(0.5rem, 2vw, 1rem) 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 255, 127, 0.4);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 255, 127, 0.2);
         }
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            gap: clamp(0.5rem, 2vw, 1rem);
         }
         .logo {
-            font-size: clamp(1.5rem, 2.5vw, 2rem); /* Увеличил размер шрифта логотипа */
-            font-weight: bold;
-            color: #00FF7F;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            background: linear-gradient(90deg, #00FF7F, #00CC66);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 255, 127, 0.7);
+            cursor: pointer;
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05) rotate(2deg);
+            text-shadow: 0 0 20px rgba(0, 255, 127, 0.9);
         }
         .nav-links {
             display: flex;
-            gap: 1.5vw; /* Больше расстояние между ссылками */
+            gap: clamp(0.5rem, 2vw, 1.5rem);
             flex-wrap: wrap;
+            transition: all 0.4s ease-in-out;
         }
         .nav-links a {
-            color: #FFF;
+            color: #E0E0E0;
             text-decoration: none;
-            padding: 0.8vw; /* Увеличил область клика */
-            font-size: clamp(1rem, 1.8vw, 1.2rem);
-            transition: color 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            padding: clamp(0.3rem, 1vw, 0.5rem) clamp(0.5rem, 2vw, 1rem);
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            position: relative;
+            transition: all 0.3s ease;
         }
-        .nav-links a:hover { color: #00FF7F; }
-        section {
-            margin: 2vw 0; /* Больше пространства между секциями */
-            padding: 2vw; /* Больше внутреннего пространства */
-            background: #121212;
-            border-left: 0.6vw solid #00FF7F;
-            border-radius: 0.6vw;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00FF7F, #00CC66);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
         }
-        h1, h2, h3 {
+        .nav-links a:hover::after { width: 90%; }
+        .nav-links a:hover {
             color: #00FF7F;
-            margin-bottom: 1.5vw; /* Больше отступов для заголовков */
+            text-shadow: 0 0 8px rgba(0, 255, 127, 0.8);
         }
-        h1 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); }
-        h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
-        h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
+        .burger {
+            display: none;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: #00FF7F;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .burger:hover { transform: rotate(90deg); color: #00CC66; }
+
+        /* Частицы */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        /* Секции */
+        section {
+            margin: clamp(2rem, 5vw, 4rem) 0;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            background: rgba(18, 18, 18, 0.9);
+            border-left: clamp(4px, 1vw, 8px) solid #00FF7F;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 255, 127, 0.15), inset 0 0 20px rgba(0, 255, 127, 0.05);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideIn 0.8s ease forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 255, 127, 0.25);
+        }
+        @keyframes slideIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 255, 127, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        section:hover::before { opacity: 1; }
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(90deg, #00FF7F, #00CC66);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 12px rgba(0, 255, 127, 0.6);
+            margin-bottom: clamp(0.8rem, 2vw, 1.5rem);
+        }
+        h1 { font-size: clamp(2.2rem, 6vw, 4.5rem); }
+        h2 { font-size: clamp(1.6rem, 4vw, 2.8rem); }
+        h3 { font-size: clamp(1.1rem, 3vw, 2rem); }
         p {
-            margin-bottom: 1.5vw;
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: clamp(0.8rem, 2vw, 1.5rem);
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            line-height: 1.8;
+            color: #D0D0D0;
+            text-shadow: 0 0 5px rgba(0, 255, 127, 0.2);
         }
         .btn {
-            background: #00FF7F;
+            background: linear-gradient(45deg, #00FF7F, #00CC66);
             color: #000;
-            padding: 1vw 2vw; /* Увеличил размер кнопок */
-            font-weight: bold;
+            padding: clamp(0.6rem, 1.5vw, 0.9rem) clamp(1.2rem, 3vw, 2.2rem);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
             border: none;
+            border-radius: 10px;
             cursor: pointer;
-            border-radius: 0.6vw;
-            margin: 0.8vw 0;
-            font-size: clamp(1rem, 1.8vw, 1.2rem);
-            transition: background 0.3s, transform 0.1s;
+            box-shadow: 0 5px 20px rgba(0, 255, 127, 0.5);
+            transition: all 0.3s ease;
             display: inline-block;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
         }
-        .btn:hover { background: #00CC66; }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 5px 20px rgba(0, 255, 127, 0.5); }
+            50% { box-shadow: 0 5px 30px rgba(0, 255, 127, 0.8); }
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+        .btn:hover::after {
+            width: 200%;
+            height: 200%;
+        }
+        .btn:hover {
+            background: linear-gradient(45deg, #00CC66, #00FF7F);
+            transform: translateY(-3px);
+        }
         .btn:active { transform: scale(0.95); }
-        .mini-game {
-            margin: 2vw 0;
-            text-align: center;
-        }
+
+        /* Мини-игра */
+        .mini-game { text-align: center; }
         #clicker-canvas {
             display: none;
-            border: 0.3vw solid #00FF7F;
+            border: clamp(2px, 1vw, 4px) solid #00FF7F;
             width: 100%;
-            max-width: 600px; /* Увеличил максимальную ширину канваса */
-            height: 35vh; /* Увеличил высоту */
-            margin: 1.5vw auto;
-            touch-action: none;
-            border-radius: 1vw;
-            box-shadow: 0 0 2vw rgba(0, 255, 127, 0.3);
-            background: url('https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=80') no-repeat center;
+            max-width: 1000px;
+            height: clamp(35vh, 50vh, 60vh);
+            margin: clamp(1rem, 3vw, 2rem) auto;
+            border-radius: 15px;
+            box-shadow: 0 0 40px rgba(0, 255, 127, 0.6);
+            background: url('https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=500&q=80') no-repeat center;
             background-size: cover;
             position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            touch-action: none;
         }
+        #clicker-canvas:hover { transform: scale(1.02); box-shadow: 0 0 50px rgba(0, 255, 127, 0.8); }
         #clicker-canvas.active { display: block; }
         .game-stats {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            margin: 1.5vw 0;
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin: clamp(0.8rem, 2vw, 1.5rem) 0;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            font-family: 'Orbitron', sans-serif;
+            gap: clamp(0.5rem, 1vw, 1rem);
         }
         .game-stats span {
-            color: #00FF7F;
-            font-weight: bold;
+            background: linear-gradient(90deg, #00FF7F, #00CC66);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 8px rgba(0, 255, 127, 0.8);
         }
         .shop {
             position: fixed;
             bottom: -100%;
             left: 0;
             width: 100%;
-            background: #121212;
-            padding: 2vw;
-            border-top: 0.3vw solid #00FF7F;
-            transition: bottom 0.3s;
+            background: rgba(18, 18, 18, 0.95);
+            padding: clamp(1rem, 3vw, 2rem);
+            border-top: clamp(2px, 1vw, 4px) solid #00FF7F;
+            box-shadow: 0 -15px 40px rgba(0, 255, 127, 0.3);
+            transition: bottom 0.5s ease;
             z-index: 1000;
-            box-shadow: 0 -0.6vw 2vw rgba(0, 255, 127, 0.2);
+            backdrop-filter: blur(8px);
         }
         .shop.active { bottom: 0; }
         .shop-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(12vw, 1fr)); /* Увеличил минимальную ширину элементов */
-            gap: 2vw;
-            max-width: 80vw; /* Увеличил максимальную ширину магазина */
+            grid-template-columns: repeat(auto-fit, minmax(clamp(160px, 25vw, 220px), 1fr));
+            gap: clamp(1rem, 2vw, 2rem);
+            max-width: 1400px;
             margin: 0 auto;
         }
         .shop-item {
             background: #151515;
-            padding: 1.5vw;
-            border-radius: 0.6vw;
-            transition: transform 0.2s;
+            padding: clamp(1rem, 2vw, 1.5rem);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 255, 127, 0.2);
         }
-        .shop-item:hover { transform: scale(1.05); }
-        .shop-item p {
-            margin: 0.8vw 0;
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        .shop-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 127, 0.5);
+            border-color: #00FF7F;
         }
-        .shop-item .btn {
-            width: 100%;
-            padding: 0.8vw;
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-        }
+        .shop-item p { margin: clamp(0.5rem, 1vw, 0.8rem) 0; font-size: clamp(0.8rem, 1.5vw, 1rem); }
+        .shop-item .btn { width: 100%; padding: clamp(0.5rem, 1vw, 0.8rem); }
+
+        /* Прогресс-бар */
         .progress-bar {
             width: 100%;
-            height: 1.5vh; /* Увеличил высоту прогресс-бара */
+            height: clamp(0.8rem, 2vw, 1.2rem);
             background: #151515;
-            border: 0.2vw solid #00FF7F;
-            border-radius: 0.6vw;
-            margin-top: 1.5vw;
+            border: 2px solid #00FF7F;
+            border-radius: 12px;
+            margin-top: clamp(0.8rem, 2vw, 1.5rem);
             overflow: hidden;
+            box-shadow: inset 0 0 15px rgba(0, 255, 127, 0.3);
         }
         .progress {
             height: 100%;
             background: linear-gradient(90deg, #00FF7F, #00CC66);
             width: 0%;
-            transition: width 0.5s;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 127, 0.8);
         }
+
+        /* Сетки */
         .gallery-grid, .facts-grid, .challenges-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(18vw, 1fr)); /* Увеличил минимальную ширину для ПК */
-            gap: 2vw;
-            margin-top: 2vw;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30vw, 300px), 1fr));
+            gap: clamp(1rem, 2vw, 2rem);
+            margin-top: clamp(1rem, 3vw, 2rem);
         }
         .gallery-item, .fact-item, .challenge-item {
             background: #151515;
-            padding: 1.5vw;
-            border: 0.2vw solid #00FF7F;
-            border-radius: 0.6vw;
+            padding: clamp(1rem, 2vw, 1.5rem);
+            border: 2px solid rgba(0, 255, 127, 0.3);
+            border-radius: 12px;
             text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .gallery-item:hover, .fact-item:hover, .challenge-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 127, 0.5);
+            border-color: #00FF7F;
+        }
+        .gallery-item img { width: 100%; border-radius: 10px; object-fit: cover; transition: transform 0.3s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
+
+        /* Формы */
         .contact-form, .comment-form {
             display: flex;
             flex-direction: column;
-            gap: 1.5vw;
+            gap: clamp(0.8rem, 2vw, 1.5rem);
         }
         .contact-form input, .contact-form textarea, .comment-form input, .comment-form textarea {
-            padding: 1vw;
+            padding: clamp(0.5rem, 1.5vw, 1rem);
             background: #151515;
-            color: #FFF;
-            border: 0.2vw solid #00FF7F;
-            border-radius: 0.6vw;
-            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            color: #E0E0E0;
+            border: 2px solid #00FF7F;
+            border-radius: 10px;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            resize: vertical;
+            box-shadow: 0 0 10px rgba(0, 255, 127, 0.2);
         }
-        .comment-list { margin-top: 2vw; }
+        .contact-form input:focus, .contact-form textarea:focus, .comment-form input:focus, .comment-form textarea:focus {
+            border-color: #00CC66;
+            box-shadow: 0 0 15px rgba(0, 255, 127, 0.6);
+            outline: none;
+        }
+        .comment-list { margin-top: clamp(1rem, 3vw, 2rem); }
         .comment {
             background: #1A1A1A;
-            padding: 2vw;
-            margin: 1.5vw 0;
-            border-radius: 0.6vw;
-            border: 0.2vw solid #00FF7F;
+            padding: clamp(0.8rem, 2vw, 1.5rem);
+            margin: clamp(0.5rem, 1vw, 1rem) 0;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 255, 127, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .comment:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(0, 255, 127, 0.4);
         }
         .comment span {
-            color: #00FF7F;
+            background: linear-gradient(90deg, #00FF7F, #00CC66);
+            -webkit-background-clip: text;
+            color: transparent;
             font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 5px rgba(0, 255, 127, 0.7);
         }
+
+        /* Футер */
         footer {
             text-align: center;
-            padding: 2vw;
-            background: #000;
-            width: 100%;
-            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            padding: clamp(1rem, 3vw, 2rem);
+            background: rgba(0, 0, 0, 0.9);
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            box-shadow: 0 -5px 25px rgba(0, 255, 127, 0.25);
+            border-top: 1px solid rgba(0, 255, 127, 0.2);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .nav-links { gap: clamp(0.3rem, 1vw, 1rem); }
+            section { padding: clamp(1rem, 3vw, 2rem); }
+            .gallery-grid, .facts-grid, .challenges-grid { grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 40vw, 300px), 1fr)); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: clamp(0.5rem, 2vw, 1rem);
+                box-shadow: 0 10px 25px rgba(0, 255, 127, 0.3);
+                transform: translateY(-10px);
+            }
+            .nav-links.active {
+                display: flex;
+                transform: translateY(0);
+                animation: slideDown 0.4s ease forwards;
+            }
+            @keyframes slideDown {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .burger { display: block; }
+            .container { padding: clamp(1rem, 2vw, 1.5rem); }
+            #clicker-canvas { height: clamp(35vh, 45vh, 50vh); }
+            .shop-content { grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 45vw, 180px), 1fr)); }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: clamp(1.6rem, 5vw, 2.5rem); }
+            h2 { font-size: clamp(1.3rem, 4vw, 2rem); }
+            h3 { font-size: clamp(1rem, 3vw, 1.5rem); }
+            .btn { padding: clamp(0.5rem, 1.5vw, 0.7rem) clamp(0.8rem, 2vw, 1.5rem); }
+            .gallery-grid, .facts-grid, .challenges-grid { grid-template-columns: 1fr; }
+            #clicker-canvas { height: clamp(30vh, 40vh, 45vh); }
+            .game-stats { flex-direction: column; align-items: center; }
+            .shop { padding: clamp(0.5rem, 2vw, 1rem); }
+        }
+
+        @media (min-width: 1600px) {
+            .container { max-width: 1800px; }
+            h1 { font-size: clamp(3rem, 5vw, 5rem); }
+            h2 { font-size: clamp(2rem, 3vw, 3rem); }
+            .nav-links a { font-size: clamp(1rem, 1.5vw, 1.2rem); }
+            #clicker-canvas { height: 65vh; }
+        }
+
+        @media (pointer: coarse) {
+            .btn { padding: clamp(0.6rem, 2vw, 1rem) clamp(1.2rem, 3vw, 2rem); }
+            .nav-links a { padding: clamp(0.5rem, 2vw, 1rem); }
+            .shop-item .btn { padding: clamp(0.6rem, 2vw, 1rem); }
         }
     </style>
 </head>
@@ -217,6 +435,8 @@
     <header>
         <div class="container">
             <nav>
+                <div class="logo">GreenGamesStudio</div>
+                <div class="burger">☰</div>
                 <div class="nav-links">
                     <a href="#home">Главная</a>
                     <a href="#about">Обо мне</a>
@@ -232,100 +452,110 @@
                     <a href="#contacts">Контакты</a>
                     <a href="#privacy">Политика</a>
                 </div>
-                <div class="logo">GreenGamesStudio</div>
             </nav>
         </div>
     </header>
 
+    <canvas id="particles"></canvas>
+
     <div class="container">
         <section id="home">
             <h1>GreenGamesStudio</h1>
-            <p>Приветствую тебя на моем сайте GreenGamesStudio! Меня зовут Сайын Мирас, и я создаю игры, чтобы ты мог весело провести время. Здесь ты найдешь мои проекты, мини-игры, интересные факты и многое другое. Я увлечен программированием и мечтаю создавать крутые игры, которые понравятся всем. Надеюсь, тебе будет интересно, и ты захочешь поддержать меня в этом увлекательном путешествии!</p>
+            <p>Добро пожаловать в мир GreenGamesStudio! Я Сайын Мирас, молодой геймдев из Казахстана. Здесь ты найдешь мои игры, мини-проекты и частичку моей души. Погрузись в приключения, испытай себя и поддержи мою мечту создавать шедевры!</p>
+            <a href="#mini-games" class="btn">Попробовать мини-игру</a>
         </section>
+
         <section id="about">
             <h2>Обо мне</h2>
-            <p>Меня зовут Сайын Мирас, мне 13 лет, и я живу в Казахстане. Уже несколько лет я изучаю программирование и создание игр, потому что это моя страсть. Я начал с простых программ, а теперь работаю над собственными игровыми проектами. Мне нравится учиться новому, экспериментировать с кодом и придумывать интересные идеи. В свободное время я смотрю видео о космосе, играю в игры и мечтаю однажды создать что-то по-настоящему большое!</p>
+            <p>Мне 13, и я уже несколько лет живу кодом и играми. От простых программ до собственных проектов — это мой путь. Космос, технологии и гейминг — мои главные вдохновители. Мечтаю создать игру, которая покорит мир!</p>
         </section>
+
         <section id="games">
             <h2>Игры</h2>
             <div>
                 <h3>Normaly Neighbor</h3>
-                <p>Это увлекательное приключение с головоломками, где тебе предстоит исследовать загадочный дом своего соседа. Игра полна тайн, неожиданных поворотов и интересных заданий. Я работал над ней несколько месяцев, чтобы сделать её захватывающей и атмосферной. Скачай и попробуй разгадать все секреты!</p>
+                <p>Раскрой тайны странного соседа в этом атмосферном приключении с головоломками.</p>
                 <a href="https://drive.google.com/file/d/1ZVwVkZ_E61whj2cKRq44bLREgvYO3I9G/view?usp=drive_link" class="btn">Скачать</a>
             </div>
             <div>
                 <h3>Калькулятор</h3>
-                <p>Мой самый первый проект — простой, но функциональный калькулятор. Я создал его, когда только начинал учиться программировать. Он умеет складывать, вычитать, умножать и делить числа. Это была моя первая победа в кодинге, и я горжусь этим маленьким шагом на пути к большим проектам!</p>
-                <a href="file:///C:/Users/CompEx/Desktop/calculator.html" class="btn">Недоступно Временно</a>
+                <p>Мой первый шаг в коде — простой, но гордый проект.</p>
+                <a href="#" class="btn" onclick="alert('Скоро будет!')">Скачать</a>
             </div>
         </section>
+
         <section id="mini-games">
             <h2>Мини-игры</h2>
             <div class="mini-game">
                 <h3>Клик Бургер</h3>
-                <p>Добро пожаловать в "Клик Бургер" — профессионально сделанную мини-игру, где ты можешь стать мастером бургеров! Кликай по бургеру, чтобы зарабатывать очки, покупай улучшения в магазине и достигай новых высот. Я добавил крутые анимации, звуковые эффекты и продвинутую систему прогресса, чтобы ты получил максимум удовольствия. Цель — собрать 1000 бургеров и открыть секретный бонус!</p>
-                <button class="btn play-btn" data-game="clicker">Играть</button>
+                <p>Создай империю бургеров! Кликай, улучшай, достигай вершин. 1000 бургеров — и откроется секретный режим!</p>
+                <button class="btn play-btn" data-game="clicker">Запустить</button>
                 <canvas id="clicker-canvas"></canvas>
                 <div class="game-stats">
                     <p>Бургеры: <span id="burger-score">0</span></p>
-                    <p>Кликов в сек: <span id="click-rate">0</span></p>
+                    <p>Кликов/с: <span id="click-rate">0</span></p>
                     <p>Уровень: <span id="level">1</span></p>
                 </div>
                 <div class="progress-bar"><div class="progress" id="burger-progress"></div></div>
-                <button id="shop-toggle" class="btn">Магазин Улучшений</button>
+                <button id="shop-toggle" class="btn">Магазин</button>
                 <div id="shop" class="shop">
                     <div class="shop-content">
                         <div class="shop-item"><p>Сочный Клик (+5)</p><p>Цена: 50</p><button class="btn" onclick="buyUpgrade('clickPower')">Купить</button></div>
                         <div class="shop-item"><p>Бургер-бот (+1/с)</p><p>Цена: 100</p><button class="btn" onclick="buyUpgrade('autoClick')">Купить</button></div>
                         <div class="shop-item"><p>Мега-Клик (x10, 15с)</p><p>Цена: 250</p><button class="btn" onclick="buyUpgrade('megaClick')">Купить</button></div>
-                        <div class="shop-item"><p>Фабрика Бургеров (+10/с)</p><p>Цена: 500</p><button class="btn" onclick="buyUpgrade('factory')">Купить</button></div>
+                        <div class="shop-item"><p>Фабрика (+10/с)</p><p>Цена: 500</p><button class="btn" onclick="buyUpgrade('factory')">Купить</button></div>
                         <div class="shop-item"><p>Золотой Бургер (x2)</p><p>Цена: 1000</p><button class="btn" onclick="buyUpgrade('goldenBurger')">Купить</button></div>
                     </div>
-                    <button id="shop-close" class="btn" style="position: absolute; top: 0.5vw; right: 0.5vw;">Закрыть</button>
+                    <button id="shop-close" class="btn">Закрыть</button>
                 </div>
             </div>
         </section>
+
         <section id="gallery">
             <h2>Галерея</h2>
-            <p>Здесь собраны картинки из моих игр и проектов. Я стараюсь делать визуальную часть яркой и запоминающейся, чтобы игроки могли погрузиться в атмосферу. Посмотри, как выглядят мои персонажи и сцены, и, возможно, это вдохновит тебя на свои идеи!</p>
+            <p>Взгляни на мир моих игр — яркие сцены и герои ждут тебя!</p>
             <div class="gallery-grid">
-                <div class="gallery-item"><img src="https://via.placeholder.com/150" alt="Сосед"><p>Сосед из Normaly Neighbor</p></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/150" alt="Игрок"><p>Главный герой</p></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/150" alt="Бургер"><p>Бургер из Клик Бургер</p></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300" alt="Сосед"><p>Сосед</p></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300" alt="Герой"><p>Герой</p></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300" alt="Бургер"><p>Бургер</p></div>
             </div>
         </section>
+
         <section id="facts">
             <h2>Факты</h2>
-            <p>Хочешь узнать обо мне больше? Вот несколько интересных фактов, которые помогут тебе понять, кто я такой и что меня вдохновляет. Я люблю делиться такими деталями, потому что это делает нас ближе!</p>
+            <p>Узнай меня лучше!</p>
             <div class="facts-grid">
-                <div class="fact-item"><p>Я написал свою первую игру, когда мне было 12 лет, и с тех пор не могу остановиться!</p></div>
-                <div class="fact-item"><p>Зеленый — мой любимый цвет, он ассоциируется у меня с природой и спокойствием.</p></div>
-                <div class="fact-item"><p>Моя мечта — создать игру про космос, где можно исследовать галактики и сражаться с пришельцами!</p></div>
+                <div class="fact-item"><p>Первая игра в 12 лет.</p></div>
+                <div class="fact-item"><p>Зеленый — мой космос.</p></div>
+                <div class="fact-item"><p>Мечтаю о галактической саге!</p></div>
             </div>
         </section>
+
         <section id="challenges">
             <h2>Челленджи</h2>
-            <p>Любишь испытания? Тогда эти челленджи для тебя! Я придумал их, чтобы ты мог проверить свои навыки и повеселиться. Попробуй выполнить хотя бы один и расскажи о своих результатах в комментариях!</p>
+            <p>Докажи, что ты мастер!</p>
             <div class="challenges-grid">
-                <div class="challenge-item"><p>Собери 500 бургеров в "Клик Бургер" без использования автоклика — только твои пальцы!</p></div>
-                <div class="challenge-item"><p>Достигни уровня 5 в "Клик Бургер" за 10 минут!</p></div>
-                <div class="challenge-item"><p>Придумай свою идею для игры и напиши её в комментариях — вдруг я воплощу её в жизнь?</p></div>
+                <div class="challenge-item"><p>500 бургеров без ботов.</p></div>
+                <div class="challenge-item"><p>Уровень 5 за 10 минут.</p></div>
+                <div class="challenge-item"><p>Придумай игру для меня!</p></div>
             </div>
         </section>
+
         <section id="news">
             <h2>Новости</h2>
-            <p>Здесь я делюсь последними обновлениями и событиями GreenGamesStudio. Следи за новостями, чтобы не пропустить новые уровни, игры и другие крутые штуки, которые я готовлю для тебя!</p>
-            <p>02.03.2025: Добавлен новый уровень в "Normaly Neighbor" с ещё более сложными головоломками!<br>15.02.2025: Запущена обновленная версия "Клик Бургер" с профессиональным дизайном и новыми функциями!</p>
+            <p>02.03.2025: Новый уровень в "Normaly Neighbor"!<br>15.02.2025: "Клик Бургер" обновлен!</p>
         </section>
+
         <section id="donate">
             <h2>Донат</h2>
-            <p>Если тебе нравятся мои игры и ты хочешь поддержать меня, это можно сделать через Kaspi. Каждый донат помогает мне покупать новые инструменты для разработки, учиться и создавать ещё больше крутых проектов для вас. Спасибо за любую помощь — это очень мотивирует меня продолжать!</p>
+            <p>Поддержи мою мечту! Каждый тенге — шаг к новым играм.</p>
             <a href="https://kaspi.kz/" class="btn">Kaspi.kz</a>
-            <p>Номер для переводов: +7 (775) 798-59-11</p>
+            <p>+7 (775) 798-59-11</p>
         </section>
+
         <section id="comments">
             <h2>Комментарии</h2>
-            <p>Оставь своё мнение о моих играх или просто поздоровайся! Мне важно знать, что ты думаешь, ведь это помогает мне становиться лучше. Пиши свои идеи, впечатления или пожелания — я читаю каждый комментарий!</p>
+            <p>Поделись мыслями — я читаю всё!</p>
             <form id="comment-form" class="comment-form">
                 <input type="text" id="comment-name" placeholder="Имя" required>
                 <textarea id="comment-message" placeholder="Комментарий" required></textarea>
@@ -333,9 +563,10 @@
             </form>
             <div id="comment-list" class="comment-list"></div>
         </section>
+
         <section id="contact-dev">
             <h2>Обратиться</h2>
-            <p>Хочешь предложить идею, сообщить об ошибке или просто поболтать? Пиши мне на почту или заполняй форму ниже. Я всегда рад общению и стараюсь отвечать на все сообщения как можно быстрее!</p>
+            <p>Идеи, баги, чат — пиши мне!</p>
             <p>Email: saiynmiras2011@gmail.com</p>
             <form action="https://formspree.io/f/xvgzebqo" method="POST" class="contact-form">
                 <input type="text" name="name" placeholder="Имя" required>
@@ -344,30 +575,95 @@
                 <button type="submit" class="btn">Отправить</button>
             </form>
         </section>
+
         <section id="contacts">
             <h2>Контакты</h2>
-            <p>Следи за моими обновлениями и общайся со мной в соцсетях! На YouTube я выкладываю видео о разработке, а в Telegram делюсь новостями и планами. Подписывайся, чтобы быть в курсе всего!</p>
+            <p>Будь на связи через соцсети!</p>
             <a href="https://www.youtube.com/@Miras_razrabgames" class="btn">YouTube</a>
             <a href="https://t.me/+BtFF6XZ80LBkNGQy" class="btn">Telegram</a>
         </section>
+
         <section id="privacy">
             <h2>Политика конфиденциальности</h2>
-            <p>Я, Сайын Мирас, создатель GreenGamesStudio, уважаю твою приватность. Все данные, которые ты оставляешь на сайте (например, в комментариях или форме обратной связи), используются только для общения с тобой и никогда не передаются третьим лицам. Моя цель — создать безопасное и дружелюбное пространство для всех посетителей!</p>
+            <p>Твои данные защищены — только для общения!</p>
         </section>
     </div>
 
-    <footer><p>© 2025 Сайын Мирас</p></footer>
+    <footer><p>© 2025 Сайын Мирас | GreenGamesStudio</p></footer>
 
     <script>
+        // Частицы на фоне
+        const particleCanvas = document.getElementById('particles');
+        const particleCtx = particleCanvas.getContext('2d');
+        particleCanvas.width = window.innerWidth;
+        particleCanvas.height = window.innerHeight;
+        let particlesArray = [];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * particleCanvas.width;
+                this.y = Math.random() * particleCanvas.height;
+                this.size = Math.random() * clamp(2, window.innerWidth / 500, 5) + 1;
+                this.speedX = (Math.random() * 1 - 0.5) * clamp(0.5, window.innerWidth / 1000, 1);
+                this.speedY = (Math.random() * 1 - 0.5) * clamp(0.5, window.innerHeight / 1000, 1);
+                this.opacity = Math.random() * 0.5 + 0.3;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > particleCanvas.width || this.x < 0) this.speedX *= -1;
+                if (this.y > particleCanvas.height || this.y < 0) this.speedY *= -1;
+            }
+            draw() {
+                particleCtx.fillStyle = `rgba(0, 255, 127, ${this.opacity})`;
+                particleCtx.beginPath();
+                particleCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                particleCtx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            const numberOfParticles = Math.floor((particleCanvas.width * particleCanvas.height) / clamp(5000, window.innerWidth * window.innerHeight / 100000, 10000));
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+            particlesArray.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', () => {
+            particleCanvas.width = window.innerWidth;
+            particleCanvas.height = window.innerHeight;
+            initParticles();
+        });
+        initParticles();
+        animateParticles();
+
         // Адаптация канваса
         function resizeCanvas() {
             const canvas = document.getElementById('clicker-canvas');
             const rect = canvas.parentElement.getBoundingClientRect();
-            canvas.width = Math.min(rect.width, 600);
-            canvas.height = 35 * window.innerHeight / 100; // 35vh
+            canvas.width = Math.min(rect.width, 1000);
+            canvas.height = clamp(window.innerHeight * 0.35, window.innerHeight * 0.5, window.innerHeight * 0.6);
         }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
+
+        // Бургер-меню
+        const burger = document.querySelector('.burger');
+        const navLinks = document.querySelector('.nav-links');
+        burger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            burger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
 
         // Магазин
         const shop = document.getElementById('shop');
@@ -404,14 +700,20 @@
             updateStatsLoop();
         }
 
-        clickerCanvas.addEventListener('click', e => {
+        clickerCanvas.addEventListener('click', e => handleClick(e));
+        clickerCanvas.addEventListener('touchstart', e => {
+            e.preventDefault();
+            handleClick(e.touches[0]);
+        });
+
+        function handleClick(e) {
             if (!gameActive) return;
             const rect = clickerCanvas.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             const centerX = clickerCanvas.width / 2;
             const centerY = clickerCanvas.height / 2;
-            if (Math.hypot(x - centerX, y - centerY) < 80) {
+            if (Math.hypot(x - centerX, y - centerY) < 120) {
                 const power = megaClickActive ? clickPower * 10 : clickPower;
                 burgerScore += power * goldenMultiplier;
                 clicksThisSecond++;
@@ -419,46 +721,27 @@
                 checkLevelUp();
                 clickSound.play();
             }
-        });
-
-        clickerCanvas.addEventListener('touchstart', e => {
-            if (!gameActive) return;
-            e.preventDefault();
-            const touch = e.touches[0];
-            const rect = clickerCanvas.getBoundingClientRect();
-            const x = touch.clientX - rect.left;
-            const y = touch.clientY - rect.top;
-            const centerX = clickerCanvas.width / 2;
-            const centerY = clickerCanvas.height / 2;
-            if (Math.hypot(x - centerX, y - centerY) < 60) {
-                const power = megaClickActive ? clickPower * 10 : clickPower;
-                burgerScore += power * goldenMultiplier;
-                clicksThisSecond++;
-                spawnParticles(x, y);
-                checkLevelUp();
-                clickSound.play();
-            }
-        });
+        }
 
         function spawnParticles(x, y) {
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 15; i++) {
                 particles.push({
                     x, y,
-                    vx: (Math.random() - 0.5) * 6,
-                    vy: (Math.random() - 0.5) * 6,
-                    size: Math.random() * 20 + 10,
-                    life: 30,
+                    vx: (Math.random() - 0.5) * 10,
+                    vy: (Math.random() - 0.5) * 10,
+                    size: Math.random() * 30 + 20,
+                    life: 50,
                     color: goldenMultiplier > 1 ? '#FFD700' : '#FF4500'
                 });
             }
         }
 
         function buyUpgrade(type) {
-            if (type === 'clickPower' && burgerScore >= 50) { burgerScore -= 50; clickPower += 5; alert('Сочный Клик куплен! +5 за клик'); }
-            else if (type === 'autoClick' && burgerScore >= 100) { burgerScore -= 100; autoClick += 1; alert('Бургер-бот активирован! +1/с'); }
-            else if (type === 'megaClick' && burgerScore >= 250) { burgerScore -= 250; megaClickActive = true; megaClickTimer = 15; alert('Мега-Клик на 15 сек! x10 клики'); }
-            else if (type === 'factory' && burgerScore >= 500) { burgerScore -= 500; autoClick += 10; alert('Фабрика Бургеров работает! +10/с'); }
-            else if (type === 'goldenBurger' && burgerScore >= 1000) { burgerScore -= 1000; goldenMultiplier *= 2; alert('Золотой Бургер! Удвоение всех очков'); }
+            if (type === 'clickPower' && burgerScore >= 50) { burgerScore -= 50; clickPower += 5; alert('Сочный Клик! +5 за клик'); }
+            else if (type === 'autoClick' && burgerScore >= 100) { burgerScore -= 100; autoClick += 1; alert('Бургер-бот! +1/с'); }
+            else if (type === 'megaClick' && burgerScore >= 250) { burgerScore -= 250; megaClickActive = true; megaClickTimer = 15; alert('Мега-Клик! x10 на 15 сек'); }
+            else if (type === 'factory' && burgerScore >= 500) { burgerScore -= 500; autoClick += 10; alert('Фабрика Бургеров! +10/с'); }
+            else if (type === 'goldenBurger' && burgerScore >= 1000) { burgerScore -= 1000; goldenMultiplier *= 2; alert('Золотой Бургер! x2 ко всем очкам'); }
             else { alert('Недостаточно бургеров!'); }
             updateStats();
         }
@@ -467,7 +750,7 @@
             const nextLevelThreshold = level * 500;
             if (burgerScore >= nextLevelThreshold) {
                 level++;
-                alert(`Уровень ${level}! Бургеры теперь приносят больше радости!`);
+                alert(`Уровень ${level}! Бургеры становятся вкуснее!`);
                 clickPower += Math.floor(level / 2);
                 autoClick += Math.floor(level / 3);
             }
@@ -479,9 +762,10 @@
             levelDisplay.textContent = level;
             burgerProgress.style.width = Math.min((burgerScore / (level * 500)) * 100, 100) + '%';
             if (burgerScore >= 1000 && level === 1) {
-                alert('Ты мастер бургеров! Открыт секретный бонус: +10 к кликам!');
-                clickPower += 10;
+                alert('Ты император бургеров! Бонус: +20 к кликам + секретный фон!');
+                clickPower += 20;
                 burgerScore = 0;
+                document.body.style.background = 'linear-gradient(135deg, #0A0A0A, #FFD700), radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%)';
             }
         }
 
@@ -505,39 +789,32 @@
         function drawBurger() {
             if (!gameActive) return;
             clickerCtx.clearRect(0, 0, clickerCanvas.width, clickerCanvas.height);
-
-            clickerCtx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+            clickerCtx.fillStyle = 'rgba(0, 0, 0, 0.4)';
             clickerCtx.fillRect(0, 0, clickerCanvas.width, clickerCanvas.height);
 
-            const scale = 1 + Math.sin(Date.now() * 0.005) * 0.05;
+            const scale = 1 + Math.sin(Date.now() * 0.005) * 0.15;
             clickerCtx.save();
             clickerCtx.translate(clickerCanvas.width / 2, clickerCanvas.height / 2);
             clickerCtx.scale(scale, scale);
             clickerCtx.fillStyle = goldenMultiplier > 1 ? '#FFD700' : '#FF4500';
-            clickerCtx.font = 'clamp(80px, 12vw, 120px) Arial';
+            clickerCtx.font = 'clamp(120px, 20vw, 200px) Arial';
             clickerCtx.textAlign = 'center';
-            clickerCtx.fillText('🍔', 0, 40);
+            clickerCtx.shadowBlur = 20;
+            clickerCtx.shadowColor = goldenMultiplier > 1 ? '#FFD700' : '#00FF7F';
+            clickerCtx.fillText('🍔', 0, 50);
             clickerCtx.restore();
 
             particles.forEach((p, i) => {
                 p.x += p.vx;
                 p.y += p.vy;
                 p.life--;
-                p.size *= 0.95;
-                clickerCtx.fillStyle = `rgba(${p.color === '#FFD700' ? '255, 215, 0' : '255, 69, 0'}, ${p.life / 30})`;
+                p.size *= 0.9;
+                clickerCtx.fillStyle = `rgba(${p.color === '#FFD700' ? '255, 215, 0' : '255, 69, 0'}, ${p.life / 50})`;
                 clickerCtx.beginPath();
                 clickerCtx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
                 clickerCtx.fill();
                 if (p.life <= 0) particles.splice(i, 1);
             });
-
-            clickerCtx.shadowBlur = 20;
-            clickerCtx.shadowColor = goldenMultiplier > 1 ? '#FFD700' : '#00FF7F';
-            clickerCtx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-            clickerCtx.beginPath();
-            clickerCtx.arc(clickerCanvas.width / 2, clickerCanvas.height / 2, 80, 0, Math.PI * 2);
-            clickerCtx.fill();
-            clickerCtx.shadowBlur = 0;
 
             requestAnimationFrame(drawBurger);
         }
@@ -554,6 +831,11 @@
             commentList.appendChild(comment);
             document.getElementById('comment-form').reset();
         });
+
+        // Функция clamp для JS
+        function clamp(min, val, max) {
+            return Math.min(Math.max(val, min), max);
+        }
     </script>
 </body>
 </html>
