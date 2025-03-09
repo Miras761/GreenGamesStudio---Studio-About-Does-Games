@@ -6,78 +6,210 @@
     <title>GreenGamesStudio</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: Arial, sans-serif; background: #0A0A0A; color: #FFF; min-height: 100vh; display: flex; flex-direction: column; }
-        .container { width: 90%; max-width: 900px; margin: 0 auto; padding: 10px; flex-grow: 1; }
-        header { background: #000; padding: 10px 0; box-shadow: 0 2px 5px rgba(0, 255, 127, 0.2); }
-        nav { display: flex; justify-content: space-between; align-items: center; flex-direction: row-reverse; }
-        .logo { font-size: 20px; font-weight: bold; color: #00FF7F; }
-        .menu-toggle { display: none; background: none; border: none; color: #00FF7F; font-size: 24px; cursor: pointer; }
-        .nav-links { display: flex; gap: 10px; }
-        .nav-links a { color: #FFF; text-decoration: none; padding: 5px; font-size: 14px; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #0A0A0A;
+            color: #FFF;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px; /* Увеличил максимальную ширину для ПК */
+            margin: 0 auto;
+            padding: 2vw; /* Больше пространства */
+            flex-grow: 1;
+        }
+        header {
+            background: #000;
+            padding: 1.5vw 0; /* Увеличил отступы */
+            box-shadow: 0 0.3vw 0.6vw rgba(0, 255, 127, 0.2);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: clamp(1.5rem, 2.5vw, 2rem); /* Увеличил размер шрифта логотипа */
+            font-weight: bold;
+            color: #00FF7F;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5vw; /* Больше расстояние между ссылками */
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #FFF;
+            text-decoration: none;
+            padding: 0.8vw; /* Увеличил область клика */
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            transition: color 0.3s;
+        }
         .nav-links a:hover { color: #00FF7F; }
-        section { margin: 15px 0; padding: 15px; background: #121212; border-left: 5px solid #00FF7F; border-radius: 5px; position: relative; }
-        h1, h2, h3 { color: #00FF7F; margin-bottom: 10px; }
-        h1 { font-size: 22px; } h2 { font-size: 20px; } h3 { font-size: 16px; }
-        p { margin-bottom: 10px; line-height: 1.5; }
-        .btn { background: #00FF7F; color: #000; padding: 8px 15px; font-weight: bold; border: none; cursor: pointer; border-radius: 5px; margin: 5px 0; font-size: 14px; transition: background 0.3s, transform 0.1s; }
+        section {
+            margin: 2vw 0; /* Больше пространства между секциями */
+            padding: 2vw; /* Больше внутреннего пространства */
+            background: #121212;
+            border-left: 0.6vw solid #00FF7F;
+            border-radius: 0.6vw;
+        }
+        h1, h2, h3 {
+            color: #00FF7F;
+            margin-bottom: 1.5vw; /* Больше отступов для заголовков */
+        }
+        h1 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); }
+        h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+        h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
+        p {
+            margin-bottom: 1.5vw;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+        .btn {
+            background: #00FF7F;
+            color: #000;
+            padding: 1vw 2vw; /* Увеличил размер кнопок */
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 0.6vw;
+            margin: 0.8vw 0;
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            transition: background 0.3s, transform 0.1s;
+            display: inline-block;
+        }
         .btn:hover { background: #00CC66; }
         .btn:active { transform: scale(0.95); }
-        .mini-game { margin: 15px 0; text-align: center; }
+        .mini-game {
+            margin: 2vw 0;
+            text-align: center;
+        }
         #clicker-canvas {
             display: none;
-            border: 2px solid #00FF7F;
+            border: 0.3vw solid #00FF7F;
             width: 100%;
-            max-width: 500px;
-            height: 300px;
-            margin: 10px auto;
+            max-width: 600px; /* Увеличил максимальную ширину канваса */
+            height: 35vh; /* Увеличил высоту */
+            margin: 1.5vw auto;
             touch-action: none;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 255, 127, 0.3);
-            background: url('https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80') no-repeat center;
+            border-radius: 1vw;
+            box-shadow: 0 0 2vw rgba(0, 255, 127, 0.3);
+            background: url('https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=80') no-repeat center;
             background-size: cover;
             position: relative;
         }
         #clicker-canvas.active { display: block; }
-        .game-stats { display: flex; justify-content: space-around; flex-wrap: wrap; margin: 10px 0; font-size: 16px; }
-        .game-stats span { color: #00FF7F; font-weight: bold; }
-        .shop { position: fixed; bottom: -100%; left: 0; width: 100%; background: #121212; padding: 15px; border-top: 2px solid #00FF7F; transition: bottom 0.3s; z-index: 1000; box-shadow: 0 -5px 15px rgba(0, 255, 127, 0.2); }
-        .shop.active { bottom: 0; }
-        .shop-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; max-width: 600px; margin: 0 auto; }
-        .shop-item { background: #151515; padding: 10px; border-radius: 5px; transition: transform 0.2s; }
-        .shop-item:hover { transform: scale(1.05); }
-        .shop-item p { margin: 5px 0; font-size: 12px; }
-        .shop-item .btn { width: 100%; padding: 6px; font-size: 12px; }
-        .progress-bar { width: 100%; height: 10px; background: #151515; border: 1px solid #00FF7F; border-radius: 5px; margin-top: 10px; overflow: hidden; }
-        .progress { height: 100%; background: linear-gradient(90deg, #00FF7F, #00CC66); width: 0%; transition: width 0.5s; }
-        .gallery-grid, .facts-grid, .challenges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 15px; }
-        .gallery-item, .fact-item, .challenge-item { background: #151515; padding: 10px; border: 1px solid #00FF7F; border-radius: 5px; text-align: center; }
-        .contact-form, .comment-form { display: flex; flex-direction: column; gap: 10px; }
-        .contact-form input, .contact-form textarea, .comment-form input, .comment-form textarea { padding: 8px; background: #151515; color: #FFF; border: 1px solid #00FF7F; border-radius: 5px; font-size: 14px; }
-        .comment-list { margin-top: 15px; }
-        .comment { background: #1A1A1A; padding: 15px; margin: 10px 0; border-radius: 5px; border: 1px solid #00FF7F; }
-        .comment span { color: #00FF7F; font-weight: bold; }
-        .section-toggle { display: none; position: absolute; top: 5px; right: 5px; padding: 4px 8px; font-size: 12px; }
-        .section-content { display: block; }
-        footer { text-align: center; padding: 15px; background: #000; width: 100%; }
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            .nav-links { display: none; flex-direction: column; position: fixed; top: 0; right: 0; width: 200px; height: 100%; background: #000; padding: 50px 10px 10px; z-index: 1000; transform: translateX(100%); }
-            .nav-links.active { display: flex; transform: translateX(0); }
-            .container { padding: 5px; }
-            h1 { font-size: 18px; } h2 { font-size: 16px; } h3 { font-size: 14px; }
-            .btn { padding: 6px 12px; font-size: 12px; }
-            #clicker-canvas { height: 200px; max-width: 100%; }
-            .shop-item { width: 90px; }
-            .section-toggle { display: block; }
-            .section-content { display: none; }
-            .section-content.active { display: block; }
-            nav { flex-direction: column; align-items: flex-end; }
-            .logo { margin-bottom: 5px; }
-            .game-stats { font-size: 14px; }
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 1.5vw 0;
+            font-size: clamp(1rem, 2vw, 1.2rem);
         }
-        @media (min-width: 769px) {
-            .nav-links { display: flex; position: static; width: auto; height: auto; background: none; padding: 0; transform: none; }
-            .menu-toggle { display: none; }
+        .game-stats span {
+            color: #00FF7F;
+            font-weight: bold;
+        }
+        .shop {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            background: #121212;
+            padding: 2vw;
+            border-top: 0.3vw solid #00FF7F;
+            transition: bottom 0.3s;
+            z-index: 1000;
+            box-shadow: 0 -0.6vw 2vw rgba(0, 255, 127, 0.2);
+        }
+        .shop.active { bottom: 0; }
+        .shop-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(12vw, 1fr)); /* Увеличил минимальную ширину элементов */
+            gap: 2vw;
+            max-width: 80vw; /* Увеличил максимальную ширину магазина */
+            margin: 0 auto;
+        }
+        .shop-item {
+            background: #151515;
+            padding: 1.5vw;
+            border-radius: 0.6vw;
+            transition: transform 0.2s;
+        }
+        .shop-item:hover { transform: scale(1.05); }
+        .shop-item p {
+            margin: 0.8vw 0;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        }
+        .shop-item .btn {
+            width: 100%;
+            padding: 0.8vw;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        }
+        .progress-bar {
+            width: 100%;
+            height: 1.5vh; /* Увеличил высоту прогресс-бара */
+            background: #151515;
+            border: 0.2vw solid #00FF7F;
+            border-radius: 0.6vw;
+            margin-top: 1.5vw;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00FF7F, #00CC66);
+            width: 0%;
+            transition: width 0.5s;
+        }
+        .gallery-grid, .facts-grid, .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(18vw, 1fr)); /* Увеличил минимальную ширину для ПК */
+            gap: 2vw;
+            margin-top: 2vw;
+        }
+        .gallery-item, .fact-item, .challenge-item {
+            background: #151515;
+            padding: 1.5vw;
+            border: 0.2vw solid #00FF7F;
+            border-radius: 0.6vw;
+            text-align: center;
+        }
+        .contact-form, .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5vw;
+        }
+        .contact-form input, .contact-form textarea, .comment-form input, .comment-form textarea {
+            padding: 1vw;
+            background: #151515;
+            color: #FFF;
+            border: 0.2vw solid #00FF7F;
+            border-radius: 0.6vw;
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+        }
+        .comment-list { margin-top: 2vw; }
+        .comment {
+            background: #1A1A1A;
+            padding: 2vw;
+            margin: 1.5vw 0;
+            border-radius: 0.6vw;
+            border: 0.2vw solid #00FF7F;
+        }
+        .comment span {
+            color: #00FF7F;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            padding: 2vw;
+            background: #000;
+            width: 100%;
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
         }
     </style>
 </head>
@@ -85,7 +217,6 @@
     <header>
         <div class="container">
             <nav>
-                <button class="menu-toggle">☰</button>
                 <div class="nav-links">
                     <a href="#home">Главная</a>
                     <a href="#about">Обо мне</a>
@@ -108,146 +239,120 @@
 
     <div class="container">
         <section id="home">
-            <h1>GreenGamesStudio</h1><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <p>Приветствую тебя на моем сайте GreenGamesStudio! Меня зовут Сайын Мирас, и я создаю игры, чтобы ты мог весело провести время. Здесь ты найдешь мои проекты, мини-игры, интересные факты и многое другое. Я увлечен программированием и мечтаю создавать крутые игры, которые понравятся всем. Надеюсь, тебе будет интересно, и ты захочешь поддержать меня в этом увлекательном путешествии!</p>
-            </div>
+            <h1>GreenGamesStudio</h1>
+            <p>Приветствую тебя на моем сайте GreenGamesStudio! Меня зовут Сайын Мирас, и я создаю игры, чтобы ты мог весело провести время. Здесь ты найдешь мои проекты, мини-игры, интересные факты и многое другое. Я увлечен программированием и мечтаю создавать крутые игры, которые понравятся всем. Надеюсь, тебе будет интересно, и ты захочешь поддержать меня в этом увлекательном путешествии!</p>
         </section>
         <section id="about">
-            <h2>Обо мне</h2><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <p>Меня зовут Сайын Мирас, мне 13 лет, и я живу в Казахстане. Уже несколько лет я изучаю программирование и создание игр, потому что это моя страсть. Я начал с простых программ, а теперь работаю над собственными игровыми проектами. Мне нравится учиться новому, экспериментировать с кодом и придумывать интересные идеи. В свободное время я смотрю видео о космосе, играю в игры и мечтаю однажды создать что-то по-настоящему большое!</p>
-            </div>
+            <h2>Обо мне</h2>
+            <p>Меня зовут Сайын Мирас, мне 13 лет, и я живу в Казахстане. Уже несколько лет я изучаю программирование и создание игр, потому что это моя страсть. Я начал с простых программ, а теперь работаю над собственными игровыми проектами. Мне нравится учиться новому, экспериментировать с кодом и придумывать интересные идеи. В свободное время я смотрю видео о космосе, играю в игры и мечтаю однажды создать что-то по-настоящему большое!</p>
         </section>
         <section id="games">
-            <h2>Игры</h2><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <div>
-                    <h3>Normaly Neighbor</h3>
-                    <p>Это увлекательное приключение с головоломками, где тебе предстоит исследовать загадочный дом своего соседа. Игра полна тайн, неожиданных поворотов и интересных заданий. Я работал над ней несколько месяцев, чтобы сделать её захватывающей и атмосферной. Скачай и попробуй разгадать все секреты!</p>
-                    <a href="https://drive.google.com/file/d/1ZVwVkZ_E61whj2cKRq44bLREgvYO3I9G/view?usp=drive_link" class="btn">Скачать</a>
-                </div>
-                <div>
-                    <h3>Калькулятор</h3>
-                    <p>Мой самый первый проект — простой, но функциональный калькулятор. Я создал его, когда только начинал учиться программировать. Он умеет складывать, вычитать, умножать и делить числа. Это была моя первая победа в кодинге, и я горжусь этим маленьким шагом на пути к большим проектам!</p>
-                    <a href="https://example.com" class="btn">Перейти</a>
-                </div>
+            <h2>Игры</h2>
+            <div>
+                <h3>Normaly Neighbor</h3>
+                <p>Это увлекательное приключение с головоломками, где тебе предстоит исследовать загадочный дом своего соседа. Игра полна тайн, неожиданных поворотов и интересных заданий. Я работал над ней несколько месяцев, чтобы сделать её захватывающей и атмосферной. Скачай и попробуй разгадать все секреты!</p>
+                <a href="https://drive.google.com/file/d/1ZVwVkZ_E61whj2cKRq44bLREgvYO3I9G/view?usp=drive_link" class="btn">Скачать</a>
+            </div>
+            <div>
+                <h3>Калькулятор</h3>
+                <p>Мой самый первый проект — простой, но функциональный калькулятор. Я создал его, когда только начинал учиться программировать. Он умеет складывать, вычитать, умножать и делить числа. Это была моя первая победа в кодинге, и я горжусь этим маленьким шагом на пути к большим проектам!</p>
+                <a href="file:///C:/Users/CompEx/Desktop/calculator.html" class="btn">Недоступно Временно</a>
             </div>
         </section>
         <section id="mini-games">
-            <h2>Мини-игры</h2><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <div class="mini-game">
-                    <h3>Клик Бургер</h3>
-                    <p>Добро пожаловать в "Клик Бургер" — профессионально сделанную мини-игру, где ты можешь стать мастером бургеров! Кликай по бургеру, чтобы зарабатывать очки, покупай улучшения в магазине и достигай новых высот. Я добавил крутые анимации, звуковые эффекты и продвинутую систему прогресса, чтобы ты получил максимум удовольствия. Цель — собрать 1000 бургеров и открыть секретный бонус!</p>
-                    <button class="btn play-btn" data-game="clicker">Играть</button>
-                    <canvas id="clicker-canvas"></canvas>
-                    <div class="game-stats">
-                        <p>Бургеры: <span id="burger-score">0</span></p>
-                        <p>Кликов в сек: <span id="click-rate">0</span></p>
-                        <p>Уровень: <span id="level">1</span></p>
+            <h2>Мини-игры</h2>
+            <div class="mini-game">
+                <h3>Клик Бургер</h3>
+                <p>Добро пожаловать в "Клик Бургер" — профессионально сделанную мини-игру, где ты можешь стать мастером бургеров! Кликай по бургеру, чтобы зарабатывать очки, покупай улучшения в магазине и достигай новых высот. Я добавил крутые анимации, звуковые эффекты и продвинутую систему прогресса, чтобы ты получил максимум удовольствия. Цель — собрать 1000 бургеров и открыть секретный бонус!</p>
+                <button class="btn play-btn" data-game="clicker">Играть</button>
+                <canvas id="clicker-canvas"></canvas>
+                <div class="game-stats">
+                    <p>Бургеры: <span id="burger-score">0</span></p>
+                    <p>Кликов в сек: <span id="click-rate">0</span></p>
+                    <p>Уровень: <span id="level">1</span></p>
+                </div>
+                <div class="progress-bar"><div class="progress" id="burger-progress"></div></div>
+                <button id="shop-toggle" class="btn">Магазин Улучшений</button>
+                <div id="shop" class="shop">
+                    <div class="shop-content">
+                        <div class="shop-item"><p>Сочный Клик (+5)</p><p>Цена: 50</p><button class="btn" onclick="buyUpgrade('clickPower')">Купить</button></div>
+                        <div class="shop-item"><p>Бургер-бот (+1/с)</p><p>Цена: 100</p><button class="btn" onclick="buyUpgrade('autoClick')">Купить</button></div>
+                        <div class="shop-item"><p>Мега-Клик (x10, 15с)</p><p>Цена: 250</p><button class="btn" onclick="buyUpgrade('megaClick')">Купить</button></div>
+                        <div class="shop-item"><p>Фабрика Бургеров (+10/с)</p><p>Цена: 500</p><button class="btn" onclick="buyUpgrade('factory')">Купить</button></div>
+                        <div class="shop-item"><p>Золотой Бургер (x2)</p><p>Цена: 1000</p><button class="btn" onclick="buyUpgrade('goldenBurger')">Купить</button></div>
                     </div>
-                    <div class="progress-bar"><div class="progress" id="burger-progress"></div></div>
-                    <button id="shop-toggle" class="btn">Магазин Улучшений</button>
-                    <div id="shop" class="shop">
-                        <div class="shop-content">
-                            <div class="shop-item"><p>Сочный Клик (+5)</p><p>Цена: 50</p><button class="btn" onclick="buyUpgrade('clickPower')">Купить</button></div>
-                            <div class="shop-item"><p>Бургер-бот (+1/с)</p><p>Цена: 100</p><button class="btn" onclick="buyUpgrade('autoClick')">Купить</button></div>
-                            <div class="shop-item"><p>Мега-Клик (x10, 15с)</p><p>Цена: 250</p><button class="btn" onclick="buyUpgrade('megaClick')">Купить</button></div>
-                            <div class="shop-item"><p>Фабрика Бургеров (+10/с)</p><p>Цена: 500</p><button class="btn" onclick="buyUpgrade('factory')">Купить</button></div>
-                            <div class="shop-item"><p>Золотой Бургер (x2)</p><p>Цена: 1000</p><button class="btn" onclick="buyUpgrade('goldenBurger')">Купить</button></div>
-                        </div>
-                        <button id="shop-close" class="btn" style="position: absolute; top: 5px; right: 5px;">Закрыть</button>
-                    </div>
+                    <button id="shop-close" class="btn" style="position: absolute; top: 0.5vw; right: 0.5vw;">Закрыть</button>
                 </div>
             </div>
         </section>
         <section id="gallery">
-            <h2>Галерея</h2><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <p>Здесь собраны картинки из моих игр и проектов. Я стараюсь делать визуальную часть яркой и запоминающейся, чтобы игроки могли погрузиться в атмосферу. Посмотри, как выглядят мои персонажи и сцены, и, возможно, это вдохновит тебя на свои идеи!</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item"><img src="https://via.placeholder.com/150" alt="Сосед"><p>Сосед из Normaly Neighbor</p></div>
-                    <div class="gallery-item"><img src="https://via.placeholder.com/150" alt="Игрок"><p>Главный герой</p></div>
-                    <div class="gallery-item"><img src="https://via.placeholder.com/150" alt="Бургер"><p>Бургер из Клик Бургер</p></div>
-                </div>
+            <h2>Галерея</h2>
+            <p>Здесь собраны картинки из моих игр и проектов. Я стараюсь делать визуальную часть яркой и запоминающейся, чтобы игроки могли погрузиться в атмосферу. Посмотри, как выглядят мои персонажи и сцены, и, возможно, это вдохновит тебя на свои идеи!</p>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://via.placeholder.com/150" alt="Сосед"><p>Сосед из Normaly Neighbor</p></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/150" alt="Игрок"><p>Главный герой</p></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/150" alt="Бургер"><p>Бургер из Клик Бургер</p></div>
             </div>
         </section>
         <section id="facts">
-            <h2>Факты</h2><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <p>Хочешь узнать обо мне больше? Вот несколько интересных фактов, которые помогут тебе понять, кто я такой и что меня вдохновляет. Я люблю делиться такими деталями, потому что это делает нас ближе!</p>
-                <div class="facts-grid">
-                    <div class="fact-item"><p>Я написал свою первую игру, когда мне было 12 лет, и с тех пор не могу остановиться!</p></div>
-                    <div class="fact-item"><p>Зеленый — мой любимый цвет, он ассоциируется у меня с природой и спокойствием.</p></div>
-                    <div class="fact-item"><p>Моя мечта — создать игру про космос, где можно исследовать галактики и сражаться с пришельцами!</p></div>
-                </div>
+            <h2>Факты</h2>
+            <p>Хочешь узнать обо мне больше? Вот несколько интересных фактов, которые помогут тебе понять, кто я такой и что меня вдохновляет. Я люблю делиться такими деталями, потому что это делает нас ближе!</p>
+            <div class="facts-grid">
+                <div class="fact-item"><p>Я написал свою первую игру, когда мне было 12 лет, и с тех пор не могу остановиться!</p></div>
+                <div class="fact-item"><p>Зеленый — мой любимый цвет, он ассоциируется у меня с природой и спокойствием.</p></div>
+                <div class="fact-item"><p>Моя мечта — создать игру про космос, где можно исследовать галактики и сражаться с пришельцами!</p></div>
             </div>
         </section>
         <section id="challenges">
-            <h2>Челленджи</h2><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <p>Любишь испытания? Тогда эти челленджи для тебя! Я придумал их, чтобы ты мог проверить свои навыки и повеселиться. Попробуй выполнить хотя бы один и расскажи о своих результатах в комментариях!</p>
-                <div class="challenges-grid">
-                    <div class="challenge-item"><p>Собери 500 бургеров в "Клик Бургер" без использования автоклика — только твои пальцы!</p></div>
-                    <div class="challenge-item"><p>Достигни уровня 5 в "Клик Бургер" за 10 минут!</p></div>
-                    <div class="challenge-item"><p>Придумай свою идею для игры и напиши её в комментариях — вдруг я воплощу её в жизнь?</p></div>
-                </div>
+            <h2>Челленджи</h2>
+            <p>Любишь испытания? Тогда эти челленджи для тебя! Я придумал их, чтобы ты мог проверить свои навыки и повеселиться. Попробуй выполнить хотя бы один и расскажи о своих результатах в комментариях!</p>
+            <div class="challenges-grid">
+                <div class="challenge-item"><p>Собери 500 бургеров в "Клик Бургер" без использования автоклика — только твои пальцы!</p></div>
+                <div class="challenge-item"><p>Достигни уровня 5 в "Клик Бургер" за 10 минут!</p></div>
+                <div class="challenge-item"><p>Придумай свою идею для игры и напиши её в комментариях — вдруг я воплощу её в жизнь?</p></div>
             </div>
         </section>
         <section id="news">
-            <h2>Новости</h2><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <p>Здесь я делюсь последними обновлениями и событиями GreenGamesStudio. Следи за новостями, чтобы не пропустить новые уровни, игры и другие крутые штуки, которые я готовлю для тебя!</p>
-                <p>02.03.2025: Добавлен новый уровень в "Normaly Neighbor" с ещё более сложными головоломками!<br>15.02.2025: Запущена обновленная версия "Клик Бургер" с профессиональным дизайном и новыми функциями!</p>
-            </div>
+            <h2>Новости</h2>
+            <p>Здесь я делюсь последними обновлениями и событиями GreenGamesStudio. Следи за новостями, чтобы не пропустить новые уровни, игры и другие крутые штуки, которые я готовлю для тебя!</p>
+            <p>02.03.2025: Добавлен новый уровень в "Normaly Neighbor" с ещё более сложными головоломками!<br>15.02.2025: Запущена обновленная версия "Клик Бургер" с профессиональным дизайном и новыми функциями!</p>
         </section>
         <section id="donate">
-            <h2>Донат</h2><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <p>Если тебе нравятся мои игры и ты хочешь поддержать меня, это можно сделать через Kaspi. Каждый донат помогает мне покупать новые инструменты для разработки, учиться и создавать ещё больше крутых проектов для вас. Спасибо за любую помощь — это очень мотивирует меня продолжать!</p>
-                <a href="https://kaspi.kz/" class="btn">Kaspi.kz</a>
-                <p>Номер для переводов: +7 (775) 798-59-11</p>
-            </div>
+            <h2>Донат</h2>
+            <p>Если тебе нравятся мои игры и ты хочешь поддержать меня, это можно сделать через Kaspi. Каждый донат помогает мне покупать новые инструменты для разработки, учиться и создавать ещё больше крутых проектов для вас. Спасибо за любую помощь — это очень мотивирует меня продолжать!</p>
+            <a href="https://kaspi.kz/" class="btn">Kaspi.kz</a>
+            <p>Номер для переводов: +7 (775) 798-59-11</p>
         </section>
         <section id="comments">
-            <h2>Комментарии</h2><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <p>Оставь своё мнение о моих играх или просто поздоровайся! Мне важно знать, что ты думаешь, ведь это помогает мне становиться лучше. Пиши свои идеи, впечатления или пожелания — я читаю каждый комментарий!</p>
-                <form id="comment-form" class="comment-form">
-                    <input type="text" id="comment-name" placeholder="Имя" required>
-                    <textarea id="comment-message" placeholder="Комментарий" required></textarea>
-                    <button type="submit" class="btn">Отправить</button>
-                </form>
-                <div id="comment-list" class="comment-list"></div>
-            </div>
+            <h2>Комментарии</h2>
+            <p>Оставь своё мнение о моих играх или просто поздоровайся! Мне важно знать, что ты думаешь, ведь это помогает мне становиться лучше. Пиши свои идеи, впечатления или пожелания — я читаю каждый комментарий!</p>
+            <form id="comment-form" class="comment-form">
+                <input type="text" id="comment-name" placeholder="Имя" required>
+                <textarea id="comment-message" placeholder="Комментарий" required></textarea>
+                <button type="submit" class="btn">Отправить</button>
+            </form>
+            <div id="comment-list" class="comment-list"></div>
         </section>
         <section id="contact-dev">
-            <h2>Обратиться</h2><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <p>Хочешь предложить идею, сообщить об ошибке или просто поболтать? Пиши мне на почту или заполняй форму ниже. Я всегда рад общению и стараюсь отвечать на все сообщения как можно быстрее!</p>
-                <p>Email: saiynmiras2011@gmail.com</p>
-                <form action="https://formspree.io/f/xvgzebqo" method="POST" class="contact-form">
-                    <input type="text" name="name" placeholder="Имя" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <textarea name="message" placeholder="Сообщение" required></textarea>
-                    <button type="submit" class="btn">Отправить</button>
-                </form>
-            </div>
+            <h2>Обратиться</h2>
+            <p>Хочешь предложить идею, сообщить об ошибке или просто поболтать? Пиши мне на почту или заполняй форму ниже. Я всегда рад общению и стараюсь отвечать на все сообщения как можно быстрее!</p>
+            <p>Email: saiynmiras2011@gmail.com</p>
+            <form action="https://formspree.io/f/xvgzebqo" method="POST" class="contact-form">
+                <input type="text" name="name" placeholder="Имя" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Сообщение" required></textarea>
+                <button type="submit" class="btn">Отправить</button>
+            </form>
         </section>
         <section id="contacts">
-            <h2>Контакты</h2><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <p>Следи за моими обновлениями и общайся со мной в соцсетях! На YouTube я выкладываю видео о разработке, а в Telegram делюсь новостями и планами. Подписывайся, чтобы быть в курсе всего!</p>
-                <a href="https://www.youtube.com/@Miras_razrabgames" class="btn">YouTube</a>
-                <a href="https://t.me/+BtFF6XZ80LBkNGQy" class="btn">Telegram</a>
-            </div>
+            <h2>Контакты</h2>
+            <p>Следи за моими обновлениями и общайся со мной в соцсетях! На YouTube я выкладываю видео о разработке, а в Telegram делюсь новостями и планами. Подписывайся, чтобы быть в курсе всего!</p>
+            <a href="https://www.youtube.com/@Miras_razrabgames" class="btn">YouTube</a>
+            <a href="https://t.me/+BtFF6XZ80LBkNGQy" class="btn">Telegram</a>
         </section>
         <section id="privacy">
-            <h2>Политика конфиденциальности</h2><button class="section-toggle btn">Открыть</button>
-            <div class="section-content">
-                <p>Я, Сайын Мирас, создатель GreenGamesStudio, уважаю твою приватность. Все данные, которые ты оставляешь на сайте (например, в комментариях или форме обратной связи), используются только для общения с тобой и никогда не передаются третьим лицам. Моя цель — создать безопасное и дружелюбное пространство для всех посетителей!</p>
-            </div>
+            <h2>Политика конфиденциальности</h2>
+            <p>Я, Сайын Мирас, создатель GreenGamesStudio, уважаю твою приватность. Все данные, которые ты оставляешь на сайте (например, в комментариях или форме обратной связи), используются только для общения с тобой и никогда не передаются третьим лицам. Моя цель — создать безопасное и дружелюбное пространство для всех посетителей!</p>
         </section>
     </div>
 
@@ -258,25 +363,16 @@
         function resizeCanvas() {
             const canvas = document.getElementById('clicker-canvas');
             const rect = canvas.parentElement.getBoundingClientRect();
-            const isMobile = window.innerWidth <= 768;
-            canvas.width = isMobile ? rect.width : Math.min(rect.width, 500);
-            canvas.height = isMobile ? 200 : 300;
+            canvas.width = Math.min(rect.width, 600);
+            canvas.height = 35 * window.innerHeight / 100; // 35vh
         }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        // Меню, магазин и секции
-        document.querySelector('.menu-toggle').addEventListener('click', () => document.querySelector('.nav-links').classList.toggle('active'));
+        // Магазин
         const shop = document.getElementById('shop');
         document.getElementById('shop-toggle').addEventListener('click', () => shop.classList.toggle('active'));
         document.getElementById('shop-close').addEventListener('click', () => shop.classList.remove('active'));
-        document.querySelectorAll('.section-toggle').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const content = btn.nextElementSibling;
-                content.classList.toggle('active');
-                btn.textContent = content.classList.contains('active') ? 'Закрыть' : 'Открыть';
-            });
-        });
 
         // Кнопка "Играть"
         const playBtn = document.querySelector('.play-btn');
@@ -288,7 +384,7 @@
         });
 
         // Звуки
-        const clickSound = new Audio('https://www.myinstants.com/media/sounds/click.mp3'); // Замените на свой звук, если нужно
+        const clickSound = new Audio('https://www.myinstants.com/media/sounds/click.mp3');
         clickSound.volume = 0.5;
 
         // Клик Бургер
@@ -315,7 +411,7 @@
             const y = e.clientY - rect.top;
             const centerX = clickerCanvas.width / 2;
             const centerY = clickerCanvas.height / 2;
-            if (Math.hypot(x - centerX, y - centerY) < (window.innerWidth <= 768 ? 60 : 80)) {
+            if (Math.hypot(x - centerX, y - centerY) < 80) {
                 const power = megaClickActive ? clickPower * 10 : clickPower;
                 burgerScore += power * goldenMultiplier;
                 clicksThisSecond++;
@@ -410,22 +506,19 @@
             if (!gameActive) return;
             clickerCtx.clearRect(0, 0, clickerCanvas.width, clickerCanvas.height);
 
-            // Полупрозрачный слой для эффекта глубины
             clickerCtx.fillStyle = 'rgba(0, 0, 0, 0.3)';
             clickerCtx.fillRect(0, 0, clickerCanvas.width, clickerCanvas.height);
 
-            // Анимация бургера
             const scale = 1 + Math.sin(Date.now() * 0.005) * 0.05;
             clickerCtx.save();
             clickerCtx.translate(clickerCanvas.width / 2, clickerCanvas.height / 2);
             clickerCtx.scale(scale, scale);
             clickerCtx.fillStyle = goldenMultiplier > 1 ? '#FFD700' : '#FF4500';
-            clickerCtx.font = window.innerWidth <= 768 ? '80px Arial' : '120px Arial';
+            clickerCtx.font = 'clamp(80px, 12vw, 120px) Arial';
             clickerCtx.textAlign = 'center';
             clickerCtx.fillText('🍔', 0, 40);
             clickerCtx.restore();
 
-            // Частицы
             particles.forEach((p, i) => {
                 p.x += p.vx;
                 p.y += p.vy;
@@ -438,12 +531,11 @@
                 if (p.life <= 0) particles.splice(i, 1);
             });
 
-            // Тень и свечение
             clickerCtx.shadowBlur = 20;
             clickerCtx.shadowColor = goldenMultiplier > 1 ? '#FFD700' : '#00FF7F';
             clickerCtx.fillStyle = 'rgba(255, 255, 255, 0.1)';
             clickerCtx.beginPath();
-            clickerCtx.arc(clickerCanvas.width / 2, clickerCanvas.height / 2, window.innerWidth <= 768 ? 60 : 80, 0, Math.PI * 2);
+            clickerCtx.arc(clickerCanvas.width / 2, clickerCanvas.height / 2, 80, 0, Math.PI * 2);
             clickerCtx.fill();
             clickerCtx.shadowBlur = 0;
 
