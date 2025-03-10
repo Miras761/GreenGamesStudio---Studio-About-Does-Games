@@ -165,7 +165,7 @@
         .btn {
             background: linear-gradient(45deg, #00FF7F, #00CC66);
             color: #000;
-            padding: clamp(0.6rem, 1.5vw, 0.9rem) clamp(1.2rem, 3vw, 2.2rem);
+            padding: clamp(0.5rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.5rem);
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             border: none;
@@ -177,6 +177,8 @@
             position: relative;
             overflow: hidden;
             animation: pulse 2s infinite;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            touch-action: manipulation;
         }
         @keyframes pulse {
             0%, 100% { box-shadow: 0 5px 20px rgba(0, 255, 127, 0.5); }
@@ -205,23 +207,24 @@
         .btn:active { transform: scale(0.95); }
 
         /* Мини-игра */
-        .mini-game { text-align: center; }
+        .mini-game {
+            text-align: center;
+            position: relative;
+            touch-action: manipulation;
+        }
         #clicker-canvas {
             display: none;
             border: clamp(2px, 1vw, 4px) solid #00FF7F;
             width: 100%;
             max-width: 1000px;
-            height: clamp(35vh, 50vh, 60vh);
-            margin: clamp(1rem, 3vw, 2rem) auto;
+            height: clamp(30vh, 40vh, 50vh);
+            margin: clamp(1rem, 2vw, 1.5rem) auto;
             border-radius: 15px;
-            box-shadow: 0 0 40px rgba(0, 255, 127, 0.6);
-            background: url('https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=500&q=80') no-repeat center;
+            box-shadow: 0 0 30px rgba(0, 255, 127, 0.6);
             background-size: cover;
             position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             touch-action: none;
         }
-        #clicker-canvas:hover { transform: scale(1.02); box-shadow: 0 0 50px rgba(0, 255, 127, 0.8); }
         #clicker-canvas.active { display: block; }
         .game-stats {
             display: flex;
@@ -244,25 +247,27 @@
             left: 0;
             width: 100%;
             background: rgba(18, 18, 18, 0.95);
-            padding: clamp(1rem, 3vw, 2rem);
-            border-top: clamp(2px, 1vw, 4px) solid #00FF7F;
-            box-shadow: 0 -15px 40px rgba(0, 255, 127, 0.3);
-            transition: bottom 0.5s ease;
+            padding: clamp(0.5rem, 2vw, 1rem);
+            border-top: 2px solid #00FF7F;
+            box-shadow: 0 -10px 30px rgba(0, 255, 127, 0.3);
+            transition: bottom 0.4s ease;
             z-index: 1000;
             backdrop-filter: blur(8px);
+            max-height: 70vh;
+            overflow-y: auto;
         }
         .shop.active { bottom: 0; }
         .shop-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(clamp(160px, 25vw, 220px), 1fr));
-            gap: clamp(1rem, 2vw, 2rem);
-            max-width: 1400px;
-            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(0.5rem, 1vw, 1rem);
+            justify-content: center;
         }
         .shop-item {
+            flex: 1 1 clamp(120px, 45vw, 180px);
             background: #151515;
-            padding: clamp(1rem, 2vw, 1.5rem);
-            border-radius: 12px;
+            padding: clamp(0.5rem, 1vw, 1rem);
+            border-radius: 10px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(0, 255, 127, 0.2);
         }
@@ -401,8 +406,10 @@
             }
             .burger { display: block; }
             .container { padding: clamp(1rem, 2vw, 1.5rem); }
-            #clicker-canvas { height: clamp(35vh, 45vh, 50vh); }
-            .shop-content { grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 45vw, 180px), 1fr)); }
+            #clicker-canvas { height: clamp(25vh, 35vh, 40vh); }
+            .game-stats { flex-direction: column; align-items: center; gap: 0.5rem; }
+            .shop-content { flex-direction: column; align-items: center; }
+            .shop-item { width: 90%; max-width: 300px; }
         }
 
         @media (max-width: 480px) {
@@ -411,8 +418,7 @@
             h3 { font-size: clamp(1rem, 3vw, 1.5rem); }
             .btn { padding: clamp(0.5rem, 1.5vw, 0.7rem) clamp(0.8rem, 2vw, 1.5rem); }
             .gallery-grid, .facts-grid, .challenges-grid { grid-template-columns: 1fr; }
-            #clicker-canvas { height: clamp(30vh, 40vh, 45vh); }
-            .game-stats { flex-direction: column; align-items: center; }
+            #clicker-canvas { height: clamp(25vh, 35vh, 40vh); }
             .shop { padding: clamp(0.5rem, 2vw, 1rem); }
         }
 
@@ -425,9 +431,10 @@
         }
 
         @media (pointer: coarse) {
-            .btn { padding: clamp(0.6rem, 2vw, 1rem) clamp(1.2rem, 3vw, 2rem); }
+            .btn { padding: clamp(0.6rem, 2.5vw, 1rem) clamp(1.2rem, 4vw, 2rem); }
             .nav-links a { padding: clamp(0.5rem, 2vw, 1rem); }
             .shop-item .btn { padding: clamp(0.6rem, 2vw, 1rem); }
+            #clicker-canvas { height: clamp(30vh, 45vh, 50vh); }
         }
     </style>
 </head>
@@ -488,7 +495,7 @@
             <h2>Мини-игры</h2>
             <div class="mini-game">
                 <h3>Клик Бургер</h3>
-                <p>Создай империю бургеров! Кликай, улучшай, достигай вершин. 1000 бургеров — и откроется секретный режим!</p>
+                <p>Создай империю бургеров! Кликай и улучшай. 1000 бургеров — секретный режим!</p>
                 <button class="btn play-btn" data-game="clicker">Запустить</button>
                 <canvas id="clicker-canvas"></canvas>
                 <div class="game-stats">
@@ -497,7 +504,6 @@
                     <p>Уровень: <span id="level">1</span></p>
                 </div>
                 <div class="progress-bar"><div class="progress" id="burger-progress"></div></div>
-                <button id="shop-toggle" class="btn">Магазин</button>
                 <div id="shop" class="shop">
                     <div class="shop-content">
                         <div class="shop-item"><p>Сочный Клик (+5)</p><p>Цена: 50</p><button class="btn" onclick="buyUpgrade('clickPower')">Купить</button></div>
@@ -647,16 +653,6 @@
         initParticles();
         animateParticles();
 
-        // Адаптация канваса
-        function resizeCanvas() {
-            const canvas = document.getElementById('clicker-canvas');
-            const rect = canvas.parentElement.getBoundingClientRect();
-            canvas.width = Math.min(rect.width, 1000);
-            canvas.height = clamp(window.innerHeight * 0.35, window.innerHeight * 0.5, window.innerHeight * 0.6);
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
         // Бургер-меню
         const burger = document.querySelector('.burger');
         const navLinks = document.querySelector('.nav-links');
@@ -665,25 +661,32 @@
             burger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
 
-        // Магазин
-        const shop = document.getElementById('shop');
-        document.getElementById('shop-toggle').addEventListener('click', () => shop.classList.toggle('active'));
-        document.getElementById('shop-close').addEventListener('click', () => shop.classList.remove('active'));
-
-        // Кнопка "Играть"
+        // Клик Бургер
         const playBtn = document.querySelector('.play-btn');
         const clickerCanvas = document.getElementById('clicker-canvas');
+        const shop = document.getElementById('shop');
+        const shopClose = document.getElementById('shop-close');
+        let gameActive = false;
+
         playBtn.addEventListener('click', () => {
             clickerCanvas.classList.add('active');
             playBtn.style.display = 'none';
             startBurgerClicker();
         });
 
-        // Звуки
-        const clickSound = new Audio('https://www.myinstants.com/media/sounds/click.mp3');
-        clickSound.volume = 0.5;
+        function addShopButton() {
+            const shopBtn = document.createElement('button');
+            shopBtn.className = 'btn';
+            shopBtn.textContent = 'Магазин';
+            shopBtn.style.position = 'absolute';
+            shopBtn.style.bottom = '10px';
+            shopBtn.style.right = '10px';
+            shopBtn.addEventListener('click', () => shop.classList.add('active'));
+            clickerCanvas.parentElement.appendChild(shopBtn);
+        }
 
-        // Клик Бургер
+        shopClose.addEventListener('click', () => shop.classList.remove('active'));
+
         const clickerCtx = clickerCanvas.getContext('2d');
         let burgerScore = 0, clickPower = 1, autoClick = 0, level = 1, particles = [], megaClickActive = false, megaClickTimer = 0, goldenMultiplier = 1;
         let clicksThisSecond = 0, lastClickTime = 0;
@@ -691,46 +694,54 @@
         const clickRateDisplay = document.getElementById('click-rate');
         const levelDisplay = document.getElementById('level');
         const burgerProgress = document.getElementById('burger-progress');
-        let gameActive = false;
+
+        function resizeCanvas() {
+            const rect = clickerCanvas.parentElement.getBoundingClientRect();
+            clickerCanvas.width = Math.min(rect.width, 1000);
+            clickerCanvas.height = clamp(window.innerHeight * 0.25, window.innerHeight * 0.4, window.innerHeight * 0.5);
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
         function startBurgerClicker() {
             if (gameActive) return;
             gameActive = true;
+            addShopButton();
             drawBurger();
             updateStatsLoop();
         }
 
-        clickerCanvas.addEventListener('click', e => handleClick(e));
         clickerCanvas.addEventListener('touchstart', e => {
             e.preventDefault();
             handleClick(e.touches[0]);
-        });
+        }, { passive: false });
+
+        clickerCanvas.addEventListener('click', e => handleClick(e));
 
         function handleClick(e) {
-            if (!gameActive) return;
+            if (!gameActive || shop.classList.contains('active')) return;
             const rect = clickerCanvas.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             const centerX = clickerCanvas.width / 2;
             const centerY = clickerCanvas.height / 2;
-            if (Math.hypot(x - centerX, y - centerY) < 120) {
+            if (Math.hypot(x - centerX, y - centerY) < clamp(80, clickerCanvas.width / 4, 120)) {
                 const power = megaClickActive ? clickPower * 10 : clickPower;
                 burgerScore += power * goldenMultiplier;
                 clicksThisSecond++;
                 spawnParticles(x, y);
                 checkLevelUp();
-                clickSound.play();
             }
         }
 
         function spawnParticles(x, y) {
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 10; i++) {
                 particles.push({
                     x, y,
-                    vx: (Math.random() - 0.5) * 10,
-                    vy: (Math.random() - 0.5) * 10,
-                    size: Math.random() * 30 + 20,
-                    life: 50,
+                    vx: (Math.random() - 0.5) * 8,
+                    vy: (Math.random() - 0.5) * 8,
+                    size: Math.random() * 20 + 15,
+                    life: 40,
                     color: goldenMultiplier > 1 ? '#FFD700' : '#FF4500'
                 });
             }
@@ -797,11 +808,11 @@
             clickerCtx.translate(clickerCanvas.width / 2, clickerCanvas.height / 2);
             clickerCtx.scale(scale, scale);
             clickerCtx.fillStyle = goldenMultiplier > 1 ? '#FFD700' : '#FF4500';
-            clickerCtx.font = 'clamp(120px, 20vw, 200px) Arial';
+            clickerCtx.font = `${clamp(80, clickerCanvas.width / 4, 150)}px Arial`;
             clickerCtx.textAlign = 'center';
-            clickerCtx.shadowBlur = 20;
+            clickerCtx.shadowBlur = 15;
             clickerCtx.shadowColor = goldenMultiplier > 1 ? '#FFD700' : '#00FF7F';
-            clickerCtx.fillText('🍔', 0, 50);
+            clickerCtx.fillText('🍔', 0, 40);
             clickerCtx.restore();
 
             particles.forEach((p, i) => {
@@ -809,7 +820,7 @@
                 p.y += p.vy;
                 p.life--;
                 p.size *= 0.9;
-                clickerCtx.fillStyle = `rgba(${p.color === '#FFD700' ? '255, 215, 0' : '255, 69, 0'}, ${p.life / 50})`;
+                clickerCtx.fillStyle = `rgba(${p.color === '#FFD700' ? '255, 215, 0' : '255, 69, 0'}, ${p.life / 40})`;
                 clickerCtx.beginPath();
                 clickerCtx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
                 clickerCtx.fill();
