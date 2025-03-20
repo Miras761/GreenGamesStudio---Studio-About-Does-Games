@@ -15,426 +15,102 @@
             overflow-x: hidden;
             position: relative;
             background-attachment: fixed;
-            overscroll-behavior: none;
         }
-        .container {
-            width: 90%;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: clamp(1rem, 3vw, 2rem);
-        }
-
-        /* Хедер */
-        header {
-            background: rgba(0, 0, 0, 0.85);
-            padding: clamp(0.5rem, 2vw, 1rem) 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 255, 127, 0.4);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 255, 127, 0.2);
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: clamp(0.5rem, 2vw, 1rem);
-        }
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            font-weight: 700;
-            background: linear-gradient(90deg, #00FF7F, #00CC66);
-            -webkit-background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 15px rgba(0, 255, 127, 0.7);
-            cursor: pointer;
-            transition: transform 0.3s ease, text-shadow 0.3s ease;
-        }
-        .logo:hover {
-            transform: scale(1.05) rotate(2deg);
-            text-shadow: 0 0 20px rgba(0, 255, 127, 0.9);
-        }
-        .nav-links {
-            display: flex;
-            gap: clamp(0.5rem, 2vw, 1.5rem);
-            flex-wrap: wrap;
-            transition: all 0.4s ease-in-out;
-        }
-        .nav-links a {
-            color: #E0E0E0;
-            text-decoration: none;
-            font-family: 'Orbitron', sans-serif;
-            padding: clamp(0.3rem, 1vw, 0.5rem) clamp(0.5rem, 2vw, 1rem);
-            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #00FF7F, #00CC66);
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: width 0.3s ease;
-        }
+        .container { width: 90%; max-width: 1600px; margin: 0 auto; padding: clamp(1rem, 3vw, 2rem); }
+        header { background: rgba(0, 0, 0, 0.85); padding: clamp(0.5rem, 2vw, 1rem) 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 255, 127, 0.4); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 255, 127, 0.2); }
+        nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: clamp(0.5rem, 2vw, 1rem); }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; background: linear-gradient(90deg, #00FF7F, #00CC66); -webkit-background-clip: text; color: transparent; text-shadow: 0 0 15px rgba(0, 255, 127, 0.7); cursor: pointer; transition: transform 0.3s ease, text-shadow 0.3s ease; }
+        .logo:hover { transform: scale(1.05) rotate(2deg); text-shadow: 0 0 20px rgba(0, 255, 127, 0.9); }
+        .nav-links { display: flex; gap: clamp(0.5rem, 2vw, 1.5rem); flex-wrap: wrap; transition: all 0.4s ease-in-out; }
+        .nav-links a { color: #E0E0E0; text-decoration: none; font-family: 'Orbitron', sans-serif; padding: clamp(0.3rem, 1vw, 0.5rem) clamp(0.5rem, 2vw, 1rem); font-size: clamp(0.9rem, 1.5vw, 1.1rem); position: relative; transition: all 0.3s ease; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; background: linear-gradient(90deg, #00FF7F, #00CC66); bottom: 0; left: 50%; transform: translateX(-50%); transition: width 0.3s ease; }
         .nav-links a:hover::after { width: 90%; }
-        .nav-links a:hover {
-            color: #00FF7F;
-            text-shadow: 0 0 8px rgba(0, 255, 127, 0.8);
-        }
-        .burger {
-            display: none;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            color: #00FF7F;
-            cursor: pointer;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
+        .nav-links a:hover { color: #00FF7F; text-shadow: 0 0 8px rgba(0, 255, 127, 0.8); }
+        .burger { display: none; font-size: clamp(1.5rem, 4vw, 2rem); color: #00FF7F; cursor: pointer; transition: transform 0.3s ease, color 0.3s ease; }
         .burger:hover { transform: rotate(90deg); color: #00CC66; }
-
-        /* Частицы */
-        #particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-            opacity: 0.8;
-        }
-
-        /* Секции */
-        section {
-            margin: clamp(2rem, 5vw, 4rem) 0;
-            padding: clamp(1.5rem, 4vw, 3rem);
-            background: rgba(18, 18, 18, 0.9);
-            border-left: clamp(4px, 1vw, 8px) solid #00FF7F;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0, 255, 127, 0.15), inset 0 0 20px rgba(0, 255, 127, 0.05);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(40px);
-            animation: slideIn 0.8s ease forwards;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 255, 127, 0.25);
-        }
-        @keyframes slideIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(0, 255, 127, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-        section:hover::before { opacity: 1; }
-        h1, h2, h3 {
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(90deg, #00FF7F, #00CC66);
-            -webkit-background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 12px rgba(0, 255, 127, 0.6);
-            margin-bottom: clamp(0.8rem, 2vw, 1.5rem);
-        }
-        h1 { font-size: clamp(2.2rem, 6vw, 4.5rem); }
-        h2 { font-size: clamp(1.6rem, 4vw, 2.8rem); }
-        h3 { font-size: clamp(1.1rem, 3vw, 2rem); }
-        p {
-            margin-bottom: clamp(0.8rem, 2vw, 1.5rem);
-            font-size: clamp(0.9rem, 2vw, 1.2rem);
-            line-height: 1.8;
-            color: #D0D0D0;
-            text-shadow: 0 0 5px rgba(0, 255, 127, 0.2);
-        }
-        .btn {
-            background: linear-gradient(45deg, #00FF7F, #00CC66);
-            color: #000;
-            padding: clamp(0.5rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.5rem);
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0, 255, 127, 0.5);
-            transition: all 0.3s ease;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            animation: pulse 2s infinite;
-            font-size: clamp(0.8rem, 2vw, 1rem);
-            touch-action: manipulation;
-        }
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 5px 20px rgba(0, 255, 127, 0.5); }
-            50% { box-shadow: 0 5px 30px rgba(0, 255, 127, 0.8); }
-        }
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.5s ease, height 0.5s ease;
-        }
-        .btn:hover::after {
-            width: 200%;
-            height: 200%;
-        }
-        .btn:hover {
-            background: linear-gradient(45deg, #00CC66, #00FF7F);
-            transform: translateY(-3px);
-        }
-        .btn:active { transform: scale(0.95); }
-
-        /* Мини-игра */
-        .mini-game {
-            text-align: center;
-            position: relative;
-            touch-action: manipulation;
-        }
-        #clicker-canvas {
-            display: none;
-            border: clamp(2px, 1vw, 4px) solid #00FF7F;
-            width: 100%;
-            max-width: 1000px;
-            height: clamp(30vh, 40vh, 50vh);
-            margin: clamp(1rem, 2vw, 1.5rem) auto;
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(0, 255, 127, 0.6);
-            background-size: cover;
-            position: relative;
-            touch-action: none;
-        }
+        #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: 0.8; }
+        section { margin: clamp(1.5rem, 5vw, 4rem) 0; padding: clamp(1rem, 4vw, 2.5rem); background: rgba(18, 18, 18, 0.9); border-left: clamp(3px, 1vw, 6px) solid #00FF7F; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 255, 127, 0.15); opacity: 0; transform: translateY(30px); animation: slideIn 0.6s ease forwards; }
+        section:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 255, 127, 0.25); }
+        @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
+        h1, h2, h3 { font-family: 'Orbitron', sans-serif; background: linear-gradient(90deg, #00FF7F, #00CC66); -webkit-background-clip: text; color: transparent; text-shadow: 0 0 10px rgba(0, 255, 127, 0.5); margin-bottom: clamp(0.6rem, 2vw, 1.2rem); }
+        h1 { font-size: clamp(1.8rem, 6vw, 3.5rem); }
+        h2 { font-size: clamp(1.4rem, 4vw, 2.2rem); }
+        h3 { font-size: clamp(1rem, 3vw, 1.6rem); }
+        p { margin-bottom: clamp(0.6rem, 2vw, 1.2rem); font-size: clamp(0.8rem, 2vw, 1rem); line-height: 1.6; color: #D0D0D0; }
+        .btn { background: linear-gradient(45deg, #00FF7F, #00CC66); color: #000; padding: clamp(0.4rem, 2vw, 0.7rem) clamp(0.8rem, 3vw, 1.2rem); font-family: 'Orbitron', sans-serif; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 255, 127, 0.4); transition: all 0.3s ease; display: inline-block; }
+        .btn:hover { background: linear-gradient(45deg, #00CC66, #00FF7F); transform: translateY(-3px); }
+        .mini-game { text-align: center; }
+        #clicker-canvas { display: none; border: clamp(2px, 1vw, 3px) solid #00FF7F; width: 100%; max-width: 800px; height: clamp(25vh, 35vh, 45vh); margin: clamp(0.8rem, 2vw, 1.2rem) auto; border-radius: 12px; }
         #clicker-canvas.active { display: block; }
-        .game-stats {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: clamp(0.8rem, 2vw, 1.5rem) 0;
-            font-size: clamp(0.9rem, 2vw, 1.2rem);
-            font-family: 'Orbitron', sans-serif;
-            gap: clamp(0.5rem, 1vw, 1rem);
-        }
-        .game-stats span {
-            background: linear-gradient(90deg, #00FF7F, #00CC66);
-            -webkit-background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 8px rgba(0, 255, 127, 0.8);
-        }
-        .shop {
-            position: fixed;
-            bottom: -100%;
-            left: 0;
-            width: 100%;
-            background: rgba(18, 18, 18, 0.95);
-            padding: clamp(0.5rem, 2vw, 1rem);
-            border-top: 2px solid #00FF7F;
-            box-shadow: 0 -10px 30px rgba(0, 255, 127, 0.3);
-            transition: bottom 0.4s ease;
-            z-index: 1000;
-            backdrop-filter: blur(8px);
-            max-height: 70vh;
-            overflow-y: auto;
-        }
+        .game-stats { display: flex; justify-content: space-around; flex-wrap: wrap; margin: clamp(0.6rem, 2vw, 1.2rem) 0; font-size: clamp(0.7rem, 2vw, 1rem); font-family: 'Orbitron', sans-serif; }
+        .game-stats span { background: linear-gradient(90deg, #00FF7F, #00CC66); -webkit-background-clip: text; color: transparent; }
+        .shop { position: fixed; bottom: -100%; left: 0; width: 100%; background: rgba(18, 18, 18, 0.95); padding: clamp(0.4rem, 2vw, 0.8rem); border-top: 2px solid #00FF7F; transition: bottom 0.4s ease; z-index: 1000; }
         .shop.active { bottom: 0; }
-        .shop-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: clamp(0.5rem, 1vw, 1rem);
-            justify-content: center;
-        }
-        .shop-item {
-            flex: 1 1 clamp(120px, 45vw, 180px);
-            background: #151515;
-            padding: clamp(0.5rem, 1vw, 1rem);
-            border-radius: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(0, 255, 127, 0.2);
-        }
-        .shop-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 255, 127, 0.5);
-            border-color: #00FF7F;
-        }
-        .shop-item p { margin: clamp(0.5rem, 1vw, 0.8rem) 0; font-size: clamp(0.8rem, 1.5vw, 1rem); }
-        .shop-item .btn { width: 100%; padding: clamp(0.5rem, 1vw, 0.8rem); }
-
-        /* Прогресс-бар */
-        .progress-bar {
-            width: 100%;
-            height: clamp(0.8rem, 2vw, 1.2rem);
-            background: #151515;
-            border: 2px solid #00FF7F;
-            border-radius: 12px;
-            margin-top: clamp(0.8rem, 2vw, 1.5rem);
-            overflow: hidden;
-            box-shadow: inset 0 0 15px rgba(0, 255, 127, 0.3);
-        }
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, #00FF7F, #00CC66);
-            width: 0%;
-            transition: width 0.5s ease;
-            box-shadow: 0 0 20px rgba(0, 255, 127, 0.8);
-        }
-
-        /* Сетки */
-        .gallery-grid, .facts-grid, .challenges-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30vw, 300px), 1fr));
-            gap: clamp(1rem, 2vw, 2rem);
-            margin-top: clamp(1rem, 3vw, 2rem);
-        }
-        .gallery-item, .fact-item, .challenge-item {
-            background: #151515;
-            padding: clamp(1rem, 2vw, 1.5rem);
-            border: 2px solid rgba(0, 255, 127, 0.3);
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .gallery-item:hover, .fact-item:hover, .challenge-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 255, 127, 0.5);
-            border-color: #00FF7F;
-        }
-        .gallery-item img { width: 100%; border-radius: 10px; object-fit: cover; transition: transform 0.3s ease; }
-        .gallery-item:hover img { transform: scale(1.05); }
-
-        /* Формы */
-        .contact-form, .comment-form {
-            display: flex;
-            flex-direction: column;
-            gap: clamp(0.8rem, 2vw, 1.5rem);
-        }
-        .contact-form input, .contact-form textarea, .comment-form input, .comment-form textarea {
-            padding: clamp(0.5rem, 1.5vw, 1rem);
-            background: #151515;
-            color: #E0E0E0;
-            border: 2px solid #00FF7F;
-            border-radius: 10px;
-            font-size: clamp(0.8rem, 1.5vw, 1rem);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            resize: vertical;
-            box-shadow: 0 0 10px rgba(0, 255, 127, 0.2);
-        }
-        .contact-form input:focus, .contact-form textarea:focus, .comment-form input:focus, .comment-form textarea:focus {
-            border-color: #00CC66;
-            box-shadow: 0 0 15px rgba(0, 255, 127, 0.6);
-            outline: none;
-        }
-        .comment-list { margin-top: clamp(1rem, 3vw, 2rem); }
-        .comment {
-            background: #1A1A1A;
-            padding: clamp(0.8rem, 2vw, 1.5rem);
-            margin: clamp(0.5rem, 1vw, 1rem) 0;
-            border-radius: 12px;
-            border: 2px solid rgba(0, 255, 127, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .comment:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 20px rgba(0, 255, 127, 0.4);
-        }
-        .comment span {
-            background: linear-gradient(90deg, #00FF7F, #00CC66);
-            -webkit-background-clip: text;
-            color: transparent;
-            font-weight: bold;
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 5px rgba(0, 255, 127, 0.7);
-        }
-
-        /* Футер */
-        footer {
-            text-align: center;
-            padding: clamp(1rem, 3vw, 2rem);
-            background: rgba(0, 0, 0, 0.9);
-            font-size: clamp(0.8rem, 1.5vw, 1rem);
-            box-shadow: 0 -5px 25px rgba(0, 255, 127, 0.25);
-            border-top: 1px solid rgba(0, 255, 127, 0.2);
-        }
-
-        /* Адаптивность */
+        .shop-content { display: flex; flex-wrap: wrap; gap: clamp(0.4rem, 1vw, 0.8rem); justify-content: center; }
+        .shop-item { flex: 1 1 clamp(100px, 40vw, 150px); background: #151515; padding: clamp(0.4rem, 1vw, 0.8rem); border-radius: 8px; border: 1px solid rgba(0, 255, 127, 0.2); }
+        .shop-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 255, 127, 0.4); border-color: #00FF7F; }
+        .shop-item p { margin: clamp(0.4rem, 1vw, 0.6rem) 0; font-size: clamp(0.7rem, 1.5vw, 0.9rem); }
+        .shop-item .btn { width: 100%; padding: clamp(0.4rem, 1vw, 0.6rem); }
+        .progress-bar { width: 100%; height: clamp(0.6rem, 1.5vw, 1rem); background: #151515; border: 2px solid #00FF7F; border-radius: 10px; margin-top: clamp(0.6rem, 2vw, 1.2rem); }
+        .progress { height: 100%; background: linear-gradient(90deg, #00FF7F, #00CC66); width: 0%; transition: width 0.5s ease; }
+        .gallery-grid, .facts-grid, .challenges-grid, .group-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 30vw, 250px), 1fr)); gap: clamp(0.8rem, 2vw, 1.5rem); margin-top: clamp(0.8rem, 3vw, 1.5rem); }
+        .gallery-item, .fact-item, .challenge-item, .group-item { background: #151515; padding: clamp(0.8rem, 2vw, 1.2rem); border: 2px solid rgba(0, 255, 127, 0.3); border-radius: 10px; text-align: center; }
+        .gallery-item:hover, .fact-item:hover, .challenge-item:hover, .group-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 255, 127, 0.4); border-color: #00FF7F; }
+        .gallery-item img, .group-item img { width: 100%; max-width: 300px; height: auto; border-radius: 8px; object-fit: cover; }
+        .contact-form, .comment-form { display: flex; flex-direction: column; gap: clamp(0.6rem, 2vw, 1.2rem); }
+        .contact-form input, .contact-form textarea, .comment-form input, .comment-form textarea { padding: clamp(0.4rem, 1.5vw, 0.8rem); background: #151515; color: #E0E0E0; border: 2px solid #00FF7F; border-radius: 8px; font-size: clamp(0.7rem, 1.5vw, 0.9rem); resize: vertical; }
+        .contact-form input:focus, .contact-form textarea:focus, .comment-form input:focus, .comment-form textarea:focus { border-color: #00CC66; box-shadow: 0 0 12px rgba(0, 255, 127, 0.5); outline: none; }
+        .comment-list { margin-top: clamp(0.8rem, 3vw, 1.5rem); }
+        .comment { background: #1A1A1A; padding: clamp(0.6rem, 2vw, 1.2rem); margin: clamp(0.4rem, 1vw, 0.8rem) 0; border-radius: 10px; border: 2px solid rgba(0, 255, 127, 0.3); }
+        .comment:hover { transform: scale(1.02); box-shadow: 0 4px 15px rgba(0, 255, 127, 0.3); }
+        .comment span { background: linear-gradient(90deg, #00FF7F, #00CC66); -webkit-background-clip: text; color: transparent; font-weight: bold; font-family: 'Orbitron', sans-serif; }
+        footer { text-align: center; padding: clamp(0.8rem, 3vw, 1.5rem); background: rgba(0, 0, 0, 0.9); font-size: clamp(0.7rem, 1.5vw, 0.9rem); }
+        .game-trailer { position: relative; padding-bottom: 40%; height: 0; overflow: hidden; margin-top: clamp(0.8rem, 2vw, 1.2rem); border-radius: 8px; }
+        .game-trailer iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        /* Адаптация для всех устройств */
         @media (max-width: 1024px) {
             .nav-links { gap: clamp(0.3rem, 1vw, 1rem); }
-            section { padding: clamp(1rem, 3vw, 2rem); }
-            .gallery-grid, .facts-grid, .challenges-grid { grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 40vw, 300px), 1fr)); }
+            section { padding: clamp(0.8rem, 3vw, 1.5rem); }
+            .gallery-grid, .facts-grid, .challenges-grid, .group-grid { grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 40vw, 250px), 1fr)); }
+            .game-trailer { padding-bottom: 35%; }
+            .group-item img { max-width: 250px; }
         }
-
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.95);
-                position: absolute;
-                top: 100%;
-                left: 0;
-                padding: clamp(0.5rem, 2vw, 1rem);
-                box-shadow: 0 10px 25px rgba(0, 255, 127, 0.3);
-                transform: translateY(-10px);
-            }
-            .nav-links.active {
-                display: flex;
-                transform: translateY(0);
-                animation: slideDown 0.4s ease forwards;
-            }
-            @keyframes slideDown {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
+            .nav-links { display: none; flex-direction: column; width: 100%; background: rgba(0, 0, 0, 0.95); position: absolute; top: 100%; left: 0; padding: clamp(0.4rem, 2vw, 0.8rem); }
+            .nav-links.active { display: flex; animation: slideDown 0.4s ease forwards; }
+            @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
             .burger { display: block; }
-            .container { padding: clamp(1rem, 2vw, 1.5rem); }
-            #clicker-canvas { height: clamp(25vh, 35vh, 40vh); }
-            .game-stats { flex-direction: column; align-items: center; gap: 0.5rem; }
+            .container { padding: clamp(0.8rem, 2vw, 1.2rem); }
+            #clicker-canvas { height: clamp(20vh, 30vh, 35vh); max-width: 600px; }
+            .game-stats { flex-direction: column; align-items: center; gap: 0.4rem; }
             .shop-content { flex-direction: column; align-items: center; }
-            .shop-item { width: 90%; max-width: 300px; }
+            .shop-item { width: 85%; max-width: 250px; }
+            .game-trailer { padding-bottom: 30%; }
+            .group-item img { max-width: 200px; }
         }
-
         @media (max-width: 480px) {
-            h1 { font-size: clamp(1.6rem, 5vw, 2.5rem); }
-            h2 { font-size: clamp(1.3rem, 4vw, 2rem); }
-            h3 { font-size: clamp(1rem, 3vw, 1.5rem); }
-            .btn { padding: clamp(0.5rem, 1.5vw, 0.7rem) clamp(0.8rem, 2vw, 1.5rem); }
-            .gallery-grid, .facts-grid, .challenges-grid { grid-template-columns: 1fr; }
-            #clicker-canvas { height: clamp(25vh, 35vh, 40vh); }
-            .shop { padding: clamp(0.5rem, 2vw, 1rem); }
+            h1 { font-size: clamp(1.4rem, 5vw, 2rem); }
+            h2 { font-size: clamp(1.2rem, 4vw, 1.8rem); }
+            h3 { font-size: clamp(0.9rem, 3vw, 1.4rem); }
+            .btn { padding: clamp(0.3rem, 1.5vw, 0.6rem) clamp(0.6rem, 2vw, 1rem); font-size: clamp(0.6rem, 2vw, 0.8rem); }
+            .gallery-grid, .facts-grid, .challenges-grid, .group-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+            #clicker-canvas { height: clamp(18vh, 25vh, 30vh); max-width: 400px; }
+            .shop { padding: clamp(0.3rem, 2vw, 0.6rem); max-height: 60vh; }
+            .shop-item { width: 90%; max-width: 200px; padding: 0.3rem; }
+            .game-trailer { padding-bottom: 25%; }
+            section { margin: 1rem 0; padding: 0.8rem; }
+            .comment { padding: 0.5rem; margin: 0.3rem 0; }
+            .contact-form, .comment-form { gap: 0.5rem; }
+            .contact-form input, .contact-form textarea, .comment-form input, .comment-form textarea { padding: 0.3rem; font-size: 0.7rem; }
+            .group-item img { max-width: 150px; }
         }
-
         @media (min-width: 1600px) {
             .container { max-width: 1800px; }
-            h1 { font-size: clamp(3rem, 5vw, 5rem); }
-            h2 { font-size: clamp(2rem, 3vw, 3rem); }
-            .nav-links a { font-size: clamp(1rem, 1.5vw, 1.2rem); }
-            #clicker-canvas { height: 65vh; }
-        }
-
-        @media (pointer: coarse) {
-            .btn { padding: clamp(0.6rem, 2.5vw, 1rem) clamp(1.2rem, 4vw, 2rem); }
-            .nav-links a { padding: clamp(0.5rem, 2vw, 1rem); }
-            .shop-item .btn { padding: clamp(0.6rem, 2vw, 1rem); }
-            #clicker-canvas { height: clamp(30vh, 45vh, 50vh); }
+            h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+            h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+            .nav-links a { font-size: clamp(0.9rem, 1.5vw, 1.1rem); }
+            #clicker-canvas { height: 55vh; }
+            .group-item img { max-width: 350px; }
         }
     </style>
 </head>
@@ -455,6 +131,8 @@
                     <a href="#news">Новости</a>
                     <a href="#donate">Донат</a>
                     <a href="#comments">Комментарии</a>
+                    <a href="#creators">Создатели</a>
+                    <a href="#group">Наша группа</a>
                     <a href="#contact-dev">Обратиться</a>
                     <a href="#contacts">Контакты</a>
                     <a href="#privacy">Политика</a>
@@ -482,12 +160,15 @@
             <div>
                 <h3>Run From Neighbor</h3>
                 <p>Раскрой злой соседа тайну.</p>
-                <a href="https://drive.google.com/file/d/1UbM69fy1LqGUPg5t1H-WygNdtDkoGRQs/view?usp=drive_link" class="btn">Скачать</a>
+                <div class="game-trailer">
+                    <iframe src="https://www.youtube.com/embed/Um7f28ranXE" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <a href="https://drive.google.com/file/d/1jTZUYk6USKa6ygz6OEgxMbeKyO8rR5i5/view?usp=drive_link" class="btn">Скачать</a>
             </div>
             <div>
-                <h3>Калькулятор</h3>
-                <p>Мой первый шаг в коде — простой, но гордый проект.</p>
-                <a href="#" class="btn" onclick="alert('Скоро будет!')">В Разработке</a>
+                <h3>Green's TSB (В Roblox)</h3>
+                <p>Мой первый шаг в Roblox — уникальный проект.</p>
+                <a href="#" class="btn" onclick="alert('Играем В роблоксе Только в людях ишите BaconBro2395 и ишите ппроект Green\'s TSB')">В Роблоксе Играем(только)</a>
             </div>
         </section>
 
@@ -549,7 +230,7 @@
 
         <section id="news">
             <h2>Новости</h2>
-            <p>15.03.2025: Новый версия в "Run From Neighbor"!<br>10.02.2025: "Run From Neighbor" добавлен телевизор!</p>
+            <p>20.03.2025: Добавлена новая концовка в "Run From Neighbor"! ИИ соседа стал лучше, чем в предыдущих версиях! 🎉<br>15.03.2025: Новый версия в "Run From Neighbor"!<br>10.02.2025: "Run From Neighbor" добавлен телевизор!</p>
         </section>
 
         <section id="donate">
@@ -561,19 +242,37 @@
 
         <section id="comments">
             <h2>Комментарии</h2>
-            <p>Поделись мыслями — я читаю всё!</p>
+            <p>Поделись мыслями — я читаю всё! 😊✨</p>
             <form id="comment-form" class="comment-form">
-                <input type="text" id="comment-name" placeholder="Имя" required>
-                <textarea id="comment-message" placeholder="Комментарий" required></textarea>
+                <input type="text" id="comment-name" placeholder="Твоё имя" required>
+                <textarea id="comment-message" placeholder="Комментарий (добавь эмодзи! 😍🚀)" required></textarea>
                 <button type="submit" class="btn">Отправить</button>
             </form>
             <div id="comment-list" class="comment-list"></div>
         </section>
 
+        <section id="creators">
+            <h2>Создатели</h2>
+            <p>Наша команда:</p>
+            <p><strong>(Owner-Miras)GreenGamesStudio</strong> — основатель и главный разработчик. 🎮</p>
+            <p>Хочешь стать создателем? Отправь заявку на <a href="mailto:saiynmiras2011@gmail.com">saiynmiras2011@gmail.com</a> с темой "Заявка в создатели"!</p>
+        </section>
+
+        <section id="group">
+            <h2>Наша группа</h2>
+            <p>Это я, Сайын Мирас, основатель GreenGamesStudio! 🚀</p>
+            <div class="group-grid">
+                <div class="group-item">
+                    <img src="https://via.placeholder.com/300" alt="Сайын Мирас">
+                    <p>(Owner-Miras)GreenGamesStudio</p>
+                </div>
+            </div>
+        </section>
+
         <section id="contact-dev">
             <h2>Обратиться</h2>
             <p>Идеи, баги, чат — пиши мне!</p>
-            <p>Email: saiynmiras2011@gmail.com</p>
+            <p>Email: <a href="mailto:saiynmiras2011@gmail.com">(Owner)Miras — saiynmiras2011@gmail.com</a></p>
             <form action="https://formspree.io/f/xvgzebqo" method="POST" class="contact-form">
                 <input type="text" name="name" placeholder="Имя" required>
                 <input type="email" name="email" placeholder="Email" required>
@@ -582,60 +281,50 @@
             </form>
         </section>
 
-       <section id="contacts">
-    <h2>Контакты</h2>
-    <p>Будь на связи через соцсети!</p>
-    <a href="https://www.youtube.com/@Miras_razrabgames" class="btn">YouTube</a>
-    <a href="https://t.me/+BtFF6XZ80LBkNGQy" class="btn">Telegram</a>
-    <p>Discord: YourNick#1234</p>
-</section>
+        <section id="contacts">
+            <h2>Контакты</h2>
+            <p>Будь на связи через соцсети!</p>
+            <a href="https://www.youtube.com/@Miras_razrabgames" class="btn">YouTube</a>
+            <a href="https://t.me/+BtFF6XZ80LBkNGQy" class="btn">Telegram</a>
+            <p>Discord: YourNick#1234</p>
+        </section>
 
-       <section id="privacy">
-    <h2>Политика конфиденциальности</h2>
-    <p>Привет! Я, Сайын Мирас, создатель GreenGamesStudio, ценю твоё доверие. Здесь я объясню, как я работаю с твоими данными. Всё просто и честно!</p>
-
-    <h3>Какие данные я собираю?</h3>
-    <p>Я собираю только то, что ты сам оставляешь: имя и сообщение из формы комментариев, а также имя, email и текст из формы обратной связи. Никаких шпионских штучек — только то, что нужно для общения!</p>
-
-    <h3>Зачем мне это?</h3>
-    <p>Чтобы ответить тебе, если ты пишешь мне, или показать твой комментарий на сайте. Всё для того, чтобы мы могли быть на связи и делать сайт лучше.</p>
-
-    <h3>Кто видит твои данные?</h3>
-    <p>Только я, Сайын Мирас. Я не передаю твои данные никому — ни компаниям, ни друзьям, ни соседям. Они нужны мне только для работы с сайтом.</p>
-
-    <h3>Где хранятся данные?</h3>
-    <p>Комментарии видны на сайте, а сообщения из формы обратной связи приходят мне на email через сервис Formspree (они тоже обещают не раздавать твои данные). Я не храню ничего лишнего дольше, чем нужно.</p>
-
-    <h3>Как я защищаю данные?</h3>
-    <p>Сайт простой, без сложных баз данных, но я слежу, чтобы всё было безопасно. Никаких хакеров сюда не пускаем!</p>
-
-    <h3>Твои права</h3>
-    <p>Хочешь, чтобы я удалил твой комментарий или сообщение? Просто напиши мне на saiynmiras2011@gmail.com, и я всё уберу. Ты главный!</p>
-
-    <h3>Изменения политики</h3>
-    <p>Если что-то поменяется, я обновлю этот текст. Заходи сюда иногда, чтобы быть в курсе.</p>
-
-    <p>Дата обновления: 15 марта 2025. Если есть вопросы — пиши мне, разберёмся вместе!</p>
-</section>
+        <section id="privacy">
+            <h2>Политика конфиденциальности</h2>
+            <p>Привет! Я, Сайын Мирас, создатель GreenGamesStudio, ценю твоё доверие. Здесь я объясню, как я работаю с твоими данными. Всё просто и честно!</p>
+            <h3>Какие данные я собираю?</h3>
+            <p>Я собираю только то, что ты сам оставляешь: имя и сообщение из формы комментариев, а также имя, email и текст из формы обратной связи. Никаких шпионских штучек — только то, что нужно для общения!</p>
+            <h3>Зачем мне это?</h3>
+            <p>Чтобы ответить тебе, если ты пишешь мне, или показать твой комментарий на сайте. Всё для того, чтобы мы могли быть на связи и делать сайт лучше.</p>
+            <h3>Кто видит твои данные?</h3>
+            <p>Только я, Сайын Мирас. Я не передаю твои данные никому — ни компаниям, ни друзьям, ни соседям. Они нужны мне только для работы с сайтом.</p>
+            <h3>Где хранятся данные?</h3>
+            <p>Комментарии видны на сайте, а сообщения из формы обратной связи приходят мне на email через сервис Formspree (они тоже обещают не раздавать твои данные). Я не храню ничего лишнего дольше, чем нужно.</p>
+            <h3>Как я защищаю данные?</h3>
+            <p>Сайт простой, без сложных баз данных, но я слежу, чтобы всё было безопасно. Никаких хакеров сюда не пускаем!</p>
+            <h3>Твои права</h3>
+            <p>Хочешь, чтобы я удалил твой комментарий или сообщение? Просто напиши мне на <a href="mailto:saiynmiras2011@gmail.com">(Owner)Miras — saiynmiras2011@gmail.com</a>, и я всё уберу. Ты главный!</p>
+            <h3>Изменения политики</h3>
+            <p>Если что-то поменяется, я обновлю этот текст. Заходи сюда иногда, чтобы быть в курсе.</p>
+            <p>Дата обновления: 15 марта 2025. Если есть вопросы — пиши мне, разберёмся вместе!</p>
+        </section>
     </div>
 
     <footer><p>© 2025 Сайын Мирас | GreenGamesStudio</p></footer>
 
     <script>
-        // Частицы на фоне
         const particleCanvas = document.getElementById('particles');
         const particleCtx = particleCanvas.getContext('2d');
         particleCanvas.width = window.innerWidth;
         particleCanvas.height = window.innerHeight;
         let particlesArray = [];
-
         class Particle {
             constructor() {
                 this.x = Math.random() * particleCanvas.width;
                 this.y = Math.random() * particleCanvas.height;
-                this.size = Math.random() * clamp(2, window.innerWidth / 500, 5) + 1;
-                this.speedX = (Math.random() * 1 - 0.5) * clamp(0.5, window.innerWidth / 1000, 1);
-                this.speedY = (Math.random() * 1 - 0.5) * clamp(0.5, window.innerHeight / 1000, 1);
+                this.size = Math.random() * 5 + 1;
+                this.speedX = (Math.random() * 1 - 0.5);
+                this.speedY = (Math.random() * 1 - 0.5);
                 this.opacity = Math.random() * 0.5 + 0.3;
             }
             update() {
@@ -651,24 +340,15 @@
                 particleCtx.fill();
             }
         }
-
         function initParticles() {
             particlesArray = [];
-            const numberOfParticles = Math.floor((particleCanvas.width * particleCanvas.height) / clamp(5000, window.innerWidth * window.innerHeight / 100000, 10000));
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
+            for (let i = 0; i < 100; i++) particlesArray.push(new Particle());
         }
-
         function animateParticles() {
             particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
-            particlesArray.forEach(p => {
-                p.update();
-                p.draw();
-            });
+            particlesArray.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animateParticles);
         }
-
         window.addEventListener('resize', () => {
             particleCanvas.width = window.innerWidth;
             particleCanvas.height = window.innerHeight;
@@ -677,7 +357,6 @@
         initParticles();
         animateParticles();
 
-        // Бургер-меню
         const burger = document.querySelector('.burger');
         const navLinks = document.querySelector('.nav-links');
         burger.addEventListener('click', () => {
@@ -685,32 +364,27 @@
             burger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
         });
 
-        // Клик Бургер
         const playBtn = document.querySelector('.play-btn');
         const clickerCanvas = document.getElementById('clicker-canvas');
         const shop = document.getElementById('shop');
         const shopClose = document.getElementById('shop-close');
         let gameActive = false;
-
         playBtn.addEventListener('click', () => {
             clickerCanvas.classList.add('active');
             playBtn.style.display = 'none';
             startBurgerClicker();
         });
-
         function addShopButton() {
             const shopBtn = document.createElement('button');
             shopBtn.className = 'btn';
             shopBtn.textContent = 'Магазин';
             shopBtn.style.position = 'absolute';
-            shopBtn.style.bottom = '10px';
-            shopBtn.style.right = '10px';
+            shopBtn.style.bottom = '8px';
+            shopBtn.style.right = '8px';
             shopBtn.addEventListener('click', () => shop.classList.add('active'));
             clickerCanvas.parentElement.appendChild(shopBtn);
         }
-
         shopClose.addEventListener('click', () => shop.classList.remove('active'));
-
         const clickerCtx = clickerCanvas.getContext('2d');
         let burgerScore = 0, clickPower = 1, autoClick = 0, level = 1, particles = [], megaClickActive = false, megaClickTimer = 0, goldenMultiplier = 1;
         let clicksThisSecond = 0, lastClickTime = 0;
@@ -718,15 +392,12 @@
         const clickRateDisplay = document.getElementById('click-rate');
         const levelDisplay = document.getElementById('level');
         const burgerProgress = document.getElementById('burger-progress');
-
         function resizeCanvas() {
-            const rect = clickerCanvas.parentElement.getBoundingClientRect();
-            clickerCanvas.width = Math.min(rect.width, 1000);
-            clickerCanvas.height = clamp(window.innerHeight * 0.25, window.innerHeight * 0.4, window.innerHeight * 0.5);
+            clickerCanvas.width = Math.min(clickerCanvas.parentElement.offsetWidth, 800);
+            clickerCanvas.height = 25 * window.innerHeight / 100;
         }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
-
         function startBurgerClicker() {
             if (gameActive) return;
             gameActive = true;
@@ -734,127 +405,74 @@
             drawBurger();
             updateStatsLoop();
         }
-
-        clickerCanvas.addEventListener('touchstart', e => {
-            e.preventDefault();
-            handleClick(e.touches[0]);
-        }, { passive: false });
-
-        clickerCanvas.addEventListener('click', e => handleClick(e));
-
-        function handleClick(e) {
+        clickerCanvas.addEventListener('click', e => {
             if (!gameActive || shop.classList.contains('active')) return;
             const rect = clickerCanvas.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            const centerX = clickerCanvas.width / 2;
-            const centerY = clickerCanvas.height / 2;
-            if (Math.hypot(x - centerX, y - centerY) < clamp(80, clickerCanvas.width / 4, 120)) {
-                const power = megaClickActive ? clickPower * 10 : clickPower;
-                burgerScore += power * goldenMultiplier;
+            if (Math.hypot(x - clickerCanvas.width / 2, y - clickerCanvas.height / 2) < 80) {
+                burgerScore += clickPower * goldenMultiplier;
                 clicksThisSecond++;
                 spawnParticles(x, y);
                 checkLevelUp();
             }
-        }
-
+        });
         function spawnParticles(x, y) {
-            for (let i = 0; i < 10; i++) {
-                particles.push({
-                    x, y,
-                    vx: (Math.random() - 0.5) * 8,
-                    vy: (Math.random() - 0.5) * 8,
-                    size: Math.random() * 20 + 15,
-                    life: 40,
-                    color: goldenMultiplier > 1 ? '#FFD700' : '#FF4500'
-                });
-            }
+            for (let i = 0; i < 5; i++) particles.push({ x, y, vx: (Math.random() - 0.5) * 4, vy: (Math.random() - 0.5) * 4, size: Math.random() * 8 + 4, life: 25 });
         }
-
         function buyUpgrade(type) {
-            if (type === 'clickPower' && burgerScore >= 50) { burgerScore -= 50; clickPower += 5; alert('Сочный Клик! +5 за клик'); }
-            else if (type === 'autoClick' && burgerScore >= 100) { burgerScore -= 100; autoClick += 1; alert('Бургер-бот! +1/с'); }
-            else if (type === 'megaClick' && burgerScore >= 250) { burgerScore -= 250; megaClickActive = true; megaClickTimer = 15; alert('Мега-Клик! x10 на 15 сек'); }
-            else if (type === 'factory' && burgerScore >= 500) { burgerScore -= 500; autoClick += 10; alert('Фабрика Бургеров! +10/с'); }
-            else if (type === 'goldenBurger' && burgerScore >= 1000) { burgerScore -= 1000; goldenMultiplier *= 2; alert('Золотой Бургер! x2 ко всем очкам'); }
-            else { alert('Недостаточно бургеров!'); }
-            updateStats();
+            const costs = { clickPower: 50, autoClick: 100, megaClick: 250, factory: 500, goldenBurger: 1000 };
+            if (burgerScore >= costs[type]) {
+                burgerScore -= costs[type];
+                if (type === 'clickPower') clickPower += 5;
+                else if (type === 'autoClick') autoClick += 1;
+                else if (type === 'megaClick') { megaClickActive = true; megaClickTimer = 15; }
+                else if (type === 'factory') autoClick += 10;
+                else if (type === 'goldenBurger') goldenMultiplier *= 2;
+                alert(`Куплено: ${type === 'megaClick' ? 'Мега-Клик (x10 на 15 сек)' : type === 'goldenBurger' ? 'Золотой Бургер (x2)' : type.replace('Click', ' Клик').replace('auto', 'Бургер-').replace('factory', 'Фабрика')}!`);
+                updateStats();
+            } else alert('Недостаточно бургеров!');
         }
-
         function checkLevelUp() {
-            const nextLevelThreshold = level * 500;
-            if (burgerScore >= nextLevelThreshold) {
-                level++;
-                alert(`Уровень ${level}! Бургеры становятся вкуснее!`);
-                clickPower += Math.floor(level / 2);
-                autoClick += Math.floor(level / 3);
-            }
+            if (burgerScore >= level * 500) { level++; alert(`Уровень ${level}!`); clickPower += 1; autoClick += 1; }
             updateStats();
         }
-
         function updateStats() {
             burgerScoreDisplay.textContent = Math.floor(burgerScore);
             levelDisplay.textContent = level;
             burgerProgress.style.width = Math.min((burgerScore / (level * 500)) * 100, 100) + '%';
-            if (burgerScore >= 1000 && level === 1) {
-                alert('Ты император бургеров! Бонус: +20 к кликам + секретный фон!');
-                clickPower += 20;
-                burgerScore = 0;
-                document.body.style.background = 'linear-gradient(135deg, #0A0A0A, #FFD700), radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%)';
-            }
+            if (burgerScore >= 1000 && level === 1) { alert('Секретный режим!'); clickPower += 20; burgerScore = 0; }
         }
-
         function updateStatsLoop() {
             if (!gameActive) return;
             burgerScore += autoClick * goldenMultiplier;
-            if (megaClickActive) {
-                megaClickTimer -= 0.1;
-                if (megaClickTimer <= 0) megaClickActive = false;
-            }
+            if (megaClickActive) { megaClickTimer -= 0.1; if (megaClickTimer <= 0) megaClickActive = false; }
             updateStats();
             const now = Date.now();
-            if (now - lastClickTime >= 1000) {
-                clickRateDisplay.textContent = clicksThisSecond;
-                clicksThisSecond = 0;
-                lastClickTime = now;
-            }
+            if (now - lastClickTime >= 1000) { clickRateDisplay.textContent = clicksThisSecond; clicksThisSecond = 0; lastClickTime = now; }
             requestAnimationFrame(updateStatsLoop);
         }
-
         function drawBurger() {
             if (!gameActive) return;
             clickerCtx.clearRect(0, 0, clickerCanvas.width, clickerCanvas.height);
             clickerCtx.fillStyle = 'rgba(0, 0, 0, 0.4)';
             clickerCtx.fillRect(0, 0, clickerCanvas.width, clickerCanvas.height);
-
-            const scale = 1 + Math.sin(Date.now() * 0.005) * 0.15;
-            clickerCtx.save();
-            clickerCtx.translate(clickerCanvas.width / 2, clickerCanvas.height / 2);
-            clickerCtx.scale(scale, scale);
-            clickerCtx.fillStyle = goldenMultiplier > 1 ? '#FFD700' : '#FF4500';
-            clickerCtx.font = `${clamp(80, clickerCanvas.width / 4, 150)}px Arial`;
+            clickerCtx.fillStyle = '#FF4500';
+            clickerCtx.font = '60px Arial';
             clickerCtx.textAlign = 'center';
-            clickerCtx.shadowBlur = 15;
-            clickerCtx.shadowColor = goldenMultiplier > 1 ? '#FFD700' : '#00FF7F';
-            clickerCtx.fillText('🍔', 0, 40);
-            clickerCtx.restore();
-
+            clickerCtx.fillText('🍔', clickerCanvas.width / 2, clickerCanvas.height / 2 + 20);
             particles.forEach((p, i) => {
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life--;
+                p.x += p.vx; p.y += p.vy; p.life--;
                 p.size *= 0.9;
-                clickerCtx.fillStyle = `rgba(${p.color === '#FFD700' ? '255, 215, 0' : '255, 69, 0'}, ${p.life / 40})`;
+                clickerCtx.fillStyle = `rgba(255, 69, 0, ${p.life / 25})`;
                 clickerCtx.beginPath();
                 clickerCtx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
                 clickerCtx.fill();
                 if (p.life <= 0) particles.splice(i, 1);
             });
-
             requestAnimationFrame(drawBurger);
         }
 
-        // Комментарии
         document.getElementById('comment-form').addEventListener('submit', e => {
             e.preventDefault();
             const name = document.getElementById('comment-name').value;
@@ -866,10 +484,6 @@
             commentList.appendChild(comment);
             document.getElementById('comment-form').reset();
         });
-
-        // Функция clamp для JS
-        function clamp(min, val, max) {
-            return Math.min(Math.max(val, min), max);
-        }
     </script>
 </body>
+</html>
