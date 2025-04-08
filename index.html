@@ -39,12 +39,12 @@
         p { margin-bottom: clamp(0.6rem, 2vw, 1.2rem); font-size: clamp(0.8rem, 2vw, 1rem); line-height: 1.6; color: #D0D0D0; }
         .btn { background: linear-gradient(45deg, #00FF7F, #00CC66); color: #000; padding: clamp(0.4rem, 2vw, 0.7rem) clamp(0.8rem, 3vw, 1.2rem); font-family: 'Orbitron', sans-serif; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 255, 127, 0.4); transition: all 0.3s ease; display: inline-block; }
         .btn:hover { background: linear-gradient(45deg, #00CC66, #00FF7F); transform: translateY(-3px); }
-        .mini-game { text-align: center; }
+        .mini-game { text-align: center; position: relative; }
         #clicker-canvas { display: none; border: clamp(2px, 1vw, 3px) solid #00FF7F; width: 100%; max-width: 800px; height: clamp(25vh, 35vh, 45vh); margin: clamp(0.8rem, 2vw, 1.2rem) auto; border-radius: 12px; }
         #clicker-canvas.active { display: block; }
         .game-stats { display: flex; justify-content: space-around; flex-wrap: wrap; margin: clamp(0.6rem, 2vw, 1.2rem) 0; font-size: clamp(0.7rem, 2vw, 1rem); font-family: 'Orbitron', sans-serif; }
         .game-stats span { background: linear-gradient(90deg, #00FF7F, #00CC66); -webkit-background-clip: text; color: transparent; }
-        .shop { position: fixed; bottom: -100%; left: 0; width: 100%; background: rgba(18, 18, 18, 0.95); padding: clamp(0.4rem, 2vw, 0.8rem); border-top: 2px solid #00FF7F; transition: bottom 0.4s ease; z-index: 1000; }
+        .shop { position: fixed; bottom: -100%; left: 0; width: 100%; background: rgba(18, 18, 18, 0.95); padding: clamp(0.4rem, 2vw, 0.8rem); border-top: 2px solid #00FF7F; transition: bottom 0.4s ease; z-index: 1000; overflow-y: auto; max-height: 70vh; }
         .shop.active { bottom: 0; }
         .shop-content { display: flex; flex-wrap: wrap; gap: clamp(0.4rem, 1vw, 0.8rem); justify-content: center; }
         .shop-item { flex: 1 1 clamp(100px, 40vw, 150px); background: #151515; padding: clamp(0.4rem, 1vw, 0.8rem); border-radius: 8px; border: 1px solid rgba(0, 255, 127, 0.2); }
@@ -53,9 +53,9 @@
         .shop-item .btn { width: 100%; padding: clamp(0.4rem, 1vw, 0.6rem); }
         .progress-bar { width: 100%; height: clamp(0.6rem, 1.5vw, 1rem); background: #151515; border: 2px solid #00FF7F; border-radius: 10px; margin-top: clamp(0.6rem, 2vw, 1.2rem); }
         .progress { height: 100%; background: linear-gradient(90deg, #00FF7F, #00CC66); width: 0%; transition: width 0.5s ease; }
-        .gallery-grid, .facts-grid, .challenges-grid, .group-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 30vw, 250px), 1fr)); gap: clamp(0.8rem, 2vw, 1.5rem); margin-top: clamp(0.8rem, 3vw, 1.5rem); }
-        .gallery-item, .fact-item, .challenge-item, .group-item { background: #151515; padding: clamp(0.8rem, 2vw, 1.2rem); border: 2px solid rgba(0, 255, 127, 0.3); border-radius: 10px; text-align: center; }
-        .gallery-item:hover, .fact-item:hover, .challenge-item:hover, .group-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 255, 127, 0.4); border-color: #00FF7F; }
+        .gallery-grid, .facts-grid, .challenges-grid, .group-grid, .achievements-grid, .ideas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 30vw, 250px), 1fr)); gap: clamp(0.8rem, 2vw, 1.5rem); margin-top: clamp(0.8rem, 3vw, 1.5rem); }
+        .gallery-item, .fact-item, .challenge-item, .group-item, .achievement-item, .idea-item { background: #151515; padding: clamp(0.8rem, 2vw, 1.2rem); border: 2px solid rgba(0, 255, 127, 0.3); border-radius: 10px; text-align: center; }
+        .gallery-item:hover, .fact-item:hover, .challenge-item:hover, .group-item:hover, .achievement-item:hover, .idea-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 255, 127, 0.4); border-color: #00FF7F; }
         .gallery-item img, .group-item img { width: 100%; max-width: 300px; height: auto; border-radius: 8px; object-fit: cover; }
         .contact-form, .comment-form { display: flex; flex-direction: column; gap: clamp(0.6rem, 2vw, 1.2rem); }
         .contact-form input, .contact-form textarea, .comment-form input, .comment-form textarea { padding: clamp(0.4rem, 1.5vw, 0.8rem); background: #151515; color: #E0E0E0; border: 2px solid #00FF7F; border-radius: 8px; font-size: clamp(0.7rem, 1.5vw, 0.9rem); resize: vertical; }
@@ -67,11 +67,10 @@
         footer { text-align: center; padding: clamp(0.8rem, 3vw, 1.5rem); background: rgba(0, 0, 0, 0.9); font-size: clamp(0.7rem, 1.5vw, 0.9rem); }
         .game-trailer { position: relative; padding-bottom: 40%; height: 0; overflow: hidden; margin-top: clamp(0.8rem, 2vw, 1.2rem); border-radius: 8px; }
         .game-trailer iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        /* Адаптация для всех устройств */
         @media (max-width: 1024px) {
             .nav-links { gap: clamp(0.3rem, 1vw, 1rem); }
             section { padding: clamp(0.8rem, 3vw, 1.5rem); }
-            .gallery-grid, .facts-grid, .challenges-grid, .group-grid { grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 40vw, 250px), 1fr)); }
+            .gallery-grid, .facts-grid, .challenges-grid, .group-grid, .achievements-grid, .ideas-grid { grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 40vw, 250px), 1fr)); }
             .game-trailer { padding-bottom: 35%; }
             .group-item img { max-width: 250px; }
         }
@@ -93,7 +92,7 @@
             h2 { font-size: clamp(1.2rem, 4vw, 1.8rem); }
             h3 { font-size: clamp(0.9rem, 3vw, 1.4rem); }
             .btn { padding: clamp(0.3rem, 1.5vw, 0.6rem) clamp(0.6rem, 2vw, 1rem); font-size: clamp(0.6rem, 2vw, 0.8rem); }
-            .gallery-grid, .facts-grid, .challenges-grid, .group-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+            .gallery-grid, .facts-grid, .challenges-grid, .group-grid, .achievements-grid, .ideas-grid { grid-template-columns: 1fr; gap: 0.6rem; }
             #clicker-canvas { height: clamp(18vh, 25vh, 30vh); max-width: 400px; }
             .shop { padding: clamp(0.3rem, 2vw, 0.6rem); max-height: 60vh; }
             .shop-item { width: 90%; max-width: 200px; padding: 0.3rem; }
@@ -128,6 +127,8 @@
                     <a href="#gallery">Галерея</a>
                     <a href="#facts">Факты</a>
                     <a href="#challenges">Челленджи</a>
+                    <a href="#achievements">Достижения</a>
+                    <a href="#ideas">Идеи</a>
                     <a href="#news">Новости</a>
                     <a href="#donate">Донат</a>
                     <a href="#comments">Комментарии</a>
@@ -163,12 +164,12 @@
                 <div class="game-trailer">
                     <iframe src="https://www.youtube.com/embed/Um7f28ranXE" frameborder="0" allowfullscreen></iframe>
                 </div>
-                <a href="https://drive.google.com/file/d/1jTZUYk6USKa6ygz6OEgxMbeKyO8rR5i5/view?usp=drive_link" class="btn">Скачать</a>
+                <a href="https://drive.google.com/file/d/15wmI8lQflIJYBLROngiPX78d_FhCTk5a/view?usp=drive_link" class="btn">Скачать</a>
             </div>
             <div>
                 <h3>Green's TSB (В Roblox)</h3>
                 <p>Мой первый шаг в Roblox — уникальный проект.</p>
-                <a href="#" class="btn" onclick="alert('Играем В роблоксе Только в людях ишите BaconBro2395 и ишите ппроект Green\'s TSB')">В Роблоксе Играем(только)</a>
+                <a href="#" class="btn" onclick="alert('Играем В роблоксе Только в людях ищите BaconBro2395 и ищите проект Green\'s TSB')">В Роблоксе Играем(только)</a>
             </div>
         </section>
 
@@ -186,14 +187,16 @@
                 </div>
                 <div class="progress-bar"><div class="progress" id="burger-progress"></div></div>
                 <div id="shop" class="shop">
+                    <h3>Магазин</h3>
                     <div class="shop-content">
                         <div class="shop-item"><p>Сочный Клик (+5)</p><p>Цена: 50</p><button class="btn" onclick="buyUpgrade('clickPower')">Купить</button></div>
                         <div class="shop-item"><p>Бургер-бот (+1/с)</p><p>Цена: 100</p><button class="btn" onclick="buyUpgrade('autoClick')">Купить</button></div>
                         <div class="shop-item"><p>Мега-Клик (x10, 15с)</p><p>Цена: 250</p><button class="btn" onclick="buyUpgrade('megaClick')">Купить</button></div>
                         <div class="shop-item"><p>Фабрика (+10/с)</p><p>Цена: 500</p><button class="btn" onclick="buyUpgrade('factory')">Купить</button></div>
                         <div class="shop-item"><p>Золотой Бургер (x2)</p><p>Цена: 1000</p><button class="btn" onclick="buyUpgrade('goldenBurger')">Купить</button></div>
+                        <div class="shop-item"><p>Космо-Бургер (+50/с)</p><p>Цена: 2000</p><button class="btn" onclick="buyUpgrade('cosmoBurger')">Купить</button></div>
                     </div>
-                    <button id="shop-close" class="btn">Закрыть</button>
+                    <button id="shop-close" class="btn">Закрыть Магазин</button>
                 </div>
             </div>
         </section>
@@ -228,9 +231,29 @@
             </div>
         </section>
 
+        <section id="achievements">
+            <h2>Достижения</h2>
+            <p>Пройди испытания и открой награды!</p>
+            <div class="achievements-grid">
+                <div class="achievement-item"><p>Бургер-Мастер: Собрать 1000 бургеров.</p></div>
+                <div class="achievement-item"><p>Клик-Машина: 50 кликов за секунду.</p></div>
+                <div class="achievement-item"><p>Империя: Купить все улучшения.</p></div>
+            </div>
+        </section>
+
+        <section id="ideas">
+            <h2>Идеи для игр</h2>
+            <p>Поделись своими идеями или вдохновись моими!</p>
+            <div class="ideas-grid">
+                <div class="idea-item"><p>Космический побег: Убегай от инопланетян!</p></div>
+                <div class="idea-item"><p>Бургерная галактика: Строй рестораны на планетах.</p></div>
+                <div class="idea-item"><p>Твой ход: Пришли свою идею мне!</p></div>
+            </div>
+        </section>
+
         <section id="news">
             <h2>Новости</h2>
-            <p>20.03.2025: Добавлена новая концовка в "Run From Neighbor"! ИИ соседа стал лучше, чем в предыдущих версиях! 🎉<br>15.03.2025: Новый версия в "Run From Neighbor"!<br>10.02.2025: "Run From Neighbor" добавлен телевизор!</p>
+            <p>20.03.2025: Добавлена новая концовка в "Run From Neighbor"! ИИ соседа стал лучше, чем в предыдущих версиях! 🎉<br>15.03.2025: Новая версия в "Run From Neighbor"!<br>10.02.2025: "Run From Neighbor" добавлен телевизор!</p>
         </section>
 
         <section id="donate">
@@ -254,7 +277,7 @@
         <section id="creators">
             <h2>Создатели</h2>
             <p>Наша команда:</p>
-            <p><strong>(Owner-Miras)GreenGamesStudio</strong> — основатель и главный разработчик. 🎮</p>
+            <p><strong>GreenGamesStudio</strong> — основатель и главный разработчик. 🎮</p>
             <p>Хочешь стать создателем? Отправь заявку на <a href="mailto:saiynmiras2011@gmail.com">saiynmiras2011@gmail.com</a> с темой "Заявка в создатели"!</p>
         </section>
 
@@ -264,7 +287,7 @@
             <div class="group-grid">
                 <div class="group-item">
                     <img src="https://via.placeholder.com/300" alt="Сайын Мирас">
-                    <p>(Owner-Miras)GreenGamesStudio</p>
+                    <p>GreenGamesStudio</p>
                 </div>
             </div>
         </section>
@@ -272,7 +295,7 @@
         <section id="contact-dev">
             <h2>Обратиться</h2>
             <p>Идеи, баги, чат — пиши мне!</p>
-            <p>Email: <a href="mailto:saiynmiras2011@gmail.com">(Owner)Miras — saiynmiras2011@gmail.com</a></p>
+            <p>Email: <a href="mailto:saiynmiras2011@gmail.com">saiynmiras2011@gmail.com</a></p>
             <form action="https://formspree.io/f/xvgzebqo" method="POST" class="contact-form">
                 <input type="text" name="name" placeholder="Имя" required>
                 <input type="email" name="email" placeholder="Email" required>
@@ -303,7 +326,7 @@
             <h3>Как я защищаю данные?</h3>
             <p>Сайт простой, без сложных баз данных, но я слежу, чтобы всё было безопасно. Никаких хакеров сюда не пускаем!</p>
             <h3>Твои права</h3>
-            <p>Хочешь, чтобы я удалил твой комментарий или сообщение? Просто напиши мне на <a href="mailto:saiynmiras2011@gmail.com">(Owner)Miras — saiynmiras2011@gmail.com</a>, и я всё уберу. Ты главный!</p>
+            <p>Хочешь, чтобы я удалил твой комментарий или сообщение? Просто напиши мне на <a href="mailto:saiynmiras2011@gmail.com">saiynmiras2011@gmail.com</a>, и я всё уберу. Ты главный!</p>
             <h3>Изменения политики</h3>
             <p>Если что-то поменяется, я обновлю этот текст. Заходи сюда иногда, чтобы быть в курсе.</p>
             <p>Дата обновления: 15 марта 2025. Если есть вопросы — пиши мне, разберёмся вместе!</p>
@@ -375,14 +398,17 @@
             startBurgerClicker();
         });
         function addShopButton() {
-            const shopBtn = document.createElement('button');
-            shopBtn.className = 'btn';
-            shopBtn.textContent = 'Магазин';
-            shopBtn.style.position = 'absolute';
-            shopBtn.style.bottom = '8px';
-            shopBtn.style.right = '8px';
-            shopBtn.addEventListener('click', () => shop.classList.add('active'));
-            clickerCanvas.parentElement.appendChild(shopBtn);
+            const existingShopBtn = document.querySelector('.shop-btn');
+            if (!existingShopBtn) {
+                const shopBtn = document.createElement('button');
+                shopBtn.className = 'btn shop-btn';
+                shopBtn.textContent = 'Магазин';
+                shopBtn.style.position = 'absolute';
+                shopBtn.style.bottom = '8px';
+                shopBtn.style.right = '8px';
+                shopBtn.addEventListener('click', () => shop.classList.add('active'));
+                clickerCanvas.parentElement.appendChild(shopBtn);
+            }
         }
         shopClose.addEventListener('click', () => shop.classList.remove('active'));
         const clickerCtx = clickerCanvas.getContext('2d');
@@ -421,7 +447,7 @@
             for (let i = 0; i < 5; i++) particles.push({ x, y, vx: (Math.random() - 0.5) * 4, vy: (Math.random() - 0.5) * 4, size: Math.random() * 8 + 4, life: 25 });
         }
         function buyUpgrade(type) {
-            const costs = { clickPower: 50, autoClick: 100, megaClick: 250, factory: 500, goldenBurger: 1000 };
+            const costs = { clickPower: 50, autoClick: 100, megaClick: 250, factory: 500, goldenBurger: 1000, cosmoBurger: 2000 };
             if (burgerScore >= costs[type]) {
                 burgerScore -= costs[type];
                 if (type === 'clickPower') clickPower += 5;
@@ -429,7 +455,8 @@
                 else if (type === 'megaClick') { megaClickActive = true; megaClickTimer = 15; }
                 else if (type === 'factory') autoClick += 10;
                 else if (type === 'goldenBurger') goldenMultiplier *= 2;
-                alert(`Куплено: ${type === 'megaClick' ? 'Мега-Клик (x10 на 15 сек)' : type === 'goldenBurger' ? 'Золотой Бургер (x2)' : type.replace('Click', ' Клик').replace('auto', 'Бургер-').replace('factory', 'Фабрика')}!`);
+                else if (type === 'cosmoBurger') autoClick += 50;
+                alert(`Куплено: ${type === 'megaClick' ? 'Мега-Клик (x10 на 15 сек)' : type === 'goldenBurger' ? 'Золотой Бургер (x2)' : type === 'cosmoBurger' ? 'Космо-Бургер (+50/с)' : type.replace('clickPower', 'Сочный Клик').replace('autoClick', 'Бургер-бот').replace('factory', 'Фабрика')}!`);
                 updateStats();
             } else alert('Недостаточно бургеров!');
         }
