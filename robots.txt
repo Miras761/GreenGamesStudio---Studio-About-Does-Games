@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://miras761.github.io/GreenGamesStudio---Studio-About-Does-Games/sitemap.xml
