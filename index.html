@@ -3,9 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="GreenGamesStudio — сайт молодого геймдева из Казахстана. Игры, мини-игры, идеи и многое другое от Сайына Мираса!">
+    <meta name="keywords" content="GreenGamesStudio, игры, мини-игры, геймдев, Сайын Мирас, Казахстан, Run From Neighbor, Roblox">
+    <meta name="author" content="Сайын Мирас">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="GreenGamesStudio — Игры от Сайына Мираса">
+    <meta property="og:description" content="Молодой геймдев из Казахстана создаёт уникальные игры и мини-игры!">
+    <meta property="og:image" content="https://yourusername.github.io/GreenGamesStudio/images/og-image.jpg">
+    <meta property="og:url" content="https://yourusername.github.io/GreenGamesStudio">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GreenGamesStudio — Игры от Сайына Мираса">
+    <meta name="twitter:description" content="Молодой геймдев из Казахстана создаёт уникальные игры и мини-игры!">
+    <meta name="twitter:image" content="https://yourusername.github.io/GreenGamesStudio/images/og-image.jpg">
     <title>GreenGamesStudio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <style>
+        @font-face {
+            font-family: 'Orbitron';
+            src: url('fonts/Orbitron-Regular.woff2') format('woff2');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'Orbitron';
+            src: url('fonts/Orbitron-Bold.woff2') format('woff2');
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: 'Roboto';
+            src: url('fonts/Roboto-Regular.woff2') format('woff2');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'Roboto';
+            src: url('fonts/Roboto-Bold.woff2') format('woff2');
+            font-weight: 700;
+        }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Roboto', sans-serif;
@@ -37,7 +71,7 @@
         h2 { font-size: clamp(1.4rem, 4vw, 2.2rem); }
         h3 { font-size: clamp(1rem, 3vw, 1.6rem); }
         p { margin-bottom: clamp(0.6rem, 2vw, 1.2rem); font-size: clamp(0.8rem, 2vw, 1rem); line-height: 1.6; color: #D0D0D0; }
-        .btn { background: linear-gradient(45deg, #00FF7F, #00CC66); color: #000; padding: clamp(0.4rem, 2vw, 0.7rem) clamp(0.8rem, 3vw, 1.2rem); font-family: 'Orbitron', sans-serif; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 255, 127, 0.4); transition: all 0.3s ease; display: inline-block; }
+        .btn { background: linear-gradient(45deg, #00FF7F, #00CC66); color: #000; padding: clamp(0.4rem, 2vw, 0.7rem) clamp(0.8rem, 3vw, 1.2rem); font-family: 'Orbitron', sans-serif; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 LUT4px 15px rgba(0, 255, 127, 0.4); transition: all 0.3s ease; display: inline-block; }
         .btn:hover { background: linear-gradient(45deg, #00CC66, #00FF7F); transform: translateY(-3px); }
         .mini-game { text-align: center; position: relative; }
         #clicker-canvas { display: none; border: clamp(2px, 1vw, 3px) solid #00FF7F; width: 100%; max-width: 800px; height: clamp(25vh, 35vh, 45vh); margin: clamp(0.8rem, 2vw, 1.2rem) auto; border-radius: 12px; }
@@ -112,6 +146,32 @@
             .group-item img { max-width: 350px; }
         }
     </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXX');
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "GreenGamesStudio",
+      "url": "https://yourusername.github.io/GreenGamesStudio",
+      "logo": "https://yourusername.github.io/GreenGamesStudio/images/logo.png",
+      "description": "GreenGamesStudio — сайт молодого геймдева из Казахстана, создающего уникальные игры и мини-игры.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "green.games.studio2025@gmail.com",
+        "contactType": "customer support"
+      },
+      "sameAs": [
+        "https://www.youtube.com/@Miras_razrabgames",
+        "https://t.me/+BtFF6XZ80LBkNGQy"
+      ]
+    }
+    </script>
 </head>
 <body>
     <header>
@@ -205,9 +265,9 @@
             <h2>Галерея</h2>
             <p>Взгляни на мир моих игр — яркие сцены и герои ждут тебя!</p>
             <div class="gallery-grid">
-                <div class="gallery-item"><img src="https://via.placeholder.com/300" alt="Сосед"><p>Сосед</p></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/300" alt="Герой"><p>Герой</p></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/300" alt="Бургер"><p>Бургер</p></div>
+                <div class="gallery-item"><img src="images/neighbor.png" alt="Сосед из игры Run From Neighbor от GreenGamesStudio" loading="lazy"><p>Сосед</p></div>
+                <div class="gallery-item"><img src="images/hero.png" alt="Герой игры от GreenGamesStudio" loading="lazy"><p>Герой</p></div>
+                <div class="gallery-item"><img src="images/burger.png" alt="Бургер из мини-игры Клик Бургер" loading="lazy"><p>Бургер</p></div>
             </div>
         </section>
 
@@ -278,7 +338,7 @@
             <h2>Создатели</h2>
             <p>Наша команда:</p>
             <p><strong>GreenGamesStudio</strong> — основатель и главный разработчик. 🎮</p>
-            <p>Хочешь стать создателем? Отправь заявку на <a href="mailto:saiynmiras2011@gmail.com">saiynmiras2011@gmail.com</a> с темой "Заявка в создатели"!</p>
+            <p>Хочешь стать создателем? Отправь заявку на <a id="creator-email" href="#">Email</a> с темой "Заявка в создатели"!</p>
         </section>
 
         <section id="group">
@@ -286,7 +346,7 @@
             <p>Это я, Сайын Мирас, основатель GreenGamesStudio! 🚀</p>
             <div class="group-grid">
                 <div class="group-item">
-                    <img src="https://via.placeholder.com/300" alt="Сайын Мирас">
+                    <img src="images/miras.png" alt="Сайын Мирас, основатель GreenGamesStudio" loading="lazy">
                     <p>GreenGamesStudio</p>
                 </div>
             </div>
@@ -295,7 +355,7 @@
         <section id="contact-dev">
             <h2>Обратиться</h2>
             <p>Идеи, баги, чат — пиши мне!</p>
-            <p>Email: <a href="mailto:saiynmiras2011@gmail.com">saiynmiras2011@gmail.com</a></p>
+            <p>Email: <a id="contact-email" href="#">Email</a></p>
             <form action="https://formspree.io/f/xvgzebqo" method="POST" class="contact-form">
                 <input type="text" name="name" placeholder="Имя" required>
                 <input type="email" name="email" placeholder="Email" required>
@@ -326,7 +386,7 @@
             <h3>Как я защищаю данные?</h3>
             <p>Сайт простой, без сложных баз данных, но я слежу, чтобы всё было безопасно. Никаких хакеров сюда не пускаем!</p>
             <h3>Твои права</h3>
-            <p>Хочешь, чтобы я удалил твой комментарий или сообщение? Просто напиши мне на <a href="mailto:saiynmiras2011@gmail.com">saiynmiras2011@gmail.com</a>, и я всё уберу. Ты главный!</p>
+            <p>Хочешь, чтобы я удалил твой комментарий или сообщение? Просто напиши мне на <a id="privacy-email" href="#">Email</a>, и я всё уберу. Ты главный!</p>
             <h3>Изменения политики</h3>
             <p>Если что-то поменяется, я обновлю этот текст. Заходи сюда иногда, чтобы быть в курсе.</p>
             <p>Дата обновления: 15 марта 2025. Если есть вопросы — пиши мне, разберёмся вместе!</p>
@@ -335,182 +395,6 @@
 
     <footer><p>© 2025 Сайын Мирас | GreenGamesStudio</p></footer>
 
-    <script>
-        const particleCanvas = document.getElementById('particles');
-        const particleCtx = particleCanvas.getContext('2d');
-        particleCanvas.width = window.innerWidth;
-        particleCanvas.height = window.innerHeight;
-        let particlesArray = [];
-        class Particle {
-            constructor() {
-                this.x = Math.random() * particleCanvas.width;
-                this.y = Math.random() * particleCanvas.height;
-                this.size = Math.random() * 5 + 1;
-                this.speedX = (Math.random() * 1 - 0.5);
-                this.speedY = (Math.random() * 1 - 0.5);
-                this.opacity = Math.random() * 0.5 + 0.3;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > particleCanvas.width || this.x < 0) this.speedX *= -1;
-                if (this.y > particleCanvas.height || this.y < 0) this.speedY *= -1;
-            }
-            draw() {
-                particleCtx.fillStyle = `rgba(0, 255, 127, ${this.opacity})`;
-                particleCtx.beginPath();
-                particleCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                particleCtx.fill();
-            }
-        }
-        function initParticles() {
-            particlesArray = [];
-            for (let i = 0; i < 100; i++) particlesArray.push(new Particle());
-        }
-        function animateParticles() {
-            particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
-            particlesArray.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animateParticles);
-        }
-        window.addEventListener('resize', () => {
-            particleCanvas.width = window.innerWidth;
-            particleCanvas.height = window.innerHeight;
-            initParticles();
-        });
-        initParticles();
-        animateParticles();
-
-        const burger = document.querySelector('.burger');
-        const navLinks = document.querySelector('.nav-links');
-        burger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            burger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        });
-
-        const playBtn = document.querySelector('.play-btn');
-        const clickerCanvas = document.getElementById('clicker-canvas');
-        const shop = document.getElementById('shop');
-        const shopClose = document.getElementById('shop-close');
-        let gameActive = false;
-        playBtn.addEventListener('click', () => {
-            clickerCanvas.classList.add('active');
-            playBtn.style.display = 'none';
-            startBurgerClicker();
-        });
-        function addShopButton() {
-            const existingShopBtn = document.querySelector('.shop-btn');
-            if (!existingShopBtn) {
-                const shopBtn = document.createElement('button');
-                shopBtn.className = 'btn shop-btn';
-                shopBtn.textContent = 'Магазин';
-                shopBtn.style.position = 'absolute';
-                shopBtn.style.bottom = '8px';
-                shopBtn.style.right = '8px';
-                shopBtn.addEventListener('click', () => shop.classList.add('active'));
-                clickerCanvas.parentElement.appendChild(shopBtn);
-            }
-        }
-        shopClose.addEventListener('click', () => shop.classList.remove('active'));
-        const clickerCtx = clickerCanvas.getContext('2d');
-        let burgerScore = 0, clickPower = 1, autoClick = 0, level = 1, particles = [], megaClickActive = false, megaClickTimer = 0, goldenMultiplier = 1;
-        let clicksThisSecond = 0, lastClickTime = 0;
-        const burgerScoreDisplay = document.getElementById('burger-score');
-        const clickRateDisplay = document.getElementById('click-rate');
-        const levelDisplay = document.getElementById('level');
-        const burgerProgress = document.getElementById('burger-progress');
-        function resizeCanvas() {
-            clickerCanvas.width = Math.min(clickerCanvas.parentElement.offsetWidth, 800);
-            clickerCanvas.height = 25 * window.innerHeight / 100;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-        function startBurgerClicker() {
-            if (gameActive) return;
-            gameActive = true;
-            addShopButton();
-            drawBurger();
-            updateStatsLoop();
-        }
-        clickerCanvas.addEventListener('click', e => {
-            if (!gameActive || shop.classList.contains('active')) return;
-            const rect = clickerCanvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            if (Math.hypot(x - clickerCanvas.width / 2, y - clickerCanvas.height / 2) < 80) {
-                burgerScore += clickPower * goldenMultiplier;
-                clicksThisSecond++;
-                spawnParticles(x, y);
-                checkLevelUp();
-            }
-        });
-        function spawnParticles(x, y) {
-            for (let i = 0; i < 5; i++) particles.push({ x, y, vx: (Math.random() - 0.5) * 4, vy: (Math.random() - 0.5) * 4, size: Math.random() * 8 + 4, life: 25 });
-        }
-        function buyUpgrade(type) {
-            const costs = { clickPower: 50, autoClick: 100, megaClick: 250, factory: 500, goldenBurger: 1000, cosmoBurger: 2000 };
-            if (burgerScore >= costs[type]) {
-                burgerScore -= costs[type];
-                if (type === 'clickPower') clickPower += 5;
-                else if (type === 'autoClick') autoClick += 1;
-                else if (type === 'megaClick') { megaClickActive = true; megaClickTimer = 15; }
-                else if (type === 'factory') autoClick += 10;
-                else if (type === 'goldenBurger') goldenMultiplier *= 2;
-                else if (type === 'cosmoBurger') autoClick += 50;
-                alert(`Куплено: ${type === 'megaClick' ? 'Мега-Клик (x10 на 15 сек)' : type === 'goldenBurger' ? 'Золотой Бургер (x2)' : type === 'cosmoBurger' ? 'Космо-Бургер (+50/с)' : type.replace('clickPower', 'Сочный Клик').replace('autoClick', 'Бургер-бот').replace('factory', 'Фабрика')}!`);
-                updateStats();
-            } else alert('Недостаточно бургеров!');
-        }
-        function checkLevelUp() {
-            if (burgerScore >= level * 500) { level++; alert(`Уровень ${level}!`); clickPower += 1; autoClick += 1; }
-            updateStats();
-        }
-        function updateStats() {
-            burgerScoreDisplay.textContent = Math.floor(burgerScore);
-            levelDisplay.textContent = level;
-            burgerProgress.style.width = Math.min((burgerScore / (level * 500)) * 100, 100) + '%';
-            if (burgerScore >= 1000 && level === 1) { alert('Секретный режим!'); clickPower += 20; burgerScore = 0; }
-        }
-        function updateStatsLoop() {
-            if (!gameActive) return;
-            burgerScore += autoClick * goldenMultiplier;
-            if (megaClickActive) { megaClickTimer -= 0.1; if (megaClickTimer <= 0) megaClickActive = false; }
-            updateStats();
-            const now = Date.now();
-            if (now - lastClickTime >= 1000) { clickRateDisplay.textContent = clicksThisSecond; clicksThisSecond = 0; lastClickTime = now; }
-            requestAnimationFrame(updateStatsLoop);
-        }
-        function drawBurger() {
-            if (!gameActive) return;
-            clickerCtx.clearRect(0, 0, clickerCanvas.width, clickerCanvas.height);
-            clickerCtx.fillStyle = 'rgba(0, 0, 0, 0.4)';
-            clickerCtx.fillRect(0, 0, clickerCanvas.width, clickerCanvas.height);
-            clickerCtx.fillStyle = '#FF4500';
-            clickerCtx.font = '60px Arial';
-            clickerCtx.textAlign = 'center';
-            clickerCtx.fillText('🍔', clickerCanvas.width / 2, clickerCanvas.height / 2 + 20);
-            particles.forEach((p, i) => {
-                p.x += p.vx; p.y += p.vy; p.life--;
-                p.size *= 0.9;
-                clickerCtx.fillStyle = `rgba(255, 69, 0, ${p.life / 25})`;
-                clickerCtx.beginPath();
-                clickerCtx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
-                clickerCtx.fill();
-                if (p.life <= 0) particles.splice(i, 1);
-            });
-            requestAnimationFrame(drawBurger);
-        }
-
-        document.getElementById('comment-form').addEventListener('submit', e => {
-            e.preventDefault();
-            const name = document.getElementById('comment-name').value;
-            const message = document.getElementById('comment-message').value;
-            const commentList = document.getElementById('comment-list');
-            const comment = document.createElement('div');
-            comment.className = 'comment';
-            comment.innerHTML = `<span>${name}</span><p>${message}</p>`;
-            commentList.appendChild(comment);
-            document.getElementById('comment-form').reset();
-        });
-    </script>
+    <script defer src="script.js"></script>
 </body>
 </html>
