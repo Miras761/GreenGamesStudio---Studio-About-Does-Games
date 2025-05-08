@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Главная страница -->
   <url>
     <loc>https://miras761.github.io/GreenGamesStudio---Studio-About-Does-Games/</loc>
     <lastmod>2025-05-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Если у тебя есть другие страницы, можешь добавить их так:
-  <url>
-    <loc>https://miras761.github.io/GreenGamesStudio---Studio-About-Does-Games/shop.html</loc>
-    <lastmod>2025-05-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  -->
 
 </urlset>
